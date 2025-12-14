@@ -9,7 +9,7 @@ in {
     ./services/git.nix
     ./services/virtualisation.nix
     # Optional Services: #
-    ./services/paperless-ngx.nix
+    #./services/paperless-ngx.nix
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
     ./services/minecraft.nix
