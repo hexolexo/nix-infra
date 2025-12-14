@@ -174,4 +174,12 @@
       }
     '';
   };
+  home.file.".config/waybar/scripts/battery.sh" = {
+    source = ./scripts/battery.sh;
+    executable = true;
+  };
+  home.file.".config/waybar/scripts/music.sh" = {
+    source = ./scripts/music.sh;
+    executable = true;
+  };
 }
