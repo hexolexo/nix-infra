@@ -81,6 +81,12 @@
     enable = true;
   };
 
+  programs.git = {
+    enable = true;
+    userName = "hexolexo";
+    userEmail = "hexolexo132@proton.me";
+  };
+
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "rebuild" (builtins.readFile ./../rebuild.sh))
     fzf
