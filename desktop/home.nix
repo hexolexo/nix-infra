@@ -175,6 +175,140 @@
       }
     '';
   };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font = {
+        normal.family = "FiraCode Nerd Font";
+        size = 12;
+      };
+
+      cursor.style = "Beam";
+
+      mouse.hide_when_typing = true;
+
+      env.TERM = "xterm-256color";
+
+      colors = {
+        primary = {
+          background = "#1E1E2E";
+          foreground = "#CDD6F4";
+          dim_foreground = "#CDD6F4";
+          bright_foreground = "#CDD6F4";
+        };
+
+        cursor = {
+          text = "#1E1E2E";
+          cursor = "#F5E0DC";
+        };
+
+        vi_mode_cursor = {
+          text = "#1E1E2E";
+          cursor = "#B4BEFE";
+        };
+
+        search = {
+          matches = {
+            foreground = "#1E1E2E";
+            background = "#A6ADC8";
+          };
+          focused_match = {
+            foreground = "#1E1E2E";
+            background = "#A6E3A1";
+          };
+        };
+
+        footer_bar = {
+          foreground = "#1E1E2E";
+          background = "#A6ADC8";
+        };
+
+        hints = {
+          start = {
+            foreground = "#1E1E2E";
+            background = "#F9E2AF";
+          };
+          end = {
+            foreground = "#1E1E2E";
+            background = "#A6ADC8";
+          };
+        };
+
+        selection = {
+          text = "#1E1E2E";
+          background = "#F5E0DC";
+        };
+
+        normal = {
+          black = "#45475A";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#BAC2DE";
+        };
+
+        bright = {
+          black = "#585B70";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#A6ADC8";
+        };
+
+        dim = {
+          black = "#45475A";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#BAC2DE";
+        };
+
+        indexed_colors = [
+          {
+            index = 16;
+            color = "#FAB387";
+          }
+          {
+            index = 17;
+            color = "#F5E0DC";
+          }
+        ];
+      };
+    };
+  };
+
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        terminal = "alacritty";
+        font = "FiraCode Nerd Font:size=12";
+      };
+      colors = {
+        background = "1e1e2edd";
+        text = "cdd6f4ff";
+        match = "89b4faff";
+        selection = "585b70ff";
+        selection-text = "cdd6f4ff";
+        selection-match = "89b4faff";
+        border = "89b4faff";
+      };
+      border = {
+        width = 2;
+        radius = 8;
+      };
+    };
+  };
   home.file.".config/waybar/scripts/battery.sh" = {
     source = ./scripts/battery.sh;
     executable = true;
@@ -182,5 +316,34 @@
   home.file.".config/waybar/scripts/music.sh" = {
     source = ./scripts/music.sh;
     executable = true;
+  };
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
+      modules = [
+        "title"
+        "separator"
+        "os"
+        "kernel"
+        "uptime"
+        "packages"
+        "shell"
+        "display"
+        "de"
+        "wm"
+        "terminal"
+        "cpu"
+        "gpu"
+        "memory"
+        "swap"
+        "disk"
+        "localip"
+        "poweradapter"
+        "locale"
+        "break"
+        "colors"
+      ];
+    };
   };
 }
