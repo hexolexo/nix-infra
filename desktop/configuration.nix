@@ -37,6 +37,7 @@
   users.users.hexolexo = {
     isNormalUser = true;
     description = "hexolexo";
+    shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
       "wheel"
