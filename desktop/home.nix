@@ -80,11 +80,12 @@
   programs.zoxide = {
     enable = true;
   };
-
   programs.git = {
     enable = true;
-    userName = "hexolexo";
-    userEmail = "hexolexo132@proton.me";
+    settings = {
+      user.name = "hexolexo";
+      user.email = "hexolexo132@proton.me";
+    };
   };
 
   home.packages = with pkgs; [
