@@ -87,12 +87,12 @@
     elmPackages.elm-language-server
     git
     go
-    gopls # Go LSP
+    gopls
     jq
     lua-language-server
     marksman
     micro
-    nil # Nix LSP
+    nil
     alejandra
     nix-output-monitor
     nodePackages.bash-language-server
@@ -100,7 +100,6 @@
     pkg-config
     ripgrep
     rustc
-    stylua # Lua formatter
     neovim
     unzip
 
