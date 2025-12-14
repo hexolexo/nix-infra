@@ -79,7 +79,7 @@
     swaybg
     swaylock-effects
     waybar
-    wofi
+    fuzzel
 
     # Development
     cargo
