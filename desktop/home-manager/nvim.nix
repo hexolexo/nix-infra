@@ -53,7 +53,7 @@
         mode = "n";
         key = "<leader>pf";
         action.__raw = ''
-          builtin.find_files
+          telescope.builtin.find_files
         '';
       }
     ];
