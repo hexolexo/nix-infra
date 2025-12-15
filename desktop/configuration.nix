@@ -95,7 +95,7 @@
     marksman
     micro
     nil
-    nixfmt
+    nixfmt-rfc-style
     nix-output-monitor
     nodePackages.bash-language-server
     opentofu
