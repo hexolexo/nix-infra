@@ -1,6 +1,8 @@
 {...}: {
   programs.nixvim = {
     enable = true;
+    globals.mapleader = " ";
+    globals.maplocalleader = " ";
     colorschemes.catppuccin = {
       enable = true;
       settings = {
@@ -51,8 +53,6 @@
     ];
     extraConfigLua = ''
       vim.o.timeoutlen = 500
-            vim.g.mapleader = ' '
-        vim.g.maplocalleader = ' '
                 local builtin = require('telescope.builtin')
 
             vim.keymap.set('n', '<leader>ps', function()
