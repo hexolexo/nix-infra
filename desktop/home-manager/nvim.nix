@@ -46,7 +46,13 @@
       web-devicons.enable = true;
       lualine.enable = true;
       telescope.enable = true;
-      treesitter.enable = true;
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+        };
+      };
       lsp = {
         enable = true;
         servers = {
