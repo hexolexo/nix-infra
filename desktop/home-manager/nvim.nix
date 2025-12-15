@@ -9,6 +9,17 @@
     };
 
     plugins = {
+      oil = {
+        enable = true;
+        settings = {
+          default_file_explorer = true;
+          delete_to_trash = true;
+          skip_confirm_for_simple_edits = true;
+          view_options = {
+            show_hidden = true;
+          };
+        };
+      };
       lualine.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
@@ -21,6 +32,24 @@
         };
       };
     };
+    keymaps = [
+      {
+        mode = "n";
+        key = "-";
+        action = "<cmd>Oil<cr>";
+        options.desc = "Open parent directory";
+      }
+      {
+        mode = "n";
+        key = "<leader>ps";
+        action.__raw = ''
+          function()
+          require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })
+          end
+        '';
+        options.desc = "[P]roject [S]earch";
+      }
+    ];
     extraConfigLua = ''
       local keymap = vim.keymap.set
       keymap('n', 'n', 'h', { noremap = true })
