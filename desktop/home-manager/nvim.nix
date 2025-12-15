@@ -29,7 +29,7 @@
       lsp = {
         enable = true;
         servers = {
-          nixd.enable = true;
+          nil.enable = true;
           gopls.enable = true;
           bashls.enable = true;
         };
