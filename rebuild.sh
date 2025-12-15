@@ -11,8 +11,7 @@ if git diff --quiet; then
     exit 0
 fi
 
-fd -e nix -E .direnv -x nixfmt-rfc-style {} || true
-#nixfmt . 2>&1 || true
+alejandra . 2>&1 | grep -v "ℹ" || true
 git diff -U0 '*.nix'
 
 changed_files=$(git diff --name-only '*.nix')

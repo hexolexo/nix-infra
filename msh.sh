@@ -11,7 +11,6 @@ fi
 
 # Create remote dir and start sync
 ssh vault "rm -rf $REMOTE_DIR && mkdir -p $REMOTE_DIR"
-ssh vault "mkdir -p $REMOTE_DIR"
 
 echo "Starting sync: $PROJECT_DIR -> vault:$REMOTE_DIR"
 mutagen sync create \
