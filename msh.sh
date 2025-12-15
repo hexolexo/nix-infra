@@ -26,10 +26,8 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Wait for initial sync
 echo "Waiting for initial sync..."
 mutagen sync flush "dev-$(basename "$PROJECT_DIR")-$$"
 
-# Drop into remote shell in synced dir
 echo "Entering remote shell at $REMOTE_DIR"
 ssh -t vault "cd $REMOTE_DIR && exec bash"

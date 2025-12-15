@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     ./home-manager/alacritty.nix
     ./home-manager/fastfetch.nix
@@ -103,5 +102,4 @@
     fzf
     highlight
   ];
-
 }

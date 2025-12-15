@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -8,8 +7,8 @@
         position = "top";
         height = 20;
         margin-bottom = 0;
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "clock" ];
+        modules-left = ["hyprland/workspaces"];
+        modules-center = ["clock"];
         modules-right = [
           "custom/music"
           "pulseaudio"

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.nixvim = {
     enable = true;
     opts = {
@@ -43,7 +42,13 @@
           ];
         };
       };
-      plugins.todo-comments.enable = true;
+      gitsigns.enable = true;
+      which-key.enable = true;
+      nvim-autopairs.enable = true;
+      indent-blankline.enable = true;
+      fidget.enable = true;
+      trouble.enable = true;
+      todo-comments.enable = true;
       web-devicons.enable = true;
       lualine.enable = true;
       telescope.enable = true;
@@ -70,8 +75,8 @@
               "gofmt"
               "goimports"
             ];
-            nix = [ "nixfmt" ];
-            bash = [ "shfmt" ];
+            nix = ["alejandra"];
+            bash = ["shfmt"];
           };
           format_on_save = {
             lsp_format = "fallback";

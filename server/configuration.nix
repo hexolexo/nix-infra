@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   global = import ./global.nix;
-in
-{
+in {
   imports = [
     # Required Services #
     ./hardware-configuration.nix
@@ -60,7 +58,7 @@ in
         "networkmanager"
         "wheel"
       ];
-      packages = with pkgs; [ go ];
+      packages = with pkgs; [go];
       openssh.authorizedKeys.keys = global.authorisedKeys;
     };
     root.openssh.authorizedKeys.keys = global.authorisedKeys;
@@ -81,7 +79,7 @@ in
     hostName = "vault";
     networkmanager.enable = true;
     firewall.enable = true;
-    firewall.allowedTCPPorts = [ ]; # NOTE: Firewall is configured per service bundle
+    firewall.allowedTCPPorts = []; # NOTE: Firewall is configured per service bundle
   };
 
   system.autoUpgrade = {
