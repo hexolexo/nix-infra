@@ -11,7 +11,7 @@ if git diff --quiet; then
     exit 0
 fi
 
-alejandra . 2>&1 | grep -v "ℹ" || true
+nixfmt . 2>&1 || true
 git diff -U0 '*.nix'
 
 changed_files=$(git diff --name-only '*.nix')
@@ -31,6 +31,7 @@ case "$desktop_changed$server_changed" in
     11) echo "Changes affect both desktop and server" ;;
     10) echo "Changes affect desktop only" ;;
     01) echo "Changes affect server only" ;;
+    00) echo "Nothing changed. Exiting" && exit 0 ;;
 esac
 
 echo -n "Build and switch? [Y/n] "
