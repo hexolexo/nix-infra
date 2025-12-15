@@ -14,7 +14,7 @@
     colorschemes.catppuccin = {
       enable = true;
       settings = {
-        flavour = "macchiato";
+        flavour = "mocha";
       };
     };
 
@@ -96,6 +96,7 @@
       }
     ];
     extraConfigLua = ''
+      vim.opt.termguicolors = true
       vim.opt.clipboard = 'unnamedplus'
       vim.o.timeoutlen = 500
       local builtin = require('telescope.builtin')
