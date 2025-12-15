@@ -106,6 +106,11 @@
         key = "<leader>s";
         action = '':%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>'';
       }
+      {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>lua vim.diagnostic.open_float()<cr>";
+      }
     ];
     extraConfigLua = ''
       vim.opt.termguicolors = true
