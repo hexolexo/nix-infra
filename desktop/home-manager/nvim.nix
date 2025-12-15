@@ -114,7 +114,7 @@
       local builtin = require('telescope.builtin')
 
       vim.keymap.set('n', '<leader>ps', function()
-        builtin.grep_string({ search = vim.fn.input('Grep > ') })
+       builtin.live_grep({ additional_args = { '--hidden' } })
         end, { desc = '[P]roject [S]earch' })
       local keymap = vim.keymap.set
       keymap('n', 'n', 'h', { noremap = true })

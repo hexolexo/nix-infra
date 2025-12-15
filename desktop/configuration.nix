@@ -107,6 +107,7 @@
     # Shell/Terminal
     btop
     fzf
+    ripgrep
     fd
     highlight
     pass
