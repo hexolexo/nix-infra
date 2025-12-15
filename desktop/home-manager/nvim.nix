@@ -43,7 +43,9 @@
         mode = "n";
         key = "<leader>pf";
         action.__raw = ''
-          telescope.builtin.find_files
+          function()
+               require('telescope.builtin').find_files()
+             end
         '';
       }
     ];
