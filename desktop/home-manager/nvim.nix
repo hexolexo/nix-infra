@@ -1,8 +1,10 @@
-{...}: {
+{ ... }:
+{
   programs.nixvim = {
     enable = true;
     opts = {
       number = true;
+      termguicolors = true;
       relativenumber = true;
     };
 
@@ -34,7 +36,11 @@
           keymap = {
             preset = "super-tab";
           };
-          sources.default = ["lsp" "path" "buffer"];
+          sources.default = [
+            "lsp"
+            "path"
+            "buffer"
+          ];
         };
       };
       lualine.enable = true;
@@ -52,9 +58,12 @@
         enable = true;
         settings = {
           formatters_by_ft = {
-            go = ["gofmt" "goimports"];
-            nix = ["nixfmt"];
-            bash = ["shfmt"];
+            go = [
+              "gofmt"
+              "goimports"
+            ];
+            nix = [ "nixfmt" ];
+            bash = [ "shfmt" ];
           };
           format_on_save = {
             lsp_format = "fallback";
@@ -78,6 +87,11 @@
                require('telescope.builtin').find_files()
              end
         '';
+      }
+      {
+        mode = "n";
+        key = "<leader>s";
+        action = "[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]";
       }
     ];
     extraConfigLua = ''

@@ -1,7 +1,8 @@
-{secrets, ...}: {
+{ secrets, ... }:
+{
   networking.hosts = {
-    "${secrets.HomeIP}" = ["home"];
-    "${secrets.ServerIP}" = ["server"];
+    "${secrets.HomeIP}" = [ "home" ];
+    "${secrets.ServerIP}" = [ "server" ];
   };
   environment.etc."proxychains.conf".text = ''
     proxy_dns
@@ -17,7 +18,7 @@
   '';
   networking.wireguard.interfaces = {
     wg0 = {
-      ips = ["10.0.0.2/24"];
+      ips = [ "10.0.0.2/24" ];
 
       privateKeyFile = "/etc/wireguard/privkey";
 
@@ -26,7 +27,7 @@
           publicKey = "6Kyt3gNgDW/9g14BYSMyaNgVPHA7AR7fthLoUOMgRQE=";
           endpoint = "${secrets.HomeIP}:51820";
 
-          allowedIPs = ["10.0.0.0/24"];
+          allowedIPs = [ "10.0.0.0/24" ];
           persistentKeepalive = 25;
         }
       ];

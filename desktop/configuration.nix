@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
@@ -53,7 +54,7 @@
 
     # Theming
     (catppuccin-gtk.override {
-      accents = ["lavender"];
+      accents = [ "lavender" ];
       variant = "mocha";
     })
     libsForQt5.qtstyleplugin-kvantum
@@ -94,7 +95,7 @@
     marksman
     micro
     nil
-    alejandra
+    nixfmt
     nix-output-monitor
     nodePackages.bash-language-server
     opentofu
@@ -159,7 +160,7 @@
     keyd = {
       enable = true;
       keyboards.default = {
-        ids = ["*"];
+        ids = [ "*" ];
         settings = {
           main = {
             capslock = "backspace";
@@ -201,7 +202,7 @@
     hyprland.enable = true;
   };
 
-  fonts.packages = [pkgs.nerd-fonts.fira-code];
+  fonts.packages = [ pkgs.nerd-fonts.fira-code ];
   hardware = {
     graphics = {
       enable = true;
@@ -215,7 +216,7 @@
 
   services.fanControl = {
     enable = true;
-    allowedUsers = ["hexolexo"];
+    allowedUsers = [ "hexolexo" ];
     quietDuty = 40;
     maxDuty = 100;
   };
@@ -246,7 +247,10 @@
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    settings.experimental-features = ["nix-command" "flakes"];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   system.autoUpgrade = {

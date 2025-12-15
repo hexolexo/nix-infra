@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.services.fanControl;
-in {
+in
+{
   options.services.fanControl = {
     enable = mkEnableOption "fan control services";
 
@@ -36,9 +38,9 @@ in {
 
     allowedUsers = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "Users allowed to control fan services without password";
-      example = ["username"];
+      example = [ "username" ];
     };
   };
 
@@ -72,21 +74,21 @@ in {
       };
     };
 
-    security.sudo.extraRules = mkIf (cfg.allowedUsers != []) [
+    security.sudo.extraRules = mkIf (cfg.allowedUsers != [ ]) [
       {
         users = cfg.allowedUsers;
         commands = [
           {
             command = "/run/current-system/sw/bin/systemctl start fanAutoControl";
-            options = ["NOPASSWD"];
+            options = [ "NOPASSWD" ];
           }
           {
             command = "/run/current-system/sw/bin/systemctl start fanQuiet";
-            options = ["NOPASSWD"];
+            options = [ "NOPASSWD" ];
           }
           {
             command = "/run/current-system/sw/bin/systemctl start fanMax";
-            options = ["NOPASSWD"];
+            options = [ "NOPASSWD" ];
           }
         ];
       }
