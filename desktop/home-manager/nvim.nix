@@ -111,6 +111,11 @@
         key = "<leader>e";
         action = "<cmd>lua vim.diagnostic.open_float()<cr>";
       }
+      {
+        mode = "n";
+        key = "<leader>xx";
+        action = "<cmd>Trouble diagnostics toggle<cr>";
+      }
     ];
     extraConfigLua = ''
       vim.opt.termguicolors = true
