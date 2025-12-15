@@ -99,6 +99,7 @@
 
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "rebuild" (builtins.readFile ./../rebuild.sh))
+    (pkgs.writeShellScriptBin "msh" (builtins.readFile ./../msh.sh))
     fzf
     highlight
   ];
