@@ -65,6 +65,17 @@
           nil.enable = true;
           gopls.enable = true;
           bashls.enable = true;
+          marksman.enable = true;
+        };
+      };
+      render-markdown = {
+        enable = true;
+        settings = {
+          file_types = ["markdown"];
+          code = {
+            style = "full";
+            width = "block";
+          };
         };
       };
       conform-nvim = {
