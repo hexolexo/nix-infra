@@ -49,6 +49,13 @@
         '';
         options.desc = "[P]roject [S]earch";
       }
+      {
+        mode = "n";
+        key = "<leader>pf";
+        action.__raw = ''
+          builtin.find_files
+        '';
+      }
     ];
     extraConfigLua = ''
       local keymap = vim.keymap.set
