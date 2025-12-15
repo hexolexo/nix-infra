@@ -44,7 +44,7 @@
         key = "<leader>ps";
         action.__raw = ''
           function()
-          require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })
+            require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })
           end
         '';
         options.desc = "[P]roject [S]earch";
