@@ -53,7 +53,7 @@ fi
 
 if [[ $server_changed -eq 1 ]]; then
     echo "Deploying to server..."
-    deploy .#vault
+    nix develop --command deploy .#vault
     [[ -n "$commits" ]] && commits="$commits, vault deployed" || commits="vault deployed"
 fi
 

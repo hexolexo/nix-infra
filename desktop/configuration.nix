@@ -108,6 +108,7 @@
     # Shell/Terminal
     btop
     fzf
+    fd
     highlight
     pass
     starship

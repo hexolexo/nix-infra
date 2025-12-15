@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   global = import ./global.nix;
-in {
+in
+{
   imports = [
     # Required Services #
     ./hardware-configuration.nix
@@ -54,8 +56,11 @@ in {
     hexolexo = {
       isNormalUser = true;
       description = "hexolexo";
-      extraGroups = ["networkmanager" "wheel"];
-      packages = with pkgs; [go];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      packages = with pkgs; [ go ];
       openssh.authorizedKeys.keys = global.authorisedKeys;
     };
     root.openssh.authorizedKeys.keys = global.authorisedKeys;
@@ -64,6 +69,7 @@ in {
   environment.systemPackages = with pkgs; [
     btop
     git
+    gnumake
     micro
     cargo
     pkg-config
@@ -75,12 +81,12 @@ in {
     hostName = "vault";
     networkmanager.enable = true;
     firewall.enable = true;
-    firewall.allowedTCPPorts = []; #  NOTE: Firewall is configured per service bundle
+    firewall.allowedTCPPorts = [ ]; # NOTE: Firewall is configured per service bundle
   };
 
   system.autoUpgrade = {
     enable = true;
-    dates = "16:00"; #  NOTE: I'll dial this back when I get busy
+    dates = "16:00"; # NOTE: I'll dial this back when I get busy
     allowReboot = true;
   };
 
@@ -91,7 +97,10 @@ in {
       options = "--delete-older-than 7d";
     };
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       max-jobs = 20;
       cores = 0;
       auto-optimise-store = true;
