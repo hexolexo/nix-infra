@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -22,6 +26,7 @@
     agenix,
     self,
     nix-minecraft,
+    nixvim,
     deploy-rs,
     ...
   }: {
@@ -36,6 +41,9 @@
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
+          home-manager.sharedModules = [
+            nixvim.homeManagerModules.nixvim
+          ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.hexolexo = import ./desktop/home.nix;

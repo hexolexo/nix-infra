@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./home-manager/nvim.nix
+  ];
   home.stateVersion = "25.11";
 
   home.sessionVariables = {
