@@ -14,7 +14,7 @@
     colorschemes.catppuccin = {
       enable = true;
       settings = {
-        flavour = "latte";
+        flavour = "macchiato";
       };
     };
 
