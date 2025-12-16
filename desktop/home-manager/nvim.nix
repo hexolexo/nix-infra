@@ -3,6 +3,7 @@
     enable = true;
     opts = {
       number = true;
+      tabstop = 4;
       termguicolors = true;
       relativenumber = true;
     };
