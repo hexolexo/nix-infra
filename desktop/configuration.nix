@@ -145,6 +145,7 @@
   };
 
   services = {
+    fwupd.enable = true;
     mpd = {
       enable = true;
       user = "hexolexo";
