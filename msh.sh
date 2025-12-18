@@ -10,15 +10,15 @@ if ! mutagen daemon status &>/dev/null; then
 fi
 
 # Create remote dir and start sync
-ssh vault "rm -rf $REMOTE_DIR && mkdir -p $REMOTE_DIR"
+ssh server "rm -rf $REMOTE_DIR && mkdir -p $REMOTE_DIR"
 
-echo "Starting sync: $PROJECT_DIR -> vault:$REMOTE_DIR"
+echo "Starting sync: $PROJECT_DIR -> server:$REMOTE_DIR"
 mutagen sync create \
     --name "dev-$(basename "$PROJECT_DIR")-$$" \
     --ignore '.git' \
     --ignore 'result' \
     --sync-mode two-way-resolved \
-    "$PROJECT_DIR" "vault:$REMOTE_DIR"
+    "$PROJECT_DIR" "server:$REMOTE_DIR"
 
 cleanup() {
     echo "Terminating sync..."
@@ -30,4 +30,4 @@ echo "Waiting for initial sync..."
 mutagen sync flush "dev-$(basename "$PROJECT_DIR")-$$"
 
 echo "Entering remote shell at $REMOTE_DIR"
-ssh -t vault "cd $REMOTE_DIR && exec bash"
+ssh -t server "cd $REMOTE_DIR && exec bash"
