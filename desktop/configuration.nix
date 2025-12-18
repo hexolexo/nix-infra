@@ -261,6 +261,10 @@
     dates = "04:00";
     allowReboot = false;
   };
+  networking.firewall = {
+    allowedTCPPorts = [6567];
+    allowedUDPPorts = [6567];
+  };
 
   system.stateVersion = "25.05";
 }
