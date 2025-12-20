@@ -10,6 +10,7 @@ in {
     ./services/virtualisation.nix
     # Optional Services: #
     #./services/paperless-ngx.nix
+    ./containers/unbound.nix
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
     ./services/minecraft.nix
