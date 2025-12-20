@@ -19,20 +19,6 @@
     };
 
     plugins = {
-      mini.enable = true;
-      extraConfigLua = ''
-        require('mini.animate').setup({
-          cursor = {
-            enable = true,
-            timing = require('mini.animate').gen_timing.linear({ duration = 100, unit = 'total' }),
-          },
-          scroll = { enable = false },
-          resize = { enable = false },
-          open = { enable = false },
-          close = { enable = false },
-        })
-      '';
-
       oil = {
         enable = true;
         settings = {
