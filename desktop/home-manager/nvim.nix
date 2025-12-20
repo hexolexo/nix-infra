@@ -63,6 +63,7 @@
       lsp = {
         enable = true;
         servers = {
+          jdtls.enable = true;
           nil.enable = true;
           gopls.enable = true;
           bashls.enable = true;
