@@ -1,5 +1,5 @@
 {...}: {
-  containers.fuzzing = {
+  containers.unbound = {
     #
     autoStart = true;
     privateNetwork = false;
