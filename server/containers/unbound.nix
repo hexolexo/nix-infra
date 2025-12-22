@@ -23,6 +23,9 @@
             prefetch = true;
             num-threads = 2;
           };
+          remote-control = {
+            control-enable = true;
+          };
         };
       };
       boot.isContainer = true;
