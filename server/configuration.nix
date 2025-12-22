@@ -13,7 +13,7 @@ in {
     #./containers/unbound.nix
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
-    ./services/minecraft.nix
+    #./services/minecraft.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
     #./containers/I2P.nix           #  BUG: ISP blocking port forwarding reducing it's efficacy
