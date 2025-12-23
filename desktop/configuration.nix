@@ -50,6 +50,7 @@
     libreoffice # fucking docx
     librewolf
     obsidian
+    fluffychat
 
     # Theming
     (catppuccin-gtk.override {
