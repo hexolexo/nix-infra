@@ -120,7 +120,7 @@
     # System Tools
     borgbackup
     brightnessctl
-    ffmpeg
+    ffmpeg-full
     libxkbcommon
     socat
     wireguard-tools
