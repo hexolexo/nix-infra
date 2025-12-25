@@ -68,6 +68,7 @@
           gopls.enable = true;
           bashls.enable = true;
           marksman.enable = true;
+          glas.enable = true;
         };
       };
       render-markdown = {
