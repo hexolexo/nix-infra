@@ -82,7 +82,6 @@
     swaylock-effects
     waybar
     fuzzel
-    ydotool
 
     # Development
     cargo
@@ -200,7 +199,7 @@
   console.keyMap = "colemak";
 
   programs = {
-    kdeconnect.enable = true;
+    ydotool.enable = true;
     firefox.enable = true;
     steam.enable = true;
     hyprland.enable = true;
