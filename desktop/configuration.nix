@@ -82,7 +82,7 @@
     swaylock-effects
     waybar
     fuzzel
-    wtype
+    ydotool
 
     # Development
     cargo
