@@ -3,10 +3,15 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     secrets.url = "git+ssh://git@localgit/secrets.git";
-    home-manager = {
+    home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -21,7 +26,8 @@
   outputs = {
     nixpkgs-stable,
     nixpkgs-unstable,
-    home-manager,
+    home-manager-stable,
+    home-manager-unstable,
     secrets,
     agenix,
     self,
@@ -39,7 +45,7 @@
         ./desktop/configuration.nix
         ./desktop/networking.nix
         agenix.nixosModules.default
-        home-manager.nixosModules.home-manager
+        home-manager-unstable.nixosModules.home-manager
         {
           home-manager.sharedModules = [
             nixvim.homeModules.nixvim
@@ -55,8 +61,17 @@
       system = "x86_64-linux";
       modules = [
         ./server/configuration.nix
+        home-manager-stable.nixosModules.home-manager
         nix-minecraft.nixosModules.minecraft-servers
         {_module.args = {inherit nix-minecraft;};}
+        {
+          home-manager.sharedModules = [
+            nixvim.homeModules.nixvim
+          ];
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.hexolexo = import ./server/home.nix;
+        }
       ];
     };
 

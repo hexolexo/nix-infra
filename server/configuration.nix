@@ -51,10 +51,12 @@ in {
     LC_TIME = "en_AU.UTF-8";
   };
 
+  programs.fish.enable = true;
   users.users = {
     hexolexo = {
       isNormalUser = true;
       description = "hexolexo";
+      shell = pkgs.fish;
       extraGroups = [
         "networkmanager"
         "wheel"
