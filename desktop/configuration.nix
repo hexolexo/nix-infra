@@ -172,10 +172,19 @@
             backspace = "noop";
             rightalt = "esc";
             esc = "noop";
+            rightshift = "layer(toggle_layer)";
           };
+          toggle_layer = {
+            leftshift = "toggle(remap)"; #  HACK: What the fuck have I created
+          };
+          remap = {
+            n = "f";
+          };
+          "remap:toggle" = {}; # Marks remap as toggleable
         };
       };
     };
+
     displayManager.ly.enable = true;
     blueman.enable = true;
 
