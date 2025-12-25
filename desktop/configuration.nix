@@ -82,7 +82,7 @@
     swaylock-effects
     waybar
     fuzzel
-    ydotool
+    wtype
 
     # Development
     cargo
@@ -137,13 +137,6 @@
     virtio-win
     win-spice
   ];
-  systemd.user.services.ydotoold = {
-    # The shit I do to play UNBEATABLE...
-    enable = true;
-    description = "ydotool daemon";
-    wantedBy = ["default.target"];
-    serviceConfig.ExecStart = "${pkgs.ydotool}/bin/ydotoold";
-  };
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
