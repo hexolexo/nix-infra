@@ -91,6 +91,7 @@
             ];
             nix = ["alejandra"];
             bash = ["shfmt"];
+            gleam = ["gleam"];
           };
           format_on_save = {
             lsp_format = "fallback";
