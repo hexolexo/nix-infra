@@ -183,7 +183,7 @@
             i = "g"; # u -> d
             # w -> w (wait a minute)
             # a -> a
-            s = "r"; # r -> s
+            s = "d"; # r -> s
             d = "g"; # s -> d
           };
           # I just wanted to play UNBEATABLE man...
