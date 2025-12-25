@@ -90,6 +90,7 @@
     git
     go
     gopls
+    go-tools
     jq
     lua-language-server
     marksman
@@ -98,6 +99,7 @@
     alejandra
     nix-output-monitor
     nodePackages.bash-language-server
+    shfmt
     opentofu
     pkg-config
     ripgrep
