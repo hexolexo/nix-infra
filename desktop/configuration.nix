@@ -114,8 +114,6 @@
     fd
     highlight
     pass
-    starship
-    zoxide
     mutagen
     vhs
 

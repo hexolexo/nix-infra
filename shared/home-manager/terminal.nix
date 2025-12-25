@@ -14,12 +14,18 @@
     "${config.home.homeDirectory}/.cargo/bin"
   ];
 
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.fish = {
     enable = true;
     shellAliases = {
       vim = "nvim";
       neovim = "nvim";
       cd = "z";
+      ls = "eza";
     };
     interactiveShellInit = ''
       function man
@@ -44,6 +50,14 @@
       };
     };
   };
+
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = true;
+    git = true;
+    icons = "auto";
+  };
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
