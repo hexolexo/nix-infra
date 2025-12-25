@@ -39,6 +39,7 @@
     description = "hexolexo";
     shell = pkgs.fish;
     extraGroups = [
+      "input"
       "networkmanager"
       "wheel"
     ];
