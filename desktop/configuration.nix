@@ -83,7 +83,7 @@
     swaylock-effects
     waybar
     fuzzel
-    input-remapper
+    evsieve
 
     # Development
     cargo
