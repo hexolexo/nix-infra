@@ -178,8 +178,15 @@
             leftshift = "toggle(remap)"; #  HACK: What the fuck have I created
           };
           remap = {
-            n = "f";
+            # What kind of autism *is* this
+            j = "e"; # n -> f
+            i = "g"; # u -> d
+            # w -> w (wait a minute)
+            # a -> a
+            s = "d"; # r -> s
+            d = "s"; # s -> d
           };
+          # I just wanted to play UNBEATABLE man...
           "remap:toggle" = {}; # Marks remap as toggleable
         };
       };
