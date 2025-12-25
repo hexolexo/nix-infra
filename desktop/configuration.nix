@@ -83,6 +83,7 @@
     swaylock-effects
     waybar
     fuzzel
+    input-remapper
 
     # Development
     cargo
@@ -200,7 +201,6 @@
   console.keyMap = "colemak";
 
   programs = {
-    ydotool.enable = true;
     firefox.enable = true;
     steam.enable = true;
     hyprland.enable = true;
