@@ -236,7 +236,6 @@
   };
 
   security.rtkit.enable = true;
-  console.keyMap = "colemak";
 
   programs = {
     firefox.enable = true;
