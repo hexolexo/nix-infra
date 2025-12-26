@@ -173,6 +173,9 @@
             rightalt = "esc";
             esc = "noop";
             rightshift = "layer(toggle_layer)";
+
+            # QWERTY to Colemak (This is going to be a mistake)
+            # q = "q"
           };
           toggle_layer = {
             leftshift = "toggle(remap)"; #  HACK: What the fuck have I created
