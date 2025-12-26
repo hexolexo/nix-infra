@@ -207,6 +207,10 @@
             leftshift = "toggle(remap)"; #  HACK: What the fuck have I created
           };
           remap = {
+            w = "w";
+            a = "a";
+            s = "s";
+            d = "d";
             # What kind of autism *is* this
             j = "f"; # n -> f
             i = "d"; # u -> d
