@@ -220,15 +220,6 @@
         };
       };
     };
-    xserver = {
-      enable = true;
-
-      xkb = {
-        layout = "us";
-
-        variant = "colemak";
-      };
-    };
 
     displayManager.ly.enable = true;
     blueman.enable = true;
