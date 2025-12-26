@@ -208,12 +208,8 @@
           };
           remap = {
             # What kind of autism *is* this
-            j = "e"; # n -> f
-            i = "g"; # u -> d
-            # w -> w (wait a minute)
-            # a -> a
-            s = "d"; # r -> s
-            d = "g"; # s -> d
+            j = "f"; # n -> f
+            i = "d"; # u -> d
           };
           # I just wanted to play UNBEATABLE man...
           "remap:toggle" = {}; # Marks remap as toggleable
