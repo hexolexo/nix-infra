@@ -175,7 +175,33 @@
             rightshift = "layer(toggle_layer)";
 
             # QWERTY to Colemak (This is going to be a mistake)
-            # q = "q"
+            # q = "q";
+            # w = "w";
+            e = "f";
+            r = "p";
+            t = "g";
+            y = "j";
+            u = "l";
+            i = "u";
+            o = "y";
+            p = ";";
+            #a = "a";
+            s = "r";
+            d = "s";
+            f = "t";
+            g = "d";
+            # h = "h";
+            j = "n";
+            k = "e";
+            l = "i";
+            ";" = "o";
+            # z = "z";
+            # x = "x";
+            # c = "c";
+            # v = "v";
+            # b = "b";
+            n = "k";
+            # m = "m";
           };
           toggle_layer = {
             leftshift = "toggle(remap)"; #  HACK: What the fuck have I created
@@ -198,13 +224,6 @@
     displayManager.ly.enable = true;
     blueman.enable = true;
 
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "colemak";
-      };
-    };
     printing.enable = true;
     # Enable sound with pipewire.
     pulseaudio.enable = false;
