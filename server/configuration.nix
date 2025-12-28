@@ -72,6 +72,7 @@ in {
     git
     gnumake
     micro
+    nix-output-monitor
     cargo
     pkg-config
     alsa-lib.dev
