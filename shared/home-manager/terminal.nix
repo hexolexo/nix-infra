@@ -107,6 +107,8 @@
     settings = {
       user.name = "hexolexo";
       user.email = "hexolexo132@proton.me";
+      core.fsmonitor = true;
+      core.untrackedcache = true;
     };
   };
 }
