@@ -71,6 +71,7 @@ in {
     btop
     git
     gnumake
+    alejandra
     micro
     nix-output-monitor
     cargo
