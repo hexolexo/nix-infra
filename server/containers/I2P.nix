@@ -28,9 +28,8 @@
       system.stateVersion = "25.11"; # If you don't add a state version, nix will complain at every rebuild
     };
   };
-  networking.firewall.allowedTCPPorts = [
-    7070 # default web interface port
-    4447 # default socks proxy port
-    4444 # default http proxy port
-  ];
+  networking.firewall.extraCommands = ''
+    # Only allow traffic from the VM bridge to the container's host-side veth/IP
+    iptables -A INPUT -i virbr0 -p tcp -m multiport --dports 7070,4447,4444 -j ACCEPT
+  '';
 }
