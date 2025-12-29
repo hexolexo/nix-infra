@@ -5,6 +5,7 @@
 }: {
   containers.i2pd-container = {
     autoStart = true;
+    privateNetwork = false;
     config = {...}: {
       # Exposing the nessecary ports in order to interact with i2p from outside the container
       networking.firewall.allowedTCPPorts = [
