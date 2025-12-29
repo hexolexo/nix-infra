@@ -5,7 +5,9 @@
 }: {
   containers.i2pd-container = {
     autoStart = true;
-    privateNetwork = false;
+    privateNetwork = true;
+    hostAddress = "192.168.152.10";
+    localAddress = "192.168.152.11";
     config = {...}: {
       # Exposing the nessecary ports in order to interact with i2p from outside the container
       networking.firewall.allowedTCPPorts = [
@@ -16,7 +18,7 @@
 
       services.i2pd = {
         enable = true;
-        address = "192.168.100.1";
+        address = "192.168.152.11";
         proto = {
           http.enable = true;
           socksProxy.enable = true;
