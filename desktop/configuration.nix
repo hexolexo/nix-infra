@@ -47,7 +47,7 @@
   environment.systemPackages = with pkgs; [
     # Applications
     gnome-disk-utility
-    libreoffice # fucking docx
+    #libreoffice # fucking docx
     librewolf
     obsidian
     fluffychat
