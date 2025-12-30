@@ -46,7 +46,6 @@
   };
   environment.systemPackages = with pkgs; [
     # Applications
-    anki
     gnome-disk-utility
     libreoffice # fucking docx
     librewolf
