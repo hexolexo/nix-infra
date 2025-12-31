@@ -24,6 +24,11 @@
       sourcePort = secrets.I2P_Port;
       proto = "tcp";
     }
+    {
+      destination = "192.168.100.1:${toString secrets.I2P_Port}";
+      sourcePort = secrets.I2P_Port;
+      proto = "udp";
+    }
   ];
   networking.firewall.interfaces.wg0.allowedTCPPorts =
     lib.optional (config.services.i2pd-container.enable or false) 7070;
