@@ -9,12 +9,10 @@
   config = lib.mkIf config.services.i2pd-container.enable {
     containers.i2pd = {
       autoStart = true;
-      privateNetwork = true;
-      hostAddress = "192.168.152.10";
-      localAddress = "192.168.152.11";
+      privateNetwork = false;
       config = {...}: {
         networking = {
-          defaultGateway = "192.168.152.10";
+          defaultGateway = "192.168.100.10";
           nameservers = ["192.168.100.1"]; # libvirt dnsmasq
           # Exposing the nessecary ports in order to interact with i2p from outside the
           firewall.allowedTCPPorts = [
