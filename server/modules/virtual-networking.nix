@@ -15,10 +15,10 @@
     firewall = {
       checkReversePath = "loose";
       trustedInterfaces = ["virbr0" "virbr1"];
-      allowedTCPPorts = lib.optional config.services.i2pd-container.enable 7070;
+      allowedTCPPorts = lib.optional (config.services.i2pd-container.enable or false) 7070;
 
       extraCommands = ''
-        ${lib.optionalString config.services.i2pd-container.enable ''
+        ${lib.optionalString (config.services.i2pd-container.enable or false) ''
           # Secondary NAT: container to virbr0
           iptables -t nat -A POSTROUTING -s 192.168.152.0/24 -o virbr0 -j MASQUERADE
 

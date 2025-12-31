@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  imports = [
+    ../modules/virtual-networking.nix
+  ];
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -8,18 +11,6 @@
     };
   };
 
-  networking = {
-    nat = {
-      enable = true;
-      internalInterfaces = ["virbr0" "virbr1"];
-      externalInterface = "enp0s25"; # or your main interface name
-    };
-    # Enable IP forwarding (required for NAT)
-    firewall.checkReversePath = "loose";
-
-    # Trust the libvirt bridge
-    firewall.trustedInterfaces = ["virbr0" "virbr1"];
-  };
   services.dnsmasq.enable = false;
 
   users.users.hexolexo = {
