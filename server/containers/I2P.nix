@@ -48,6 +48,9 @@
         system.stateVersion = "25.11"; # If you don't add a state version, nix will complain at every rebuild
       };
     };
+    networking.firewall.allowedUDPPorts = [
+      secrets.I2P_Port
+    ];
   };
   # networking config exists in virtual-networking.nix
 }

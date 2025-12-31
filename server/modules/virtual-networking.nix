@@ -30,8 +30,4 @@
       proto = "udp";
     }
   ];
-  networking.firewall.interfaces.wg0.allowedTCPPorts =
-    lib.optional (config.services.i2pd-container.enable or false) 7070;
-  networking.firewall.interfaces.virbr0.allowedTCPPorts =
-    lib.optional (config.services.i2pd-container.enable or false) 7070;
 }
