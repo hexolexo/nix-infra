@@ -178,6 +178,7 @@
             ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
           },
         }
+        vim.opt.clipboard = 'unnamedplus'
       else
         vim.opt.clipboard = 'unnamedplus'  -- Local system clipboard
       end
