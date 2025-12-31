@@ -152,7 +152,15 @@
       enable = true;
       user = "hexolexo";
       group = "users";
-      musicDirectory = "/home/hexolexo/Music";
+      settings = {
+        music_directory = "/home/hexolexo/Music";
+        audio_output = [
+          {
+            type = "pulse";
+            name = "PulseAudio/PipeWire";
+          }
+        ];
+      };
     };
     keyd = {
       enable = true;

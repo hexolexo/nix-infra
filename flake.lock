@@ -318,11 +318,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1767154262,
-        "narHash": "sha256-jg43HHwcMEoOhDzLYIgrpTSzKvL2X/HLrfURt/V/EcU=",
+        "lastModified": 1767155826,
+        "narHash": "sha256-PPGpeMIV3DbPAlHdBN+syqHR//eqAebZ063mAIuFYjU=",
         "ref": "refs/heads/master",
-        "rev": "fe801beec6020b66e2fbf3cb0fcf336f77d3e0cd",
-        "revCount": 4,
+        "rev": "09f4ceb2fb7096a3bac358db1c50814b532a630c",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@localgit/secrets.git"
       },
