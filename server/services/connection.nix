@@ -8,9 +8,9 @@
   ];
   services = {
     openssh = {
-      enable = false;
+      enable = true;
       ports = [6000];
-      settings.PasswordAuthentication = true;
+      settings.PasswordAuthentication = false;
     };
     fail2ban.enable = true;
   };
