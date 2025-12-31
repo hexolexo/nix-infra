@@ -158,6 +158,7 @@
           {
             type = "pulse";
             name = "PulseAudio/PipeWire";
+            server = "/run/user/1000/pulse/native";
           }
         ];
       };
