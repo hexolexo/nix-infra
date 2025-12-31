@@ -31,4 +31,4 @@ echo "Waiting for initial sync..."
 mutagen sync flush "$SESSION_NAME"
 
 echo "Entering remote shell at $REMOTE_DIR"
-ssh -t server "cd $REMOTE_DIR && exec bash"
+ssh -t server "cd $REMOTE_DIR && exec fish"

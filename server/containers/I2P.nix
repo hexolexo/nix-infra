@@ -9,12 +9,16 @@
     hostAddress = "192.168.152.10";
     localAddress = "192.168.152.11";
     config = {...}: {
-      # Exposing the nessecary ports in order to interact with i2p from outside the container
-      networking.firewall.allowedTCPPorts = [
-        7070 # default web interface port
-        4447 # default socks proxy port
-        4444 # default http proxy port
-      ];
+      networking = {
+        defaultGateway = "192.168.152.10";
+        nameservers = ["192.168.100.1"]; # libvirt dnsmasq
+        # Exposing the nessecary ports in order to interact with i2p from outside the container
+        firewall.allowedTCPPorts = [
+          7070 # default web interface port
+          4447 # default socks proxy port
+          4444 # default http proxy port
+        ];
+      };
 
       services.i2pd = {
         enable = true;
@@ -28,8 +32,5 @@
       system.stateVersion = "25.11"; # If you don't add a state version, nix will complain at every rebuild
     };
   };
-  networking.firewall.extraCommands = ''
-    # Only allow traffic from the VM bridge to the container's host-side veth/IP
-    iptables -A INPUT -i virbr0 -p tcp -m multiport --dports 7070,4447,4444 -j ACCEPT
-  '';
+  # networking config exists in virtual-networking.nix
 }
