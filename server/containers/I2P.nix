@@ -24,9 +24,21 @@
           enable = true;
           address = "192.168.100.1";
           proto = {
-            http.enable = true;
-            socksProxy.enable = true;
-            httpProxy.enable = true;
+            http = {
+              enable = true;
+              address = "192.168.100.1";
+              port = 7070;
+            };
+            socksProxy = {
+              enable = true;
+              address = "192.168.100.1";
+              port = 4447;
+            };
+            httpProxy = {
+              enable = true;
+              address = "192.168.100.1";
+              port = 4444;
+            };
           };
         };
         system.stateVersion = "25.11"; # If you don't add a state version, nix will complain at every rebuild
