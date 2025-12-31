@@ -19,9 +19,11 @@
   };
   networking.nat.forwardPorts = lib.optionals (config.services.i2pd-container.enable or false) [
     {
-      destination = "192.168.100.10:7070";
+      destination = "192.168.100.1:7070";
       sourcePort = 7070;
       proto = "tcp";
     }
   ];
+  networking.firewall.interfaces.wg0.allowedTCPPorts =
+    lib.optional (config.services.i2pd-container.enable or false) 7070;
 }

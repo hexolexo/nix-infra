@@ -12,8 +12,6 @@
       privateNetwork = false;
       config = {...}: {
         networking = {
-          defaultGateway = "192.168.100.10";
-          nameservers = ["192.168.100.1"]; # libvirt dnsmasq
           # Exposing the nessecary ports in order to interact with i2p from outside the
           firewall.allowedTCPPorts = [
             7070 # default web interface port
@@ -24,7 +22,7 @@
 
         services.i2pd = {
           enable = true;
-          address = "192.168.152.11";
+          address = "192.168.100.1";
           proto = {
             http.enable = true;
             socksProxy.enable = true;
