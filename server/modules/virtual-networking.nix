@@ -15,16 +15,16 @@
     firewall = {
       checkReversePath = "loose";
       trustedInterfaces = ["virbr0" "virbr1"];
-      allowedTCPPorts = lib.optional (config.services.i2pd-container.enable or false) 7070;
+      allowedTCPPorts = lib.optional (config.services.i2pd.enable or false) 7070;
 
       extraCommands = ''
-        ${lib.optionalString (config.services.i2pd-container.enable or false) ''
+        ${lib.optionalString (config.services.i2pd.enable or false) ''
           # Secondary NAT: container to virbr0
           iptables -t nat -A POSTROUTING -s 192.168.152.0/24 -o virbr0 -j MASQUERADE
 
           # Forwarding
-          iptables -A FORWARD -i ve-i2pd-container -o virbr0 -j ACCEPT
-          iptables -A FORWARD -i virbr0 -o ve-i2pd-container -j ACCEPT
+          iptables -A FORWARD -i ve-i2pd -o virbr0 -j ACCEPT
+          iptables -A FORWARD -i virbr0 -o ve-i2pd -j ACCEPT
 
           # Port forward: host:7070 → container:7070
           iptables -t nat -A PREROUTING -p tcp --dport 7070 -j DNAT --to-destination 192.168.152.11:7070

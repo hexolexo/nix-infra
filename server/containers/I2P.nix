@@ -5,9 +5,9 @@
   secrets,
   ...
 }: {
-  options.services.i2pd-container.enable = lib.mkEnableOption "i2pd container";
-  config = lib.mkIf config.services.i2pd-container.enable {
-    containers.i2pd-container = {
+  options.services.i2pd-container.enable = lib.mkEnableOption "i2pd ";
+  config = lib.mkIf config.services.i2pd.enable {
+    containers.i2pd = {
       autoStart = true;
       privateNetwork = true;
       hostAddress = "192.168.152.10";
@@ -16,7 +16,7 @@
         networking = {
           defaultGateway = "192.168.152.10";
           nameservers = ["192.168.100.1"]; # libvirt dnsmasq
-          # Exposing the nessecary ports in order to interact with i2p from outside the container
+          # Exposing the nessecary ports in order to interact with i2p from outside the
           firewall.allowedTCPPorts = [
             7070 # default web interface port
             4447 # default socks proxy port

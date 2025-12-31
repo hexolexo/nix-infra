@@ -22,6 +22,7 @@ in {
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
   ];
+  services.i2pd-container.enable = true;
 
   # Bootloader.
   boot = {
