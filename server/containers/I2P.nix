@@ -6,7 +6,7 @@
   ...
 }: {
   options.services.i2pd-container.enable = lib.mkEnableOption "i2pd ";
-  config = lib.mkIf config.services.i2pd.enable {
+  config = lib.mkIf config.services.i2pd-container.enable {
     containers.i2pd = {
       autoStart = true;
       privateNetwork = true;
