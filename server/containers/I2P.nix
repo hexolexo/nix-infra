@@ -14,6 +14,7 @@
         networking = {
           # Exposing the nessecary ports in order to interact with i2p from outside the
           firewall.allowedTCPPorts = [
+            # Apparently these are required despite privateNetwork = false; ... Yeah I don't fking know either
             7070 # default web interface port
             4447 # default socks proxy port
             4444 # default http proxy port
