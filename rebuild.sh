@@ -7,8 +7,18 @@ cd "$flake_dir"
 ${EDITOR:-nvim} .
 
 if git diff --quiet; then
-	echo "No changes made, exiting"
-	exit 0
+    echo "No changes made."
+    echo -n "Update flake.lock? [y/N] "
+    read -r response
+    if [[ "$response" =~ ^[Nn]$ ]]; then
+        exit 0
+    fi
+    nix flake update
+    if git diff --quiet flake.lock; then
+        echo "Flake already up to date, exiting"
+        exit 0
+    fi
+    echo "Flake updated, proceeding with rebuild"
 fi
 
 alejandra . 2>&1 | grep -v "ℹ" || true
@@ -19,16 +29,16 @@ desktop_changed=0
 server_changed=0
 
 if echo "$changed_files" | grep -q 'desktop'; then
-	desktop_changed=1
+    desktop_changed=1
 fi
 
 if echo "$changed_files" | grep -q 'server'; then
-	server_changed=1
+    server_changed=1
 fi
 
 if echo "$changed_files" | grep -q 'shared'; then
-	desktop_changed=1
-	server_changed=1
+    desktop_changed=1
+    server_changed=1
 fi
 
 echo ""
@@ -48,22 +58,22 @@ git add -A
 commits=""
 
 if [[ $desktop_changed -eq 1 ]]; then
-	echo "Building desktop..."
-	sudo -v
-	sudo nixos-rebuild switch --flake ".#hexolexo" |& nom
-	gen=$(nixos-rebuild list-generations | awk 'NR==2 {print $1}')
-	commits="desktop: gen $gen"
+    echo "Building desktop..."
+    sudo -v
+    sudo nixos-rebuild switch --flake ".#hexolexo" |& nom
+    gen=$(nixos-rebuild list-generations | awk 'NR==2 {print $1}')
+    commits="desktop: gen $gen"
 fi
 
 if [[ $server_changed -eq 1 ]]; then
-	echo "Deploying to server..."
-	nix develop --command deploy .#vault
-	[[ -n "$commits" ]] && commits="$commits, vault deployed" || commits="vault deployed"
+    echo "Deploying to server..."
+    nix develop --command deploy .#vault
+    [[ -n "$commits" ]] && commits="$commits, vault deployed" || commits="vault deployed"
 fi
 
 if [[ -z "$commits" ]]; then
-	echo "No builds executed, nothing to commit"
-	exit 1
+    echo "No builds executed, nothing to commit"
+    exit 1
 fi
 
 git commit -m "$commits"

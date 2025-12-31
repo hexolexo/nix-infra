@@ -8,7 +8,7 @@
   ];
   services = {
     openssh = {
-      enable = true;
+      enable = false;
       ports = [6000];
       settings.PasswordAuthentication = true;
     };

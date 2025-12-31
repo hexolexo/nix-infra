@@ -29,6 +29,17 @@
           enable = true;
           port = secrets.I2P_Port;
           address = "192.168.100.1";
+          bandwidth = 3000; # KBps
+          share = 80;
+          ntcp2 = {
+            enable = true;
+            published = true;
+          };
+
+          ssu2 = {
+            enable = true;
+            published = true;
+          };
           proto = {
             http = {
               enable = true;
