@@ -27,6 +27,7 @@ NixOS configuration managing my desktop (hexolexo) and homelab server (vault) wi
     outputs = {self}: {
         HomeIP = "1.2.3.4";
         ServerIP = "10.0.0.1"
+        I2P_Port = 12345
     }
 }
 ```

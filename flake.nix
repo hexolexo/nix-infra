@@ -59,6 +59,9 @@
 
     nixosConfigurations.vault = nixpkgs-stable.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {
+        inherit secrets;
+      };
       modules = [
         ./server/configuration.nix
         home-manager-stable.nixosModules.home-manager

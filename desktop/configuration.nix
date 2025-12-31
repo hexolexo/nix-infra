@@ -153,13 +153,6 @@
       user = "hexolexo";
       group = "users";
       musicDirectory = "/home/hexolexo/Music";
-      extraConfig = ''
-        audio_output {
-            type "pulse"
-            name "PulseAudio"
-            server "/run/user/1000/pulse/native"
-        }
-      '';
     };
     keyd = {
       enable = true;

@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  secrets,
   ...
 }: {
   networking = {
@@ -19,8 +20,8 @@
   };
   networking.nat.forwardPorts = lib.optionals (config.services.i2pd-container.enable or false) [
     {
-      destination = "192.168.100.1:7070";
-      sourcePort = 7070;
+      destination = "192.168.100.1:${secrets.I2PPort}";
+      sourcePort = secrets.I2PPort;
       proto = "tcp";
     }
   ];

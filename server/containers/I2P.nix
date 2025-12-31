@@ -22,6 +22,7 @@
 
         services.i2pd = {
           enable = true;
+          port = secrets.I2PPort;
           address = "192.168.100.1";
           proto = {
             http = {
