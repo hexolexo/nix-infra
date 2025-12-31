@@ -27,7 +27,7 @@
           iptables -A FORWARD -i virbr0 -o ve-i2pd -j ACCEPT
 
           # Port forward: host:7070 → container:7070
-          iptables -t nat -A PREROUTING -p tcp --dport 7070 -j DNAT --to-destination 192.168.152.11:7070
+            iptables -t nat -A PREROUTING -p tcp --dport 7070 -j DNAT --to-destination 192.168.152.11:7070
         ''}
       '';
     };
