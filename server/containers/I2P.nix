@@ -17,6 +17,7 @@
             7070 # default web interface port
             4447 # default socks proxy port
             4444 # default http proxy port
+            secrets.I2P_Port
           ];
           firewall.allowedUDPPorts = [
             secrets.I2P_Port
