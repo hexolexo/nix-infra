@@ -18,6 +18,9 @@
             4447 # default socks proxy port
             4444 # default http proxy port
           ];
+          firewall.allowedUDPPorts = [
+            secrets.I2P_Port
+          ];
         };
 
         services.i2pd = {
