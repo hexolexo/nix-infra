@@ -173,7 +173,7 @@
             backspace = "noop";
             rightalt = "esc";
             esc = "noop";
-            rightshift = "layer(toggle_layer)";
+            rightshift = "overload(toggle_layer, rightshift)";
 
             # QWERTY to Colemak (This is going to be a mistake)
             # q = "q";
