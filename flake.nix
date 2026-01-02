@@ -80,6 +80,7 @@
 
     deploy.nodes.vault = {
       hostname = "192.168.1.153";
+      sshOpts = ["-p" "6000"];
       remoteBuild = true;
       profiles.system = {
         user = "root";

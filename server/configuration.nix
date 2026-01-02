@@ -5,7 +5,7 @@ in {
     # Required Services #
     ./hardware-configuration.nix
     ./services/connection.nix
-    #./services/wireguard.nix
+    ./services/wireguard.nix
     ./services/git.nix
     ./services/virtualisation.nix
     # Optional Services: #
@@ -23,7 +23,7 @@ in {
     #./containers/tarpit.nix
   ];
   boot.supportedFilesystems = ["zfs"];
-  services.i2pd-container.enable = false;
+  services.i2pd-container.enable = true;
 
   # Bootloader.
   boot = {
