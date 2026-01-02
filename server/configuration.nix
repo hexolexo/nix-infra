@@ -5,7 +5,7 @@ in {
     # Required Services #
     ./hardware-configuration.nix
     ./services/connection.nix
-    ./services/wireguard.nix
+    #./services/wireguard.nix
     ./services/git.nix
     ./services/virtualisation.nix
     # Optional Services: #
@@ -22,7 +22,8 @@ in {
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
   ];
-  services.i2pd-container.enable = true;
+  boot.supportedFilesystems = ["zfs"];
+  services.i2pd-container.enable = false;
 
   # Bootloader.
   boot = {
@@ -112,5 +113,5 @@ in {
   };
   services.smartd.enable = true;
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }

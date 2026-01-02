@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
@@ -15,31 +16,35 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
+  networking.hostId = "d7630388";
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/8c6eadd1-5a24-4296-ab55-7ddcc7b692e0";
-    fsType = "ext4";
+    device = "zpool/root";
+    fsType = "zfs";
+  };
+
+  fileSystems."/nix" = {
+    device = "zpool/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/var" = {
+    device = "zpool/var";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home" = {
+    device = "zpool/home";
+    fsType = "zfs";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/9402-78C2";
+    device = "/dev/disk/by-uuid/12CE-A600";
     fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
-  fileSystems."/mnt/backup" = {
-    device = "/dev/disk/by-uuid/0efbbeb7-8035-4429-9154-17b221c6cd86";
-    fsType = "ext4";
-    options = ["defaults" "user" "rw" "nofail"];
+    options = ["fmask=0022" "dmask=0022"];
   };
 
   swapDevices = [];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s25.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -79,7 +79,7 @@
     };
 
     deploy.nodes.vault = {
-      hostname = "server";
+      hostname = "192.168.1.153";
       remoteBuild = true;
       profiles.system = {
         user = "root";
