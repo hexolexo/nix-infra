@@ -110,6 +110,7 @@
     settings = {
       user.name = "hexolexo";
       user.email = "hexolexo132@proton.me";
+      core.sshCommand = "ssh -i ~/.ssh/id_ed25519";
       core.fsmonitor = true;
       core.untrackedcache = true;
     };
