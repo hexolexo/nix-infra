@@ -23,7 +23,7 @@
 
       peers = [
         {
-          publicKey = "6Kyt3gNgDW/9g14BYSMyaNgVPHA7AR7fthLoUOMgRQE=";
+          publicKey = "p6qJwxfNS8cj+MNyBQSWCouPlwzz1MrwLOYObE48iBk=";
           endpoint = "${secrets.HomeIP}:51820";
 
           allowedIPs = ["10.0.0.0/24"];
