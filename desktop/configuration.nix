@@ -212,6 +212,8 @@
             a = "a";
             s = "s";
             d = "d";
+            q = "q";
+            e = "e";
             # What kind of autism *is* this
             j = "f"; # n -> f
             i = "d"; # u -> d
@@ -242,6 +244,7 @@
     firefox.enable = true;
     steam.enable = true;
     hyprland.enable = true;
+    neovim.defaultEditor = true;
   };
 
   fonts.packages = [pkgs.nerd-fonts.fira-code];

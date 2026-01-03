@@ -28,7 +28,7 @@
         services.i2pd = {
           enable = true;
           port = secrets.I2P_Port;
-          address = "192.168.100.1";
+          address = "192.168.122.1";
           bandwidth = 3000; # KBps
           share = 80;
           ntcp2 = {
@@ -43,17 +43,17 @@
           proto = {
             http = {
               enable = true;
-              address = "192.168.100.1";
+              address = "192.168.122.1";
               port = 7070;
             };
             socksProxy = {
               enable = true;
-              address = "192.168.100.1";
+              address = "192.168.122.1";
               port = 4447;
             };
             httpProxy = {
               enable = true;
-              address = "192.168.100.1";
+              address = "192.168.122.1";
               port = 4444;
             };
           };

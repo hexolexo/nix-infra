@@ -7,7 +7,7 @@
     nix-index
   ];
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "vim";
     GOPATH = "${config.home.homeDirectory}/.go";
     OBSIDIAN_USE_WAYLAND = "1";
   };
@@ -31,6 +31,7 @@
       ls = "eza";
     };
     interactiveShellInit = ''
+      set -gx EDITOR nvim
       function man
           nvim -c "Man $argv" -c "wincmd k" -c "q"
       end
