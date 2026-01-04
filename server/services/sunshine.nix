@@ -19,7 +19,7 @@
     enable = true;
 
     # Use nvidia drivers (or "modesetting" for Intel/AMD)
-    videoDrivers = ["nvidia"];
+    videoDrivers = ["dummy"];
 
     displayManager = {
       gdm.enable = true;
@@ -31,6 +31,16 @@
       };
     };
 
+    resolutions = [
+      {
+        x = 1920;
+        y = 1080;
+      }
+      {
+        x = 2560;
+        y = 1440;
+      }
+    ];
     desktopManager.gnome.enable = true;
   };
 
