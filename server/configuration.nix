@@ -9,7 +9,7 @@ in {
     ./services/git.nix
     ./services/virtualisation.nix
     # Optional Services: #
-    ./services/sunshine.nix
+    #./services/sunshine.nix
     #./services/paperless-ngx.nix
     #./containers/unbound.nix
     #./containers/murmur.nix
