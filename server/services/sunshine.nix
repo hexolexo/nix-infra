@@ -18,6 +18,7 @@
   services.xserver = {
     enable = true;
     videoDrivers = ["nvidia"];
+
     displayManager = {
       lightdm.enable = true;
       autoLogin = {
@@ -26,20 +27,32 @@
       };
       defaultSession = "none+openbox";
     };
+
     windowManager.openbox.enable = true;
 
-    # HACK: Forces Nvidia to create virtual displays headless
-    deviceSection = ''
-      Option "AllowEmptyInitialConfiguration"
-      Option "UseDisplayDevice" "none"
-      Option "ConnectedMonitor" "DFP-0"
-    '';
+    # HACK: More aggressive virtual display forcing for headless Nvidia
+    config = ''
+      Section "Device"
+        Identifier "Device0"
+        Driver "nvidia"
+        VendorName "NVIDIA Corporation"
+        Option "AllowEmptyInitialConfiguration"
+        Option "UseDisplayDevice" "none"
+        Option "ConnectedMonitor" "DFP-0"
+        Option "CustomEDID" "DFP-0:/etc/X11/edid.bin"
+      EndSection
 
-    screenSection = ''
-      Option "metamodes" "1920x1080_60 +0+0"
+      Section "Screen"
+        Identifier "Screen0"
+        Device "Device0"
+        DefaultDepth 24
+        SubSection "Display"
+          Depth 24
+          Modes "1920x1080"
+        EndSubSection
+      EndSection
     '';
   };
-
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
