@@ -6,17 +6,6 @@
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
-    applications.apps = [
-      {
-        name = "Steam Big Picture";
-        prep-cmd = [
-          {
-            do = "setsid steam steam://open/bigpicture";
-            undo = "setsid steam steam://close/bigpicture";
-          }
-        ];
-      }
-    ];
   };
 
   hardware.graphics = {
