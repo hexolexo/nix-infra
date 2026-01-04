@@ -90,12 +90,6 @@ in {
     firewall.allowedTCPPorts = []; # NOTE: Firewall is configured per service bundle
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    dates = "16:00"; # NOTE: I'll dial this back when I get busy
-    allowReboot = true;
-  };
-
   nix = {
     gc = {
       automatic = true;
