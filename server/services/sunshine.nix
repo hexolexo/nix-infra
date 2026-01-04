@@ -30,6 +30,9 @@
 
     windowManager.openbox.enable = true;
 
+    screenSection = ''
+      Option "metamodes" "nvidia-auto-select +0+0 { ForceCompositionPipeline = On, ForceFullCompositionPipeline = On }"
+    '';
     # HACK: More aggressive virtual display forcing for headless Nvidia
     config = ''
       Section "Device"
