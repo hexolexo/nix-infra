@@ -25,10 +25,10 @@
         enable = true;
         user = "hexolexo";
       };
-      defaultSession = "none+openbox";
+      defaultSession = "none+i3";
     };
 
-    windowManager.openbox.enable = true;
+    windowManager.i3.enable = true;
 
     screenSection = ''
       Option "metamodes" "nvidia-auto-select +0+0 { ForceCompositionPipeline = On, ForceFullCompositionPipeline = On }"
