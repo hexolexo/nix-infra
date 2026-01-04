@@ -9,6 +9,7 @@ in {
     ./services/git.nix
     ./services/virtualisation.nix
     # Optional Services: #
+    ./services/sunshine.nix
     #./services/paperless-ngx.nix
     #./containers/unbound.nix
     #./containers/murmur.nix
@@ -23,7 +24,7 @@ in {
     #./containers/tarpit.nix
   ];
   boot.supportedFilesystems = ["zfs"];
-  services.i2pd-container.enable = true;
+  services.i2pd-container.enable = false;
 
   # Bootloader.
   boot = {
