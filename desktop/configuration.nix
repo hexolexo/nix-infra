@@ -50,6 +50,7 @@
     #libreoffice # fucking docx
     librewolf
     obsidian
+    moonlight-qt
     fluffychat
 
     # Theming
