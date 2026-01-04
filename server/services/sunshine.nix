@@ -42,7 +42,6 @@
         Option "AllowEmptyInitialConfiguration"
         Option "UseDisplayDevice" "none"
         Option "ConnectedMonitor" "DFP-0"
-        Option "CustomEDID" "DFP-0:/etc/X11/edid.bin"
       EndSection
 
       Section "Screen"
