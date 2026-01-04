@@ -28,7 +28,7 @@
         services.i2pd = {
           enable = true;
           port = secrets.I2P_Port;
-          address = "192.168.122.1";
+          address = "0.0.0.0";
           bandwidth = 3000; # KBps
           share = 80;
           ntcp2 = {
@@ -70,5 +70,4 @@
       ];
     };
   };
-  # networking config exists in virtual-networking.nix
 }

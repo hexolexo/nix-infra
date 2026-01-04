@@ -18,16 +18,4 @@
       allowedTCPPorts = lib.optional (config.services.i2pd.enable or false) 7070;
     };
   };
-  networking.nat.forwardPorts = lib.optionals (config.services.i2pd-container.enable or false) [
-    {
-      destination = "192.168.122.1:${toString secrets.I2P_Port}";
-      sourcePort = secrets.I2P_Port;
-      proto = "tcp";
-    }
-    {
-      destination = "192.168.122.1:${toString secrets.I2P_Port}";
-      sourcePort = secrets.I2P_Port;
-      proto = "udp";
-    }
-  ];
 }
