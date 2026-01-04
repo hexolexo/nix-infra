@@ -22,25 +22,41 @@
     videoDrivers = ["dummy"];
 
     displayManager = {
-      gdm.enable = true;
-      defaultSession = "gnome";
+      gdm = {
+        enable = true;
+        wayland = false;
+      };
 
       autoLogin = {
         enable = true;
         user = "sunshine";
       };
     };
+    config = ''
+      Section "Device"
+        Identifier "NVIDIA"
+        Driver "nvidia"
+        Option "ConnectedMonitor" "DP-0"
+        Option "UseEDID" "FALSE"
+        Option "ModeValidation" "NoEdidModes"
+      EndSection
 
-    resolutions = [
-      {
-        x = 1920;
-        y = 1080;
-      }
-      {
-        x = 2560;
-        y = 1440;
-      }
-    ];
+      Section "Monitor"
+        Identifier "DP-0"
+        Modeline "1920x1080_60" 148.50 1920 2008 2052 2200 1080 1084 1089 1125 +hsync +vsync
+      EndSection
+
+      Section "Screen"
+        Identifier "Screen0"
+        Device "NVIDIA"
+        Monitor "DP-0"
+        DefaultDepth 24
+        SubSection "Display"
+          Depth 24
+          Modes "1920x1080_60"
+        EndSubSection
+      EndSection
+    '';
     desktopManager.gnome.enable = true;
   };
 
