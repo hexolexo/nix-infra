@@ -88,6 +88,7 @@
     # Development
     cargo
     clang
+    gcc
     elmPackages.elm-language-server
     git
     go

@@ -24,7 +24,7 @@ in {
     #./containers/tarpit.nix
   ];
   boot.supportedFilesystems = ["zfs"];
-  services.i2pd-container.enable = false;
+  services.i2pd-container.enable = true;
 
   # Bootloader.
   boot = {
