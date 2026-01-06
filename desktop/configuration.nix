@@ -7,30 +7,30 @@
   ];
   nixpkgs.config.allowUnfree = false;
   security.polkit.enable = true;
-  services.udisks2.enable = true;
-  services.dbus.enable = true;
-  programs.dconf.enable = true;
-
+  documentation.man.enable = true;
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   time.timeZone = "Australia/Sydney";
 
-  i18n.defaultLocale = "en_AU.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_AU.UTF-8";
-    LC_IDENTIFICATION = "en_AU.UTF-8";
-    LC_MEASUREMENT = "en_AU.UTF-8";
-    LC_MONETARY = "en_AU.UTF-8";
-    LC_NAME = "en_AU.UTF-8";
-    LC_NUMERIC = "en_AU.UTF-8";
-    LC_PAPER = "en_AU.UTF-8";
-    LC_TELEPHONE = "en_AU.UTF-8";
-    LC_TIME = "en_AU.UTF-8";
+  i18n = {
+    defaultLocale = "en_AU.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_AU.UTF-8";
+      LC_IDENTIFICATION = "en_AU.UTF-8";
+      LC_MEASUREMENT = "en_AU.UTF-8";
+      LC_MONETARY = "en_AU.UTF-8";
+      LC_NAME = "en_AU.UTF-8";
+      LC_NUMERIC = "en_AU.UTF-8";
+      LC_PAPER = "en_AU.UTF-8";
+      LC_TELEPHONE = "en_AU.UTF-8";
+      LC_TIME = "en_AU.UTF-8";
+    };
   };
 
-  programs.fish.enable = true;
   users.users.hexolexo = {
     isNormalUser = true;
     description = "hexolexo";
@@ -41,9 +41,9 @@
       "wheel"
     ];
   };
+
   environment.systemPackages = with pkgs; [
     # Applications
-    gnome-disk-utility
     #libreoffice # fucking docx
     librewolf
     #obsidian
@@ -102,7 +102,6 @@
     shfmt
     opentofu
     pkg-config
-    ripgrep
     rustc
     neovim
     unzip
@@ -136,6 +135,7 @@
     virtio-win
     win-spice
   ];
+
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
@@ -146,6 +146,23 @@
   };
 
   services = {
+    udisks2.enable = true;
+    dbus.enable = true;
+
+    fanControl = {
+      enable = true;
+      allowedUsers = ["hexolexo"];
+      quietDuty = 40;
+      maxDuty = 100;
+    };
+
+    # Keeps the laptop running while lid is closed
+    logind.settings.Login = {
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchExternalPower = "ignore";
+      HandleLidSwitch = "ignore";
+    };
+
     fwupd.enable = true;
     mpd = {
       enable = true;
@@ -181,6 +198,12 @@
     firefox.enable = true;
     #steam.enable = true;
     hyprland.enable = true;
+    fish.enable = true;
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-tty;
+    };
+    dconf.enable = true;
     neovim.defaultEditor = true;
   };
 
@@ -194,26 +217,6 @@
     };
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
-  };
-
-  services.fanControl = {
-    enable = true;
-    allowedUsers = ["hexolexo"];
-    quietDuty = 40;
-    maxDuty = 100;
-  };
-
-  programs.gnupg.agent = {
-    enable = true;
-    #enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-tty;
-  };
-
-  # Keeps the laptop running while lid is closed
-  services.logind.settings.Login = {
-    HandleLidSwitchDocked = "ignore";
-    HandleLidSwitchExternalPower = "ignore";
-    HandleLidSwitch = "ignore";
   };
 
   networking.networkmanager.wifi.powersave = false;
