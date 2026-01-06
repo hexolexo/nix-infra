@@ -7,3 +7,4 @@ beco 8 vYJqxIRzAw79kVV1gdca5R31GnZVjx1PtT0tmh8jSis=
 sticklegs 9 tEqrq/OG096keu34qiTjuEdS4C87hxy5NkrmloVKyHY=
 tempr 11 WHTgVz8DligoY53aAMHOso5UfTI3PfdPT+SVP1A+dQw=
 
+minecraft 12 DXsIHbH+zQ9NsmqaywepiIsqSSYrTtplms6jNVIZOj0=

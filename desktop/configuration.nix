@@ -2,9 +2,10 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./keyd.nix
     ./fanCtrl.nix
   ];
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = false;
   security.polkit.enable = true;
   services.udisks2.enable = true;
   services.dbus.enable = true;
@@ -13,10 +14,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "hexolexo";
-
-  networking.networkmanager.enable = true;
 
   time.timeZone = "Australia/Sydney";
 
@@ -49,7 +46,7 @@
     gnome-disk-utility
     #libreoffice # fucking docx
     librewolf
-    obsidian
+    #obsidian
     moonlight-qt
     fluffychat
 
@@ -165,66 +162,6 @@
         ];
       };
     };
-    keyd = {
-      enable = true;
-      keyboards.default = {
-        ids = ["*"];
-        settings = {
-          main = {
-            capslock = "backspace";
-            backspace = "noop";
-            rightalt = "esc";
-            esc = "noop";
-            rightshift = "overload(toggle_layer, rightshift)";
-
-            # QWERTY to Colemak (This is going to be a mistake)
-            # q = "q";
-            # w = "w";
-            e = "f";
-            r = "p";
-            t = "g";
-            y = "j";
-            u = "l";
-            i = "u";
-            o = "y";
-            p = ";";
-            #a = "a";
-            s = "r";
-            d = "s";
-            f = "t";
-            g = "d";
-            # h = "h";
-            j = "n";
-            k = "e";
-            l = "i";
-            ";" = "o";
-            # z = "z";
-            # x = "x";
-            # c = "c";
-            # v = "v";
-            # b = "b";
-            n = "k";
-            # m = "m";
-          };
-          toggle_layer = {
-            leftshift = "toggle(remap)"; #  HACK: What the fuck have I created
-          };
-          remap = {
-            w = "w";
-            a = "a";
-            s = "s";
-            d = "d";
-            q = "q";
-            e = "e";
-            # What kind of autism *is* this
-            j = "f"; # n -> f
-            i = "d"; # u -> d
-          };
-          # I just wanted to play UNBEATABLE man...
-          "remap:toggle" = {}; # Marks remap as toggleable
-        };
-      };
-    };
 
     displayManager.ly.enable = true;
     blueman.enable = true;
@@ -240,11 +177,9 @@
     };
   };
 
-  security.rtkit.enable = true;
-
   programs = {
     firefox.enable = true;
-    steam.enable = true;
+    #steam.enable = true;
     hyprland.enable = true;
     neovim.defaultEditor = true;
   };
@@ -274,6 +209,7 @@
     pinentryPackage = pkgs.pinentry-tty;
   };
 
+  # Keeps the laptop running while lid is closed
   services.logind.settings.Login = {
     HandleLidSwitchDocked = "ignore";
     HandleLidSwitchExternalPower = "ignore";
@@ -282,12 +218,13 @@
 
   networking.networkmanager.wifi.powersave = false;
 
-  systemd.targets.sleep.enable = false;
-  systemd.targets.suspend.enable = false;
-  systemd.targets.hibernate.enable = false;
-  systemd.targets.hybrid-sleep.enable = false;
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
+  };
 
-  services.pcscd.enable = true;
   nix = {
     gc = {
       automatic = true;
@@ -300,15 +237,9 @@
     ];
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    # operations = "boot";
-    dates = "04:00";
-    allowReboot = false;
-  };
   networking.firewall = {
-    allowedTCPPorts = [6567];
-    allowedUDPPorts = [6567];
+    allowedTCPPorts = [];
+    allowedUDPPorts = [];
   };
 
   system.stateVersion = "25.05";

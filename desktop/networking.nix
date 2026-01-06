@@ -1,4 +1,8 @@
 {secrets, ...}: {
+  networking.hostName = "hexolexo";
+
+  networking.networkmanager.enable = true;
+
   networking.hosts = {
     "${secrets.HomeIP}" = ["home"];
     "${secrets.ServerIP}" = ["server"];
