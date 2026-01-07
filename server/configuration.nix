@@ -85,6 +85,10 @@ in {
   ];
 
   networking = {
+    hosts = {
+      "127.0.0.1" = ["server"];
+    };
+
     hostName = "vault";
     networkmanager.enable = true;
     firewall.enable = true;
