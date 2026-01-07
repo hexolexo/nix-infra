@@ -26,7 +26,7 @@
 
     clankhare.url = "github:hexolexo/clankhare";
 
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    #nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     deploy-rs.url = "github:serokell/deploy-rs";
   };
   outputs = {
@@ -38,7 +38,7 @@
     agenix,
     clankhare,
     self,
-    nix-minecraft,
+    #nix-minecraft,
     nixvim,
     deploy-rs,
     ...
@@ -72,7 +72,7 @@
       modules = [
         ./server/configuration.nix
         home-manager-stable.nixosModules.home-manager
-        nix-minecraft.nixosModules.minecraft-servers
+        #nix-minecraft.nixosModules.minecraft-servers
         {
           home-manager.sharedModules = [
             nixvim.homeModules.nixvim

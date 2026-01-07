@@ -88,11 +88,6 @@
         user = "hexolexo";
         compression = true;
       };
-      "localhost" = {
-        extraOptions = {
-          UserKnownHostsFile = "/dev/null";
-        };
-      };
     };
   };
 
