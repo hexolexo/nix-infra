@@ -17,12 +17,12 @@
   peers = map parsePeer peerLines;
 
   # Convert to wireguard peer format
-  mkPeer = p:
+  mkPeer = peer:
     {
-      publicKey = p.key;
-      allowedIPs = ["10.0.0.${p.ip}/32"];
+      publicKey = peer.key;
+      allowedIPs = ["10.0.0.${peer.ip}/32"];
     }
-    // lib.optionalAttrs p.ka {
+    // lib.optionalAttrs peer.ka {
       persistentKeepalive = 25;
     };
 in {

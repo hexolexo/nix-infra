@@ -6,5 +6,5 @@ euroacorn 7 KsWkLxtO3pbgeolMGpF1PhuMTg9vfcZ2GuPUyoYT6Xg=
 beco 8 vYJqxIRzAw79kVV1gdca5R31GnZVjx1PtT0tmh8jSis=
 sticklegs 9 tEqrq/OG096keu34qiTjuEdS4C87hxy5NkrmloVKyHY=
 tempr 11 WHTgVz8DligoY53aAMHOso5UfTI3PfdPT+SVP1A+dQw=
-minecraft 12 27FYiSOwDkA7UjXbX3RKlo+cg09zMDP9Ian5CcgM10s= keepalive
+minecraft 12 rY/0LjXalzmUZL9dFgPE5+mEPEWs+7AKsOqKCYc1EGU= keepalive
 ava 13 O0ZgZ8frnv92kABsS4jKdh9RxpIqtvOfAPJpKC3YOEQ= keepalive
