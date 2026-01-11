@@ -5,7 +5,7 @@
     ./keyd.nix
     ./fanCtrl.nix
   ];
-  nixpkgs.config.allowUnfree = false;
+  nixpkgs.config.allowUnfree = true;
   security.polkit.enable = true;
   documentation.man.enable = true;
   # Bootloader.
@@ -46,7 +46,7 @@
     # Applications
     #libreoffice # fucking docx
     librewolf
-    #obsidian
+    obsidian
     moonlight-qt
     fluffychat
 
