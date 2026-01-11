@@ -14,7 +14,7 @@
         {
           sourcePort = 26950; # Blade and Sorcery AMP
           proto = "tcp";
-          destination = "192.168.122.247";
+          destination = "192.168.122.78";
         }
       ];
     };
