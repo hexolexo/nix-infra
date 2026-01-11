@@ -22,7 +22,7 @@
     firewall = {
       checkReversePath = "loose";
       trustedInterfaces = ["virbr0" "virbr1"];
-      allowedTCPPorts = lib.optional (config.services.i2pd.enable or false) 7070;
+      allowedTCPPorts = [26950];
     };
   };
 }
