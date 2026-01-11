@@ -196,7 +196,7 @@
 
   programs = {
     firefox.enable = true;
-    #steam.enable = true;
+    steam.enable = true;
     hyprland.enable = true;
     fish.enable = true;
     gnupg.agent = {
