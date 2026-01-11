@@ -30,6 +30,11 @@
       checkReversePath = "loose";
       trustedInterfaces = ["virbr0" "virbr1"];
       allowedTCPPorts = [26950];
+      allowedUDPPorts = [26950];
+      extraCommands = ''
+        iptables -A FORWARD -i enp0s25 -o virbr0 -p tcp --dport 26950 -d 192.168.122.78 -j ACCEPT
+        iptables -A FORWARD -i enp0s25 -o virbr0 -p udp --dport 26950 -d 192.168.122.78 -j ACCEPT
+      '';
     };
   };
 }
