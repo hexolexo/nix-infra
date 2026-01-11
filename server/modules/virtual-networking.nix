@@ -13,6 +13,11 @@
       forwardPorts = [
         {
           sourcePort = 26950; # Blade and Sorcery AMP
+          proto = "udp";
+          destination = "192.168.122.78:26950";
+        }
+        {
+          sourcePort = 26950; # Blade and Sorcery AMP
           proto = "tcp";
           destination = "192.168.122.78:26950";
         }
