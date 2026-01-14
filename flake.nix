@@ -5,8 +5,6 @@
     nur.url = "github:nix-community/NUR";
     secrets.url = "git+ssh://git@localgit/secrets.git";
 
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -38,7 +36,6 @@
     home-manager-stable,
     home-manager-unstable,
     secrets,
-    zen-browser,
     agenix,
     clankhare,
     self,
@@ -51,25 +48,13 @@
     nixosConfigurations.hexolexo = nixpkgs-unstable.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
-        inherit secrets zen-browser;
+        inherit secrets;
       };
       modules = [
         ./desktop/configuration.nix
         ./desktop/networking.nix
         agenix.nixosModules.default
         home-manager-unstable.nixosModules.home-manager
-        {
-          nixpkgs.overlays = [
-            (final: prev: {
-              nur = import nur {
-                nurpkgs = prev;
-                pkgs = prev;
-              };
-              zen-browser = zen-browser.packages.x86_64-linux.default;
-            })
-          ];
-        }
-
         {
           home-manager.sharedModules = [
             nixvim.homeModules.nixvim
