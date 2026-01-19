@@ -183,7 +183,7 @@
     displayManager.ly.enable = true;
     blueman.enable = true;
 
-    printing.enable = true;
+    #printing.enable = true;
     # Enable sound with pipewire.
     pulseaudio.enable = false;
     pipewire = {
