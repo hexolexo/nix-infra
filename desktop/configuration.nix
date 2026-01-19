@@ -229,6 +229,7 @@
   };
 
   nix = {
+    distributedBuilds = true;
     buildMachines = [
       {
         hostName = "server";
