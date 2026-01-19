@@ -246,10 +246,13 @@
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    settings = {
+      builders-use-substitutes = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
   };
 
   networking.firewall = {
