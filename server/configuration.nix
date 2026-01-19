@@ -68,6 +68,11 @@ in {
       packages = with pkgs; [go];
       openssh.authorizedKeys.keys = global.authorisedKeys;
     };
+    nix-builder = {
+      isNormalUser = true;
+      description = "NixOS remote builder";
+      openssh.authorizedKeys.keys = global.authorisedKeys;
+    };
     root.openssh.authorizedKeys.keys = global.authorisedKeys;
   };
 
@@ -102,6 +107,7 @@ in {
       options = "--delete-older-than 7d";
     };
     settings = {
+      trusted-users = ["nix-builder"];
       experimental-features = [
         "nix-command"
         "flakes"

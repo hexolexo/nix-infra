@@ -229,6 +229,18 @@
   };
 
   nix = {
+    buildMachines = [
+      {
+        hostName = "server";
+        system = "x86_64-linux";
+        sshUser = "nix-builder";
+        maxJobs = 20;
+        speedFactor = 2;
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        mandatoryFeatures = [];
+      }
+    ];
+
     gc = {
       automatic = true;
       dates = "weekly";
