@@ -234,6 +234,7 @@
         hostName = "server";
         system = "x86_64-linux";
         sshUser = "nix-builder";
+        sshKey = "/home/hexolexo/.ssh/id_ed25519";
         maxJobs = 20;
         speedFactor = 2;
         supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
