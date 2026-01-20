@@ -19,6 +19,8 @@ if git diff --quiet; then
         exit 0
     fi
     echo "Flake updated, proceeding with rebuild"
+    desktop_changed=1
+    server_changed=1
 fi
 
 alejandra . 2>&1 | grep -v "ℹ" || true

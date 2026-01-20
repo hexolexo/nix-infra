@@ -80,6 +80,7 @@
       "server" = {
         port = 6000;
         user = "hexolexo";
+        # Needs connection timeouts
         compression = true;
       };
       "localgit" = {
