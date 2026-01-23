@@ -33,7 +33,7 @@
     interactiveShellInit = ''
       set -gx EDITOR nvim
       function man
-          nvim -c "Man $argv" -c "wincmd j" -c "q"
+          nvim -c "Man $argv" -c "only"
       end
 
       function replay
