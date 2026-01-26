@@ -184,6 +184,7 @@
       enable = true;
       settings = {
         save = true;
+        session_log = ".local/state/ly-session.log";
       };
     };
     blueman.enable = true;
