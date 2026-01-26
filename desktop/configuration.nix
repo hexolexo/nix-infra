@@ -183,7 +183,6 @@
     displayManager.ly = {
       enable = true;
       settings = {
-        animation = "gameoflife";
         save = true;
       };
     };
