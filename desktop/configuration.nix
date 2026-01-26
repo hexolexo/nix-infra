@@ -226,11 +226,18 @@
 
   networking.networkmanager.wifi.powersave = false;
 
-  systemd.targets = {
-    sleep.enable = false;
-    suspend.enable = false;
-    hibernate.enable = false;
-    hybrid-sleep.enable = false;
+  systemd = {
+    targets = {
+      sleep.enable = false;
+      suspend.enable = false;
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+    };
+    services.ly = {
+      serviceConfig = {
+        StateDirectory = "ly";
+      };
+    };
   };
 
   nix = {
