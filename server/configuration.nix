@@ -18,7 +18,7 @@ in {
     #./services/minecraft.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
-    ./containers/I2P.nix
+    #./containers/I2P.nix
     #./containers/jellyfin.nix
     #./containers/fuzzing.nix       #  NOTE: I'll probably want to start using this at some point
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
