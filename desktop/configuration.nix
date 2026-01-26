@@ -180,7 +180,13 @@
       };
     };
 
-    displayManager.ly.enable = true;
+    displayManager.ly = {
+      enable = true;
+      settings = {
+        animation = "gameoflife";
+        save = true;
+      };
+    };
     blueman.enable = true;
 
     #printing.enable = true;
