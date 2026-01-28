@@ -6,6 +6,9 @@ cd "$flake_dir"
 
 ${EDITOR:-nvim} .
 
+desktop_changed=0
+server_changed=0
+
 if git diff --quiet; then
     echo "No changes made."
     echo -n "Update flake.lock? [y/N] "
@@ -27,8 +30,6 @@ alejandra . 2>&1 | grep -v "ℹ" || true
 git diff -U0 '*.nix'
 
 changed_files=$(git diff --name-only '*.nix')
-desktop_changed=0
-server_changed=0
 
 if echo "$changed_files" | grep -q 'desktop'; then
     desktop_changed=1

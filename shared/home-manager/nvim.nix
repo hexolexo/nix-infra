@@ -5,6 +5,7 @@
       number = true;
       tabstop = 4;
       shiftwidth = 4;
+      scrolloff = 8;
       expandtab = true;
       smartindent = true;
       termguicolors = true;
@@ -154,7 +155,7 @@
 
             keymap('v', 'n', 'h', { noremap = true })
             keymap('v', 'e', 'k', { noremap = true })
-            keymap('v', 'i', 'j', { noremap = true }) -- Error is happening here
+            keymap('v', 'i', 'j', { noremap = true })
             keymap('v', 'o', 'l', { noremap = true })
             keymap('v', 'h', 'b', { noremap = true })
             keymap('v', "'", 'e', { noremap = true })
