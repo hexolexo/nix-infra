@@ -5,7 +5,6 @@
 }: {
   imports = [
     ../shared/home-manager/anki.nix
-    #../shared/home-manager/zen-browser.nix
     ../shared/home-manager/alacritty.nix
     ../shared/home-manager/fastfetch.nix
     ../shared/home-manager/fuzzel.nix

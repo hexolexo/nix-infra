@@ -39,7 +39,7 @@ if echo "$changed_files" | grep -q 'server'; then
     server_changed=1
 fi
 
-if echo "$changed_files" | grep -q 'shared'; then
+if echo "$changed_files" | grep -q -e 'shared' -e 'flake.nix'; then
     desktop_changed=1
     server_changed=1
 fi

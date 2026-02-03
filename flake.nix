@@ -25,9 +25,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    clankhare.url = "github:hexolexo/clankhare";
-
-    #nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     deploy-rs.url = "github:serokell/deploy-rs";
   };
   outputs = {
@@ -37,10 +34,8 @@
     home-manager-unstable,
     secrets,
     agenix,
-    clankhare,
     self,
     nur,
-    #nix-minecraft,
     nixvim,
     deploy-rs,
     ...
@@ -69,12 +64,11 @@
     nixosConfigurations.vault = nixpkgs-stable.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
-        inherit secrets clankhare inputs;
+        inherit secrets inputs;
       };
       modules = [
         ./server/configuration.nix
         home-manager-stable.nixosModules.home-manager
-        #nix-minecraft.nixosModules.minecraft-servers
         {
           home-manager.sharedModules = [
             nixvim.homeModules.nixvim
