@@ -83,7 +83,6 @@
     evsieve
 
     # Development
-    cargo
     clang
     gnumake
     gcc
