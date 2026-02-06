@@ -85,6 +85,7 @@
     # Development
     cargo
     clang
+    gnumake
     gcc
     elmPackages.elm-language-server
     git
