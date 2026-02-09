@@ -46,6 +46,7 @@
     # Applications
     #libreoffice # fucking docx
     librewolf
+    freetube
     obsidian
     moonlight-qt
     fluffychat
