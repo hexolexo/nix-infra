@@ -6,7 +6,19 @@
     ./fanCtrl.nix
   ];
   nixpkgs.config.allowUnfree = true;
-  security.polkit.enable = true;
+  security = {
+    pam.u2f = {
+      enable = true;
+      control = "sufficient";
+    };
+
+    pam.services = {
+      sudo.u2fAuth = true;
+      login.u2fAuth = true;
+    };
+
+    polkit.enable = true;
+  };
   documentation.man.enable = true;
   # Bootloader.
   boot.loader = {
