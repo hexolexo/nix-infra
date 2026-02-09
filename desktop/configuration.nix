@@ -20,7 +20,6 @@
     polkit.enable = true;
   };
   documentation.man.enable = true;
-  # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -238,8 +237,6 @@
     bluetooth.powerOnBoot = true;
   };
 
-  networking.networkmanager.wifi.powersave = false;
-
   systemd = {
     targets = {
       sleep.enable = false;
@@ -283,9 +280,12 @@
     };
   };
 
-  networking.firewall = {
-    allowedTCPPorts = [];
-    allowedUDPPorts = [];
+  networking = {
+    networkmanager.wifi.powersave = false;
+    firewall = {
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
+    };
   };
 
   system.stateVersion = "25.05";
