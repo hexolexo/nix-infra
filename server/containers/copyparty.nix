@@ -25,7 +25,6 @@
         enable = true;
         user = "copyparty";
         group = "copyparty";
-        # directly maps to values in the [global] section of the copyparty config.
         # see `copyparty --help` for available options
         settings = {
           i = "10.0.0.1";
@@ -40,7 +39,6 @@
           "/" = {
             # share the contents of "/srv/copyparty"
             path = "/srv/copyparty";
-            # see `copyparty --help-accounts` for available options
             access = {
               # everyone gets rw-access
               rw = ["*"];
