@@ -1,4 +1,5 @@
 {inputs, ...}: {
+  networking.firewall.allowedTCPPorts = [3210 3211];
   containers.copyparty = {
     autoStart = true;
     privateNetwork = false;
@@ -13,6 +14,7 @@
       lib,
       ...
     }: {
+      networking.firewall.allowedTCPPorts = [3210 3211];
       imports = [inputs.copyparty.nixosModules.default];
       nixpkgs.overlays = [inputs.copyparty.overlays.default];
       services.copyparty = {
