@@ -191,9 +191,9 @@
         ];
       };
     };
-
+    displayManager.cosmic-greeter.enable = true;
     displayManager.ly = {
-      enable = true;
+      enable = false;
       settings = {
         save = true;
         session_log = ".local/state/ly-session.log";
