@@ -75,6 +75,9 @@
       modules = [
         ./server/configuration.nix
         copyparty.nixosModules.default
+        ({pkgs, ...}: {
+          nixpkgs.overlays = [copyparty.overlays.default];
+        })
         home-manager-stable.nixosModules.home-manager
         {
           home-manager.sharedModules = [

@@ -1,10 +1,10 @@
-{...}: {
+{inputs, ...}: {
   containers.copyparty = {
     autoStart = true;
     privateNetwork = false;
     bindMounts.content = {
       hostPath = "/var/lib/containers/copyparty-share";
-      mountPoint = "/svr/copyparty";
+      mountPoint = "/srv/copyparty";
       isReadOnly = false;
     };
 
@@ -13,14 +13,8 @@
       lib,
       ...
     }: {
-      users.groups.copyparty = {};
-      users.users.copyparty = {
-        isNormalUser = true;
-        group = "copyparty";
-        home = "/home/copyparty";
-        createHome = true;
-      };
-      nixpkgs.overlays = [copyparty.overlays.default];
+      imports = [inputs.copyparty.nixosModules.default];
+      nixpkgs.overlays = [inputs.copyparty.overlays.default];
       services.copyparty = {
         enable = true;
         user = "copyparty";
