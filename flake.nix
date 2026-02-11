@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    copyparty = {
+      url = "github:9001/copyparty";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -36,6 +41,7 @@
     agenix,
     self,
     nur,
+    copyparty,
     nixvim,
     deploy-rs,
     ...
@@ -68,6 +74,7 @@
       };
       modules = [
         ./server/configuration.nix
+        copyparty.nixosModules.default
         home-manager-stable.nixosModules.home-manager
         {
           home-manager.sharedModules = [

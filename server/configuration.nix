@@ -118,5 +118,11 @@ in {
   };
   services.smartd.enable = true;
 
+  fileSystems."/mnt/vault" = {
+    device = "/dev/disk/by-uuid/0efbbeb7-8035-4429-9154-17b221c6cd86";
+    fsType = "ext4";
+    options = ["defaults" "user" "rw" "nofail"];
+  };
+
   system.stateVersion = "25.11";
 }

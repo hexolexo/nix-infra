@@ -13,7 +13,7 @@ if git diff --quiet; then
     echo "No changes made."
     echo -n "Update flake.lock? [y/N] "
     read -r response
-    if [[ "$response" =~ ^[Nn]$ ]]; then
+    if [[ "$response" =~ ^[Yy]$ ]]; then
         exit 0
     fi
     nix flake update
