@@ -61,7 +61,6 @@
     freetube
     obsidian
     moonlight-qt
-    element-desktop
 
     # Theming
     (catppuccin-gtk.override {
