@@ -4,7 +4,6 @@
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
-  # User for sunshine to run under
   users.users.sunshine = {
     isNormalUser = true;
     extraGroups = ["video" "render" "input"];
