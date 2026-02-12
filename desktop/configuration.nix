@@ -61,7 +61,7 @@
     freetube
     obsidian
     moonlight-qt
-    fluffychat
+    element-desktop
 
     # Theming
     (catppuccin-gtk.override {
