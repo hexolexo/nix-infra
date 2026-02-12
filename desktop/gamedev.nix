@@ -8,6 +8,6 @@
     androidenv.androidPkgs.androidsdk
     androidenv.androidPkgs.emulator
     androidenv.androidPkgs.ndk-bundle
-    jdk17_headless
+    jdk17
   ];
 }
