@@ -4,6 +4,7 @@
     ./networking.nix
     ./keyd.nix
     ./fanCtrl.nix
+    ./gamedev.nix
   ];
   nixpkgs.config.allowUnfree = true;
   security = {
