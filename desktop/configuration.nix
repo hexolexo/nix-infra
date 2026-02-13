@@ -159,6 +159,7 @@
   };
 
   services = {
+    desktopManager.plasma6.enable = true;
     udisks2.enable = true;
     dbus.enable = true;
 
