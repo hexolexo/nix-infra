@@ -86,7 +86,6 @@
     ncmpcpp
     pamixer
     pinentry-tty
-    polkit_gnome
     prismlauncher
     swaybg
     swaylock-effects
