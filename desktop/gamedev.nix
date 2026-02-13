@@ -8,6 +8,11 @@
     androidenv.androidPkgs.androidsdk
     androidenv.androidPkgs.emulator
     androidenv.androidPkgs.ndk-bundle
+    libva
+    libva-utils
+    mesa
+    mesa.drivers
+    libva
     jdk17
   ];
   services.udev.extraRules = ''
