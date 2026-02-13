@@ -158,7 +158,6 @@
   };
 
   services = {
-    desktopManager.plasma6.enable = true;
     udisks2.enable = true;
     dbus.enable = true;
 
@@ -291,14 +290,17 @@
   };
 
   system.stateVersion = "25.05";
-  systemd.user.services.polkit-kde-agent = {
-    description = "KDE Polkit Agent";
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
     wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
     after = ["graphical-session.target"];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
     };
   };
 }

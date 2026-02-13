@@ -10,4 +10,14 @@
     androidenv.androidPkgs.ndk-bundle
     jdk17
   ];
+  services.udev.extraRules = ''
+    # Valve HID devices (Index, Vive, etc)
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0666", TAG+="uaccess"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0bb4", MODE="0666", TAG+="uaccess"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="28de", MODE="0666", TAG+="uaccess"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="0bb4", MODE="0666", TAG+="uaccess"
+
+    # Meta/Oculus headsets
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="2833", MODE="0666", TAG+="uaccess"
+  '';
 }
