@@ -18,6 +18,7 @@
     KERNEL=="hidraw*", ATTRS{idVendor}=="0bb4", MODE="0666", TAG+="uaccess"
 
     # Meta/Oculus headsets
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="2833", MODE="0666", TAG+="uaccess"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="2833", MODE="0666", GROUP="plugdev"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0bb4", MODE="0666", GROUP="plugdev"
   '';
 }
