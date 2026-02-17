@@ -192,6 +192,7 @@
       };
     };
     displayManager.cosmic-greeter.enable = true;
+    desktopManager.cosmic.enable = true;
     displayManager.ly = {
       enable = false;
       settings = {
