@@ -51,6 +51,7 @@
           q = "q";
           e = "e";
           f = "f";
+          r = "r";
           # What kind of autism *is* this
           j = "f"; # n -> f
           i = "d"; # u -> d
