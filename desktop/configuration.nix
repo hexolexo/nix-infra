@@ -76,6 +76,7 @@
 
     # Wayland/Desktop
     alacritty
+    gamescope
     clipse
     eww
     feh
