@@ -4,7 +4,6 @@
     ./networking.nix
     ./keyd.nix
     ./fanCtrl.nix
-    ./gamedev.nix
   ];
   nixpkgs.config.allowUnfree = true;
   security = {
@@ -61,6 +60,9 @@
     freetube
     obsidian
     moonlight-qt
+    easyeffects
+    calf
+    lsp-plugins
 
     # Theming
     (catppuccin-gtk.override {
@@ -161,6 +163,7 @@
   services = {
     udisks2.enable = true;
     dbus.enable = true;
+    flatpak.enable = true; # lets hope this works
 
     fanControl = {
       enable = true;
@@ -193,7 +196,7 @@
       };
     };
     displayManager.cosmic-greeter.enable = true;
-    desktopManager.cosmic.enable = true;
+    #desktopManager.cosmic.enable = true;
     displayManager.ly = {
       enable = false;
       settings = {

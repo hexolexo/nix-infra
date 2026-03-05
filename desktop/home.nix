@@ -13,7 +13,9 @@
     ../shared/home-manager/terminal.nix
   ];
   home.stateVersion = "25.11";
-
+  services.easyeffects = {
+    enable = true;
+  };
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "rebuild" (builtins.readFile ./../rebuild.sh))
     (pkgs.writeShellScriptBin "msh" (builtins.readFile ./../msh.sh))
