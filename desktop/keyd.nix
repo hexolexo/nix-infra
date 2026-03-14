@@ -44,17 +44,32 @@
           leftshift = "toggle(remap)"; #  HACK: What the fuck have I created
         };
         remap = {
-          w = "w";
           a = "a";
-          s = "s";
+          b = "b";
+          c = "c";
           d = "d";
-          q = "q";
           e = "e";
           f = "f";
+          g = "g";
+          h = "h";
+          i = "i";
+          j = "j";
+          k = "k";
+          l = "l";
+          m = "m";
+          n = "n";
+          o = "o";
+          p = "p";
+          q = "q";
           r = "r";
-          # What kind of autism *is* this
-          j = "f"; # n -> f
-          i = "d"; # u -> d
+          s = "s";
+          t = "t";
+          u = "u";
+          v = "v";
+          w = "w";
+          x = "x";
+          y = "y";
+          z = "z";
         };
         # I just wanted to play UNBEATABLE man...
         "remap:toggle" = {}; # Marks remap as toggleable

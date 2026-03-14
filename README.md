@@ -34,11 +34,8 @@ NixOS configuration managing my desktop (hexolexo) and homelab server (vault) wi
 
 ## ./rebuild.sh
 
-This script was a damn nightmare but here it is
-    It starts by opening nvim letting you make edits to the config
-    Then checks for diffs and if there are none exits early
-    Otherwise formats with alejandra and determines what config changed
-    Finally rebuilds only the machine configs that got changed before pushing to git
+Smart rebuild script that diffs changed paths to determine whether to rebuild the desktop, the server or both
+then commits with the resulting generation number and stating which system changed.
 
 ## Screenshots
 
