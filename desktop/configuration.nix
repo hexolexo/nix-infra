@@ -2,7 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./keyd.nix
+    ../shared/keyd.nix
     ./fanCtrl.nix
   ];
   nixpkgs.config.allowUnfree = true;

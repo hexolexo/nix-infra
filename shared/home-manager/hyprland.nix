@@ -17,4 +17,5 @@
     source = ../home-manager/hyprland/scripts;
     recursive = true;
   };
+  home.file."Pictures/Backgrounds/Cloudsnight.jpg".source = ../Cloudsnight.jpg;
 }

@@ -45,8 +45,8 @@
     nixvim,
     deploy-rs,
     ...
-  } @ inputs: {
-    nixosConfigurations.hexolexo = nixpkgs-unstable.lib.nixosSystem {
+  } @ inputs: let
+    hexolexo = nixpkgs-unstable.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit secrets;
@@ -66,28 +66,38 @@
         }
       ];
     };
+  in {
+    nixosConfigurations = {
+      hexolexo = hexolexo;
 
-    nixosConfigurations.vault = nixpkgs-stable.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit secrets inputs;
+      installer = hexolexo.extendModules {
+        modules = [
+          "${nixpkgs-unstable}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix"
+        ];
       };
-      modules = [
-        ./server/configuration.nix
-        copyparty.nixosModules.default
-        ({pkgs, ...}: {
-          nixpkgs.overlays = [copyparty.overlays.default];
-        })
-        home-manager-stable.nixosModules.home-manager
-        {
-          home-manager.sharedModules = [
-            nixvim.homeModules.nixvim
-          ];
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.hexolexo = import ./server/home.nix;
-        }
-      ];
+
+      vault = nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit secrets inputs;
+        };
+        modules = [
+          ./server/configuration.nix
+          copyparty.nixosModules.default
+          ({pkgs, ...}: {
+            nixpkgs.overlays = [copyparty.overlays.default];
+          })
+          home-manager-stable.nixosModules.home-manager
+          {
+            home-manager.sharedModules = [
+              nixvim.homeModules.nixvim
+            ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.hexolexo = import ./server/home.nix;
+          }
+        ];
+      };
     };
 
     deploy.nodes.vault = {
