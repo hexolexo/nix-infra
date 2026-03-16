@@ -7,8 +7,9 @@
     enable = true;
 
     extraConfig = builtins.concatStringsSep "\n" [
-      (builtins.readFile ./hyprland/bindings.conf)
       (builtins.readFile ./hyprland/sys.conf)
+
+      (builtins.readFile ./hyprland/bindings.conf)
       (builtins.readFile ./hyprland/ux.conf)
     ];
   };
