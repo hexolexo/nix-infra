@@ -130,6 +130,7 @@
     pass
     mutagen
     vhs
+    gum
     caligula
 
     # System Tools
