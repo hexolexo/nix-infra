@@ -130,6 +130,7 @@
     pass
     mutagen
     vhs
+    caligula
 
     # System Tools
     borgbackup
