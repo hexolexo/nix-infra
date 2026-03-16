@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ../shared/home-manager/hyprland.nix
     ../shared/home-manager/anki.nix
     ../shared/home-manager/alacritty.nix
     ../shared/home-manager/fastfetch.nix

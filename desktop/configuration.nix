@@ -45,6 +45,7 @@
   users.users.hexolexo = {
     isNormalUser = true;
     description = "hexolexo";
+    initialPassword = "changeme";
     shell = pkgs.fish;
     extraGroups = [
       "input"
