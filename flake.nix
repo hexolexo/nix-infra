@@ -109,6 +109,7 @@
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vault;
       };
     };
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
     devShells.x86_64-linux.default = nixpkgs-unstable.legacyPackages.x86_64-linux.mkShell {
       packages = [deploy-rs.packages.x86_64-linux.default];

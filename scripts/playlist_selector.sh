@@ -34,3 +34,4 @@ for file in "$MUSIC_DIR"/global/*; do
     *) continue ;;
     esac
 done
+mpc rescan

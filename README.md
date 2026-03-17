@@ -40,4 +40,5 @@ then commits with the resulting generation number and stating which system chang
 ## Screenshots
 
 ![Desktop](screenshots/working_desktop.png)
+Background is "Under the Night Sky" from [Bis Biswas](https://imbis.artstation.com/projects/2x6z3a)
 ![Workflow](screenshots/background.png)
