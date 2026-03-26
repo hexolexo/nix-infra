@@ -56,8 +56,6 @@ echo -n "Build and switch? [Y/n] "
 read -r response
 [[ "$response" =~ ^[Yy]$|^$ ]] || exit 0 # Default to yes on empty response
 
-git add -A
-
 commits=""
 
 if [[ $desktop_changed -eq 1 ]]; then
@@ -71,7 +69,12 @@ fi
 if [[ $server_changed -eq 1 ]]; then
     echo "Deploying to server..."
     nix develop --command deploy .#vault
-    [[ -n "$commits" ]] && commits="$commits, vault deployed" || commits="vault deployed"
+    if [[ -n "$commits" ]]; then
+        commits="$commits, vault deployed"
+    else
+        commits="vault deployed"
+    fi
+    #[[ -n "$commits" ]] && commits="$commits, vault deployed" || commits="vault deployed" # What the fuck was I on when I wrote this
 fi
 
 if [[ -z "$commits" ]]; then
@@ -79,6 +82,7 @@ if [[ -z "$commits" ]]; then
     exit 1
 fi
 
+git add -A
 git commit -m "$commits"
 git push
 

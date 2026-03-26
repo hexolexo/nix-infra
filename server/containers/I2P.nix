@@ -27,7 +27,7 @@
         enable = true;
         port = secrets.I2P_Port;
         address = "0.0.0.0";
-        bandwidth = 3000; # KBps
+        bandwidth = 1500; # KBps
         share = 80;
         ntcp2 = {
           enable = true;
