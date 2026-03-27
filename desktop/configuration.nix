@@ -79,6 +79,7 @@
 
     # Wayland/Desktop
     alacritty
+    cool-retro-term
     gamescope
     clipse
     eww

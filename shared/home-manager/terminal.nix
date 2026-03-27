@@ -21,7 +21,6 @@
     enable = true;
     enableFishIntegration = true;
   };
-
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -35,7 +34,6 @@
       function man
           nvim -c "Man $argv" -c "only"
       end
-
       function replay
           set -l cmd (history | ${pkgs.highlight}/bin/highlight --syntax=bash --out-format=ansi | ${pkgs.fzf}/bin/fzf --ansi --header='Select command to replay')
           if test -n "$cmd"
@@ -45,12 +43,10 @@
       end
     '';
   };
-
   programs.pay-respects = {
     enable = true;
     enableFishIntegration = true;
   };
-
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -60,14 +56,12 @@
       };
     };
   };
-
   programs.eza = {
     enable = true;
     enableFishIntegration = true;
     git = true;
     icons = "auto";
   };
-
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -91,14 +85,12 @@
       };
     };
   };
-
   programs.starship = {
     enable = true;
     settings = {
       scan_timeout = 10;
     };
   };
-
   programs.zoxide = {
     enable = true;
   };
