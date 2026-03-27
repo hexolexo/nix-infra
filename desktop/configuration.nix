@@ -225,6 +225,7 @@
     firefox.enable = true;
     alvr.enable = true;
     steam.enable = true;
+    kdeconnect.enable = true;
     hyprland.enable = true;
     fish.enable = true;
     gnupg.agent = {
