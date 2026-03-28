@@ -23,6 +23,8 @@
   boot = {
     kernelParams = [
       "amd_pstate=active"
+    ];
+    kernelModules = [
       "ryzen_smu"
     ];
     loader = {
