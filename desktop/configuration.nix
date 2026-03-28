@@ -23,6 +23,7 @@
   boot = {
     kernelParams = [
       "amd_pstate=active"
+      "ryzen_smu"
     ];
     loader = {
       systemd-boot.enable = true;
