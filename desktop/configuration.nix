@@ -20,9 +20,14 @@
     polkit.enable = true;
   };
   documentation.man.enable = true;
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    kernelParams = [
+      "amd_pstate=active"
+    ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   time.timeZone = "Australia/Sydney";
