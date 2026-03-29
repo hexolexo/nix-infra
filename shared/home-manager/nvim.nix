@@ -68,7 +68,7 @@
         enable = true;
         servers = {
           jdtls.enable = true;
-          nil.enable = true;
+          nixd.enable = true;
           gopls.enable = true;
           bashls.enable = true;
           marksman.enable = true;
