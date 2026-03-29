@@ -1,37 +1,19 @@
-{lib, ...}: let
-  peersFile = builtins.readFile ./peers.txt;
-
-  # Parse a line with the format: "hexolexo 2 vWCeMXG... keepalive"
-  parsePeer = line: let
-    parts = lib.splitString " " line;
-    name = builtins.elemAt parts 0;
-    ip = builtins.elemAt parts 1;
-    key = builtins.elemAt parts 2;
-    hasKeepalive = builtins.length parts > 3 && builtins.elemAt parts 3 == "keepalive";
-  in {
-    inherit name ip key;
-    ka = hasKeepalive;
+{...}: {
+  age.secrets.wireguard-private = {
+    file = ../../secrets/wireguard-hub-key.age;
+    owner = "root";
+    mode = "0400";
   };
-
-  peerLines = lib.filter (s: s != "") (lib.splitString "\n" peersFile);
-  peers = map parsePeer peerLines;
-
-  # Convert to wireguard peer format
-  mkPeer = peer:
-    {
-      publicKey = peer.key;
-      allowedIPs = ["10.0.0.${peer.ip}/32"];
-    }
-    // lib.optionalAttrs peer.ka {
-      persistentKeepalive = 25;
-    };
-in {
-  networking.wireguard.interfaces.wg0 = {
-    privateKeyFile = "/etc/wireguard/private";
+  networking.wg-quick.interfaces.wg0 = {
+    address = ["10.0.0.1/24"];
     listenPort = 51820;
-    ips = ["10.0.0.1/24"];
-    peers = map mkPeer peers;
+    privateKeyFile = "/run/agenix/wireguard-private";
+    peers = [
+      {
+        publicKey = "vWCeMXGBA2v5bV+kX/otvPi/+v9DSAzKnrBqqbbB31k=";
+        allowedIPs = ["10.0.0.2/32"]; # fw-laptop
+        persistentKeepalive = 25;
+      }
+    ];
   };
-
-  networking.firewall.allowedUDPPorts = [51820];
 }

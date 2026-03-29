@@ -1,8 +1,4 @@
-{pkgs, ...}:
-#let
-#secrets = import ./../secrets.nix;
-#in
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     borgbackup
   ];

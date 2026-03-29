@@ -84,6 +84,7 @@
         modules = [
           ./server/configuration.nix
           copyparty.nixosModules.default
+          agenix.nixosModules.default
           ({pkgs, ...}: {
             nixpkgs.overlays = [copyparty.overlays.default];
           })
