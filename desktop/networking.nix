@@ -1,4 +1,13 @@
 {secrets, ...}: {
+  age = {
+    identityPaths = ["/home/hexolexo/.ssh/id_ed25519"];
+    secrets.wireguard-private = {
+      file = ../secrets/wireguard-hexolexo-key.age;
+      owner = "root";
+      mode = "0400";
+    };
+  };
+
   networking.hostName = "hexolexo";
 
   networking.networkmanager.enable = true;
@@ -23,7 +32,7 @@
     wg0 = {
       ips = ["10.0.0.2/24"];
 
-      privateKeyFile = "/etc/wireguard/privkey";
+      privateKeyFile = "/run/agenix/wireguard-private";
 
       peers = [
         {
