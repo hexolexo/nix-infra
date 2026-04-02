@@ -11,7 +11,7 @@ in {
     # Optional Services: #
     #./services/clankhare.nix # I still can't believe they convinced me to name it this
     #./services/sunshine.nix
-    ./services/paperless-ngx.nix
+    #./services/paperless-ngx.nix
     #./containers/unbound.nix
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
