@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  secrets,
-  ...
-}: {
+{secrets, ...}: {
   containers.i2pd = {
     autoStart = true;
     privateNetwork = false;
