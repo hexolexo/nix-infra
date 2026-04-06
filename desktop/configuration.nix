@@ -122,7 +122,7 @@
     nil
     alejandra
     nix-output-monitor
-    nodePackages.bash-language-server
+    #nodePackages.bash-language-server
     shfmt
     opentofu
     pkg-config
