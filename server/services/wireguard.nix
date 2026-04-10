@@ -18,6 +18,11 @@
           allowedIPs = ["10.0.0.2/32"]; # fw-laptop
           persistentKeepalive = 25;
         }
+        {
+          publicKey = "v54b/A7ynLrcXBMcgJkf6vgzJgra8Z3BkaFHMy1RMWk=";
+          allowedIPs = ["10.0.0.4/32"]; # death
+          persistentKeepalive = 25;
+        }
       ];
     };
   };
