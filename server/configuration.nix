@@ -90,6 +90,7 @@ in {
   ];
 
   networking = {
+    enableIPv6 = true;
     hosts = {
       "127.0.0.1" = ["server"];
     };
