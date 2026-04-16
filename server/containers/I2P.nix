@@ -4,7 +4,7 @@
     privateNetwork = false;
     config = {...}: {
       networking = {
-        # Exposing the nessecary ports in order to interact with i2p from outside the
+        # Exposing the necessary ports in order to interact with i2p from outside the
         firewall.allowedTCPPorts = [
           # Apparently these are required despite privateNetwork = false; ... Yeah I don't fking know either
           7070 # default web interface port
