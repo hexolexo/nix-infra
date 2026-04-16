@@ -20,6 +20,7 @@
       services.i2pd = {
         enable = true;
         port = secrets.I2P_Port;
+        enableIPv6 = true;
         address = "::";
         bandwidth = 4800; # KBps
         share = 80;
