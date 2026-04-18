@@ -14,7 +14,7 @@
 
   networking.hosts = {
     "${secrets.HomeIP}" = ["home"];
-    "192.168.1.153" = ["server"];
+    "${secrets.ServerIP}" = ["server"];
   };
   environment.etc."proxychains.conf".text = ''
     proxy_dns
