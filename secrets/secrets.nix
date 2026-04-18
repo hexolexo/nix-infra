@@ -1,7 +1,7 @@
 let
   hexolexo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn10kNU91QinvzDnJ/d6SMivvh+732dmcbHY4YurxGM hexolexo@hexolexo";
 
-  vault = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHXQaflaHfzVh5sQl98Dy03A3rX36E/j1kReA7kxDwE root@nixos";
+  vault = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOLfOt/23OLpTGi1UbLVKLYwuE/PMWBzrY07bJNw1dCH vault";
 in {
   "wireguard-hub-key.age".publicKeys = [hexolexo vault];
   "wireguard-hexolexo-key.age".publicKeys = [hexolexo];
