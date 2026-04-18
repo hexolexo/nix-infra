@@ -1,4 +1,3 @@
-# disko.nix
 {
   disko.devices = {
     disk.root = {
@@ -51,15 +50,18 @@
       rootFsOptions = {
         compression = "zstd";
         atime = "off";
+        mountpoint = "none";
       };
       datasets = {
         root = {
           type = "zfs_fs";
           mountpoint = "/";
+          options.mountpoint = "/";
         };
         nix = {
           type = "zfs_fs";
           mountpoint = "/nix";
+          options.mountpoint = "/nix";
         };
       };
     };
@@ -69,10 +71,12 @@
       rootFsOptions = {
         compression = "zstd";
         atime = "off";
+        mountpoint = "none";
       };
       datasets.data = {
         type = "zfs_fs";
         mountpoint = "/data"; # radicle, VMs, etc go here
+        options.mountpoint = "/data";
       };
     };
   };

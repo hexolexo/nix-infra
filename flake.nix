@@ -107,6 +107,10 @@
           }
         ];
       };
+      bootstrap = nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [./bootstrap/bootstrap.nix];
+      };
     };
 
     deploy.nodes.vault = {
@@ -119,7 +123,8 @@
       };
     };
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-
+    packages.x86_64-linux.bootstrap =
+      self.nixosConfigurations.bootstrap.config.system.build.isoImage;
     devShells.x86_64-linux.default = nixpkgs-unstable.legacyPackages.x86_64-linux.mkShell {
       packages = [deploy-rs.packages.x86_64-linux.default];
     };

@@ -25,10 +25,12 @@ in {
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
   ];
-  boot.supportedFilesystems = ["zfs"];
 
   # Bootloader.
   boot = {
+    initrd.supportedFilesystems = ["zfs"];
+
+    supportedFilesystems = ["zfs"];
     enableContainers = true;
     loader = {
       grub = {
@@ -119,12 +121,6 @@ in {
     };
   };
   services.smartd.enable = true;
-
-  fileSystems."/mnt/vault" = {
-    device = "/dev/disk/by-uuid/0efbbeb7-8035-4429-9154-17b221c6cd86";
-    fsType = "ext4";
-    options = ["defaults" "user" "rw" "nofail"];
-  };
 
   system.stateVersion = "25.11";
 }

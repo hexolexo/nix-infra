@@ -13,38 +13,12 @@
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "ums_realtek" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
+  #boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "ums_realtek" "usbhid" "usb_storage" "sd_mod" "sr_mod" "virtio_blk" "virtio_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
   networking.hostId = "d7630388";
-
-  fileSystems."/" = {
-    device = "zpool/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/nix" = {
-    device = "zpool/nix";
-    fsType = "zfs";
-  };
-
-  fileSystems."/var" = {
-    device = "zpool/var";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "zpool/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/12CE-A600";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
-
-  swapDevices = [];
+  boot.zfs.devNodes = "/dev/disk/by-partlabel";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
