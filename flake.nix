@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -40,6 +45,7 @@
     secrets,
     agenix,
     self,
+    disko,
     nur,
     copyparty,
     nixvim,
@@ -82,7 +88,9 @@
           inherit secrets inputs;
         };
         modules = [
+          disko.nixosModules.disko
           ./server/configuration.nix
+          ./server/disko.nix
           copyparty.nixosModules.default
           agenix.nixosModules.default
           ({pkgs, ...}: {
