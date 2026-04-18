@@ -51,34 +51,26 @@
     nixvim,
     deploy-rs,
     ...
-  } @ inputs: let
-    hexolexo = nixpkgs-unstable.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit secrets;
-      };
-      modules = [
-        ./desktop/configuration.nix
-        ./desktop/networking.nix
-        agenix.nixosModules.default
-        home-manager-unstable.nixosModules.home-manager
-        {
-          home-manager.sharedModules = [
-            nixvim.homeModules.nixvim
-          ];
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.hexolexo = import ./desktop/home.nix;
-        }
-      ];
-    };
-  in {
+  } @ inputs: {
     nixosConfigurations = {
-      hexolexo = hexolexo;
-
-      installer = hexolexo.extendModules {
+      hexolexo = nixpkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit secrets;
+        };
         modules = [
-          "${nixpkgs-unstable}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix"
+          ./desktop/configuration.nix
+          ./desktop/networking.nix
+          agenix.nixosModules.default
+          home-manager-unstable.nixosModules.home-manager
+          {
+            home-manager.sharedModules = [
+              nixvim.homeModules.nixvim
+            ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.hexolexo = import ./desktop/home.nix;
+          }
         ];
       };
 

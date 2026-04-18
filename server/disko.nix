@@ -2,7 +2,7 @@
   disko.devices = {
     disk.root = {
       type = "disk";
-      device = "/dev/vda"; # sdb on real hardware
+      device = "/dev/sdb"; # sdb on real hardware
       content = {
         type = "gpt";
         partitions = {
@@ -32,7 +32,7 @@
 
     disk.data = {
       type = "disk";
-      device = "/dev/vdb"; # sda on real hardware
+      device = "/dev/sda"; # sda on real hardware
       content = {
         type = "gpt";
         partitions.data = {
