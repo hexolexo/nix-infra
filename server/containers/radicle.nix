@@ -20,6 +20,7 @@
     config = {...}: {
       services.radicle = {
         enable = true;
+        checkConfig = false; #  HACK: validator is broken in current nixpkgs
         privateKeyFile = "/run/agenix/radicle-key";
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvTTfJAw5sHWldnVbnmotGSJ9bNEDQZWyWxgRO0EouB radicle";
         node.openFirewall = true;
