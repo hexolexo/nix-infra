@@ -118,7 +118,11 @@
     packages.x86_64-linux.bootstrap =
       self.nixosConfigurations.bootstrap.config.system.build.isoImage;
     devShells.x86_64-linux.default = nixpkgs-unstable.legacyPackages.x86_64-linux.mkShell {
-      packages = [deploy-rs.packages.x86_64-linux.default];
+      packages = [
+        deploy-rs.packages.x86_64-linux.default
+        agenix.packages.x86_64-linux.default
+        nixpkgs-unstable.legacyPackages.x86_64-linux.nixos-anywhere
+      ];
     };
   };
 }

@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+nix build .#bootstrap
+
+caligula burn ./result/iso/*.iso --root always
+
+read -rp "Boot the target machine and enter its IP once it's up: " TARGET_IP
+
 KEY_DIR=$(mktemp -d)
 EXTRA_FILES=$(mktemp -d)
 trap 'rm -rf "$KEY_DIR" "$EXTRA_FILES"' EXIT
@@ -10,7 +16,7 @@ PUB_KEY=$(cat "$KEY_DIR/ssh_host_ed25519_key.pub")
 
 sed -i "s|vault = \"ssh-ed25519.*\";|vault = \"$PUB_KEY\";|" secrets/secrets.nix
 
-cd secrets && agenix -r && cd ..
+agenix -r -i secrets/secrets.nix
 
 git add secrets/
 git commit -m "chore: rotate vault host key"
@@ -24,4 +30,4 @@ nix run github:nix-community/nixos-anywhere -- \
     --flake .#vault \
     --build-on-remote \
     --extra-files "$EXTRA_FILES" \
-    root@192.168.1.153
+    root@"$TARGET_IP"
