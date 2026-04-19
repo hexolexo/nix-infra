@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Burn new image?"
+read -rp "Burn new image? [y/N] " yn
 if [[ "$yn" =~ ^[Yy]$ ]]; then
     nix build .#bootstrap
 
@@ -19,7 +19,7 @@ PUB_KEY=$(cat "$KEY_DIR/ssh_host_ed25519_key.pub")
 
 sed -i "s|vault = \"ssh-ed25519.*\";|vault = \"$PUB_KEY\";|" secrets/secrets.nix
 
-agenix -r -i secrets/secrets.nix
+cd secrets && agenix -r && cd ..
 
 git add secrets/
 git commit -m "chore: rotate vault host key"
