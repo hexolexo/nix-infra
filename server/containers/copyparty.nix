@@ -4,16 +4,12 @@
     autoStart = true;
     privateNetwork = false;
     bindMounts.content = {
-      hostPath = "/var/lib/containers/copyparty-share";
+      hostPath = "/data/copyparty";
       mountPoint = "/srv/copyparty";
       isReadOnly = false;
     };
 
-    config = {
-      pkgs,
-      lib,
-      ...
-    }: {
+    config = {...}: {
       networking.firewall.allowedTCPPorts = [3210 3211];
       imports = [inputs.copyparty.nixosModules.default];
       nixpkgs.overlays = [inputs.copyparty.overlays.default];

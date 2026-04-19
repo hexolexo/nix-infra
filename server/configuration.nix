@@ -16,7 +16,7 @@ in {
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
     #./services/minecraft.nix
-    #./containers/copyparty.nix
+    ./containers/copyparty.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
     ./containers/I2P.nix
