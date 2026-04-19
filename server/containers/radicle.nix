@@ -3,7 +3,7 @@
     file = ../../secrets/radicle-key.age;
     mode = "0400";
   };
-  networking.firewall.allowedTCPPorts = [8776 8080]; # God I hope this works
+  networking.firewall.allowedTCPPorts = [8776 18080]; # God I hope this works
   containers.radicle = {
     autoStart = true;
     privateNetwork = false;
@@ -17,7 +17,20 @@
       mountPoint = "/run/agenix/radicle-key";
       isReadOnly = true;
     };
-    config = {...}: {
+    config = {pkgs, ...}: {
+      services.nginx = {
+        enable = true;
+        virtualHosts."_" = {
+          listen = [
+            {
+              addr = "10.0.0.1";
+              port = 18080;
+            }
+          ];
+          root = "${pkgs.radicle-explorer}";
+          locations."/api".proxyPass = "http://127.0.0.1:8080";
+        };
+      };
       services.radicle = {
         enable = true;
         checkConfig = false; #  HACK: validator is broken in current nixpkgs
@@ -27,7 +40,7 @@
         node.listenAddress = "[::0]";
         httpd = {
           enable = true;
-          listenAddress = "10.0.0.1";
+          #listenAddress = "10.0.0.1";
         };
         settings = {
           node = {
