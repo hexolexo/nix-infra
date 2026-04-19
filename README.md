@@ -20,7 +20,7 @@ NixOS configuration managing my desktop (hexolexo) and homelab server (vault) wi
 
 - NixOS 25.05+
 - SSH access to server (for deploy-rs)
-- Personal repo at `git@localgit/secrets.git` (So ideally you don't dox your IP on git)
+- Personal repo at `path:/home/hexolexo/Programming/sysadmin/secrets` of which you may need to change the path to match your user (So ideally you don't dox your IP on git)
 ```nix
 {
     description = "IP addresses";
