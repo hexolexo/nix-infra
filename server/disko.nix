@@ -2,14 +2,10 @@
   disko.devices = {
     disk.root = {
       type = "disk";
-      device = "/dev/sdb"; # sdb on real hardware
+      device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_500GB_S4FNNF0MC11780E";
       content = {
         type = "gpt";
         partitions = {
-          boot = {
-            size = "1M";
-            type = "EF02";
-          };
           ESP = {
             size = "1G";
             type = "EF00";
@@ -32,7 +28,7 @@
 
     disk.data = {
       type = "disk";
-      device = "/dev/sda"; # sda on real hardware
+      device = "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7ZUY5XZ";
       content = {
         type = "gpt";
         partitions.data = {
