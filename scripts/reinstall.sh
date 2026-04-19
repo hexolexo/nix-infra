@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-nix build .#bootstrap
+echo "Burn new image?"
+if [[ "$yn" =~ ^[Yy]$ ]]; then
+    nix build .#bootstrap
 
-caligula burn ./result/iso/*.iso --root always
+    caligula burn ./result/iso/*.iso --root always
+fi
 
 read -rp "Boot the target machine and enter its IP once it's up: " TARGET_IP
 
