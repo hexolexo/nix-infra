@@ -39,7 +39,6 @@ in {
         efiSupport = true;
         efiInstallAsRemovable = true;
       };
-      efi.canTouchEfiVariables = true;
     };
   };
 
