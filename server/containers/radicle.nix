@@ -3,7 +3,7 @@
     file = ../../secrets/radicle-key.age;
     mode = "0400";
   };
-  networking.firewall.allowedTCPPorts = [8776]; # God I hope this works
+  networking.firewall.allowedTCPPorts = [8776 8080]; # God I hope this works
   containers.radicle = {
     autoStart = true;
     privateNetwork = false;
