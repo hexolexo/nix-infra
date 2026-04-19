@@ -21,7 +21,7 @@
         enable = true;
         port = secrets.I2P_Port;
         enableIPv6 = true;
-        address = "::";
+        #address = "::";
         bandwidth = 4800; # KBps
         share = 80;
         ntcp2 = {
