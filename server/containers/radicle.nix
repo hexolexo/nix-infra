@@ -26,6 +26,16 @@
         node.openFirewall = true;
         node.listenAddress = "[::0]";
         httpd.enable = true;
+        settings = {
+          node = {
+            alias = "vault";
+            externalAddresses = ["vault:8776"];
+            seedingPolicy = {
+              default = "allow";
+              scope = "all";
+            };
+          };
+        };
       };
       boot.isContainer = true;
       system.stateVersion = "25.11";
