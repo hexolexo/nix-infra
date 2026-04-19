@@ -25,7 +25,10 @@
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvTTfJAw5sHWldnVbnmotGSJ9bNEDQZWyWxgRO0EouB radicle";
         node.openFirewall = true;
         node.listenAddress = "[::0]";
-        httpd.enable = true;
+        httpd = {
+          enable = true;
+          listenAddress = "10.0.0.1";
+        };
         settings = {
           node = {
             alias = "vault";
