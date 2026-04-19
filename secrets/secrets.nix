@@ -5,4 +5,5 @@ let
 in {
   "wireguard-hub-key.age".publicKeys = [hexolexo vault];
   "wireguard-hexolexo-key.age".publicKeys = [hexolexo];
+  "radicle-key.age".publicKeys = [vault hexolexo];
 }
