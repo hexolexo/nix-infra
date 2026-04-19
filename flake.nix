@@ -3,7 +3,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nur.url = "github:nix-community/NUR";
-    secrets.url = "git+ssh://git@localgit/secrets.git";
+    secrets.url = "path:/home/hexolexo/Programming/sysadmin/secrets";
 
     home-manager-unstable = {
       url = "github:nix-community/home-manager";

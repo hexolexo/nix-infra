@@ -16,7 +16,7 @@ in {
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
     #./services/minecraft.nix
-    ./containers/copyparty.nix
+    #./containers/copyparty.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
     ./containers/I2P.nix
@@ -61,6 +61,7 @@ in {
     hexolexo = {
       isNormalUser = true;
       description = "hexolexo";
+      initialPassword = "changeme";
       shell = pkgs.fish;
       extraGroups = [
         "networkmanager"
@@ -74,7 +75,10 @@ in {
       description = "NixOS remote builder";
       openssh.authorizedKeys.keys = global.authorisedKeys;
     };
-    root.openssh.authorizedKeys.keys = global.authorisedKeys;
+    root = {
+      openssh.authorizedKeys.keys = global.authorisedKeys;
+      initialPassword = "changeme";
+    };
   };
 
   environment.systemPackages = with pkgs; [
