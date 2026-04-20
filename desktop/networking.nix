@@ -13,6 +13,7 @@
   networking.networkmanager.enable = true;
 
   networking.hosts = {
+    "${secrets.HomeIPv4}" = ["home"];
     "${secrets.HomeIP}" = ["home"];
     "${secrets.ServerIP}" = ["server"];
   };
