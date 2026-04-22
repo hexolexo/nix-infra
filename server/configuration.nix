@@ -107,6 +107,12 @@ in {
     firewall.allowedTCPPorts = []; # NOTE: Firewall is configured per service bundle
   };
 
+  fileSystems."/data" = {
+    device = "dpool/data";
+    fsType = "zfs";
+    options = ["zfsutil" "nofail"];
+  };
+
   nix = {
     gc = {
       automatic = true;

@@ -14,7 +14,7 @@
 
   networking.hosts = {
     "${secrets.HomeIPv4}" = ["home"];
-    "${secrets.HomeIP}" = ["home"];
+    "${secrets.HomeIP}" = ["home"]; # man why is IPv6 such a pain
     "${secrets.ServerIP}" = ["server"];
   };
   environment.etc."proxychains.conf".text = ''
