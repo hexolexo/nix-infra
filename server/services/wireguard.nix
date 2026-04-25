@@ -19,6 +19,12 @@
           persistentKeepalive = 25;
         }
         {
+          publicKey = "SZDybQeTfr8A9Ae43c6orHNhkogTusdMLnyqSAg/u0U=";
+          allowedIPs = ["10.0.0.3/32"]; # Amaboutta
+          persistentKeepalive = 25;
+        }
+
+        {
           publicKey = "v54b/A7ynLrcXBMcgJkf6vgzJgra8Z3BkaFHMy1RMWk=";
           allowedIPs = ["10.0.0.4/32"]; # death
           persistentKeepalive = 25;
