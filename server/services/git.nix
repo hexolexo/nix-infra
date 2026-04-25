@@ -29,6 +29,10 @@ in {
       service = {
         DISABLE_REGISTRATION = true;
       };
+      storage = {
+        PATH = "/data/forgejo/storage";
+      };
+
       actions = {
         ENABLED = true;
         DEFAULT_ACTIONS_URL = "github";
