@@ -57,6 +57,10 @@ in {
       ];
     };
   };
+  systemd.services.gitea-runner-default.serviceConfig = {
+    CPUQuota = "2000%";
+    MemoryMax = "16G";
+  };
 
   networking.firewall.allowedTCPPorts = [
     forgejoPort
