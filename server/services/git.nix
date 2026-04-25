@@ -14,6 +14,7 @@ in {
 
   services.forgejo = {
     enable = true;
+    package = pkgs.forgejo-lts;
     stateDir = "/data/forgejo";
     lfs.enable = true;
     database.type = "sqlite3";
