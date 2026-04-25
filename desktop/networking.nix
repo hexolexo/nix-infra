@@ -38,7 +38,7 @@
       peers = [
         {
           publicKey = "p6qJwxfNS8cj+MNyBQSWCouPlwzz1MrwLOYObE48iBk=";
-          endpoint = "${secrets.HomeIP}:51820";
+          endpoint = "${secrets.HomeIPv4}:51820";
 
           allowedIPs = ["10.0.0.0/24"];
           persistentKeepalive = 25;
