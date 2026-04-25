@@ -84,6 +84,6 @@ fi
 
 git add -A
 git commit -m "$commits"
-#git push
+git push
 
 echo "Done"
