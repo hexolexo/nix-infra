@@ -25,6 +25,8 @@ in {
         ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
         HTTP_ADDR = "10.0.0.1";
         HTTP_PORT = forgejoPort;
+        START_SSH_SERVER = true;
+        SSH_LISTEN_HOST = "10.0.0.1";
         SSH_PORT = forgejoSSHPort;
       };
       service = {
