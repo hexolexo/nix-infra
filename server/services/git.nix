@@ -46,7 +46,7 @@ in {
   services.gitea-actions-runner = {
     package = pkgs.forgejo-runner;
     instances.default = {
-      enable = false;
+      enable = true;
       name = "hexolexo-runner";
       url = "http://10.0.0.1:${toString forgejoPort}";
       tokenFile = "/run/secrets/forgejo-runner-token";
