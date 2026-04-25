@@ -23,12 +23,17 @@
           allowedIPs = ["10.0.0.3/32"]; # Amaboutta
           persistentKeepalive = 25;
         }
-
         {
           publicKey = "v54b/A7ynLrcXBMcgJkf6vgzJgra8Z3BkaFHMy1RMWk=";
           allowedIPs = ["10.0.0.4/32"]; # death
           persistentKeepalive = 25;
         }
+        {
+          publicKey = "BE4SyGzajYqOZ+1x04KveR87QLa6kGF/FEH3w76lAAI=";
+          allowedIPs = ["10.0.0.5/32"]; # tempr
+          persistentKeepalive = 25;
+        }
+
         {
           publicKey = "L8SP4nzgB6ywOxEhp8n4O9/J70AGx4CFT3QLDF5NJXs=";
           allowedIPs = ["10.0.0.10/32"]; # CI builder
