@@ -36,7 +36,7 @@ in {
     };
   };
 
-  # WARN: tokenFile must exist before this service starts
+  #  WARN: tokenFile must exist before this service starts
   # grab token from Site Administration > Actions > Runners > Create new Runner
   services.gitea-actions-runner = {
     package = pkgs.forgejo-runner;
