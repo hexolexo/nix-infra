@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./gamedev.nix
     ../shared/keyd.nix
     ./fanCtrl.nix
   ];
@@ -231,7 +232,7 @@
 
   programs = {
     firefox.enable = true;
-    alvr.enable = true;
+    #alvr.enable = true;
     steam.enable = true;
     kdeconnect.enable = true;
     hyprland.enable = true;
@@ -271,7 +272,7 @@
   };
 
   nix = {
-    distributedBuilds = false;
+    distributedBuilds = true;
     buildMachines = [
       {
         hostName = "server";

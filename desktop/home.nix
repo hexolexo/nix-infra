@@ -7,6 +7,7 @@
     ../shared/home-manager/hyprland.nix
     ../shared/home-manager/anki.nix
     ../shared/home-manager/alacritty.nix
+    ../shared/home-manager/ghostty.nix
     ../shared/home-manager/fastfetch.nix
     ../shared/home-manager/fuzzel.nix
     ../shared/home-manager/nvim.nix
