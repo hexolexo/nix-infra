@@ -18,7 +18,7 @@ in {
     lfs.enable = true;
     database.type = "sqlite3";
     settings = {
-      F3.PATH = "/data/forgejo/f3";
+      F3.ENABLED = false;
       server = {
         DOMAIN = "10.0.0.1";
         ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
