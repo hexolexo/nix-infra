@@ -2,12 +2,18 @@
   imports = [
     ../modules/virtual-networking.nix
   ];
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = false;
-      swtpm.enable = true;
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = false;
+        swtpm.enable = true;
+      };
+    };
+    podman = {
+      enable = true;
+      dockerCompat = true; # makes podman respond to docker:// labels
     };
   };
 

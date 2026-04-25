@@ -1,5 +1,8 @@
 {inputs, ...}: {
   networking.firewall.allowedTCPPorts = [3210 3211];
+  systemd.tmpfiles.rules = [
+    "d /data/copyparty 0777 root root -"
+  ];
   containers.copyparty = {
     autoStart = true;
     privateNetwork = false;

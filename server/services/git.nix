@@ -1,48 +1,63 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   global = import ./../global.nix;
+  forgejoPort = 3000;
+  forgejoSSHPort = 2222;
 in {
-  # Soft Serve Git server
-  services.soft-serve = {
+  systemd.tmpfiles.rules = [
+    "d /data 0755 root root -"
+    "d /data/forgejo 0750 forgejo forgejo -"
+  ];
+
+  services.forgejo = {
     enable = true;
+    stateDir = "/data/forgejo";
+    lfs.enable = true;
+    database.type = "sqlite3";
     settings = {
-      name = "hexolexo's repos";
-      description = "hexolexo's local repos";
-      ssh.public_url = "ssh://localgit";
-      host = "10.0.0.1";
-      port = 23231;
-      initial_admin_keys = global.authorisedKeys;
+      server = {
+        DOMAIN = "10.0.0.1";
+        ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
+        HTTP_ADDR = "10.0.0.1";
+        HTTP_PORT = forgejoPort;
+        SSH_PORT = forgejoSSHPort;
+      };
+      service = {
+        DISABLE_REGISTRATION = true;
+      };
+      actions = {
+        ENABLED = true;
+        DEFAULT_ACTIONS_URL = "github";
+      };
     };
   };
 
-  # Open firewall ports for local access
-  networking.firewall = {
-    allowedTCPPorts = [
-      23231 # Soft Serve Git SSH
-    ];
+  # WARN: tokenFile must exist before this service starts
+  # grab token from Site Administration > Actions > Runners > Create new Runner
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-runner;
+    instances.default = {
+      enable = false;
+      name = "hexolexo-runner";
+      url = "http://10.0.0.1:${toString forgejoPort}";
+      tokenFile = "/run/secrets/forgejo-runner-token";
+      labels = [
+        "ubuntu-latest:docker://node:16-bullseye"
+      ];
+    };
   };
 
-  # System packages
+  networking.firewall.allowedTCPPorts = [
+    forgejoPort
+    forgejoSSHPort
+  ];
+
   environment.systemPackages = with pkgs; [
-    soft-serve
-    docker-compose
+    forgejo
     git
     curl
   ];
-
-  # Git user for soft-serve
-  users.users.git = {
-    isSystemUser = true;
-    home = "/var/lib/soft-serve";
-    group = "git";
-    createHome = true;
-  };
-  users.groups.git = {};
-
-  systemd.services.soft-serve = {
-    serviceConfig = {
-      DynamicUser = pkgs.lib.mkForce false;
-      User = "git";
-      Group = "git";
-    };
-  };
 }
