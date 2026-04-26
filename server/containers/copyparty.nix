@@ -35,8 +35,8 @@
             # share the contents of "/srv/copyparty"
             path = "/srv/copyparty";
             access = {
-              # everyone gets rw-access
               rw = ["*"];
+              d = ["*"];
             };
             flags = {
               # "fk" enables filekeys (necessary for upget permission) (4 chars long)
