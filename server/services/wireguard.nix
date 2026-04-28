@@ -33,10 +33,14 @@
           allowedIPs = ["10.0.0.5/32"]; # tempr
           persistentKeepalive = 25;
         }
-
         {
           publicKey = "L8SP4nzgB6ywOxEhp8n4O9/J70AGx4CFT3QLDF5NJXs=";
           allowedIPs = ["10.0.0.10/32"]; # CI builder
+          persistentKeepalive = 25;
+        }
+        {
+          publicKey = "UE1O3n+6/yNxqwdjirvDeXTHD2QewhVZO6QxdF+hs0Q=";
+          allowedIPs = ["10.0.0.11/32"]; # quest
           persistentKeepalive = 25;
         }
       ];
