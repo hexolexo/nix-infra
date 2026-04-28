@@ -108,6 +108,7 @@
     evsieve
 
     # Development
+    android-tools
     clang
     gnumake
     gcc
