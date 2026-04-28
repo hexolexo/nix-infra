@@ -48,7 +48,7 @@ in {
       url = "http://10.0.0.1:${toString forgejoPort}";
       tokenFile = "/run/secrets/forgejo-runner-token";
       labels = [
-        "ubuntu-latest:docker://node:24-bookworm-slim"
+        "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
       ];
     };
   };
