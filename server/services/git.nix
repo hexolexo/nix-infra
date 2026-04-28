@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
-  global = import ./../global.nix;
+{pkgs, ...}: let
   forgejoPort = 3000;
   forgejoSSHPort = 2222;
 in {
