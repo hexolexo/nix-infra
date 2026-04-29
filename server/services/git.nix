@@ -16,8 +16,8 @@ in {
     settings = {
       F3.ENABLED = false;
       server = {
-        DOMAIN = "10.0.0.1";
-        ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
+        DOMAIN = "forgejo.internal";
+        ROOT_URL = "https://forgejo.internal/";
         HTTP_ADDR = "10.0.0.1";
         HTTP_PORT = forgejoPort;
         START_SSH_SERVER = true;
@@ -45,7 +45,7 @@ in {
     instances.default = {
       enable = true;
       name = "hexolexo-runner";
-      url = "http://10.0.0.1:${toString forgejoPort}";
+      url = "http://127.0.0.1:${toString forgejoPort}";
       tokenFile = "/run/secrets/forgejo-runner-token";
       labels = [
         "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
@@ -53,14 +53,20 @@ in {
     };
   };
 
-  systemd.services.gitea-runner-default.serviceConfig = {
-    CPUQuota = "2000%";
-    MemoryMax = "16G";
+  systemd.services.gitea-runner-default = {
+    after = ["forgejo.service"];
+    requires = ["forgejo.service"];
+    unitConfig.StartLimitIntervalSec = 60;
+    unitConfig.StartLimitBurst = 10;
+    serviceConfig = {
+      CPUQuota = "2000%";
+      MemoryMax = "16G";
+    };
   };
 
   services.caddy.virtualHosts."forgejo.internal" = {
     extraConfig = ''
-      reverse_proxy 127.0.0.1:3000
+      reverse_proxy 10.0.0.1:3000
       tls internal
     '';
   };
