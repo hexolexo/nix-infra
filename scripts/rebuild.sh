@@ -61,7 +61,7 @@ commits=""
 if [[ $desktop_changed -eq 1 ]]; then
     echo "Building desktop..."
     sudo -v
-    sudo nixos-rebuild switch --flake ".#hexolexo" --option builders '' |& nom
+    sudo nixos-rebuild switch --flake ".#hexolexo" |& nom
     gen=$(nixos-rebuild list-generations | awk 'NR==2 {print $1}')
     commits="desktop: gen $gen"
 fi

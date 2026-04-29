@@ -52,10 +52,22 @@ in {
       ];
     };
   };
+
   systemd.services.gitea-runner-default.serviceConfig = {
     CPUQuota = "2000%";
     MemoryMax = "16G";
   };
+
+  services.caddy.virtualHosts."forgejo.internal" = {
+    extraConfig = ''
+      reverse_proxy 127.0.0.1:3000
+      tls internal
+    '';
+  };
+
+  services.unbound.settings.server.local-data = [
+    ''"forgejo.internal. A 10.0.0.1"''
+  ];
 
   networking.firewall.allowedTCPPorts = [
     forgejoPort
