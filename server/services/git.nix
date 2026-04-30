@@ -17,7 +17,7 @@ in {
       F3.ENABLED = false;
       server = {
         DOMAIN = "forgejo.internal";
-        ROOT_URL = "https://forgejo.internal/";
+        ROOT_URL = "http://forgejo.internal/";
         HTTP_ADDR = "10.0.0.1";
         HTTP_PORT = forgejoPort;
         START_SSH_SERVER = true;
