@@ -43,6 +43,11 @@
           allowedIPs = ["10.0.0.11/32"]; # quest
           persistentKeepalive = 25;
         }
+        {
+          publicKey = "GcPAzhZYbrsO8hU9bz45iKvcb33I47g+hGfwWxu3OS0=";
+          allowedIPs = ["10.0.0.12/32"]; # quest
+          persistentKeepalive = 25;
+        }
       ];
     };
   };
