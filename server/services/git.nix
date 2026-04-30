@@ -24,7 +24,6 @@ in {
         START_SSH_SERVER = true;
         SSH_LISTEN_HOST = "10.0.0.1";
         SSH_PORT = forgejoSSHPort;
-        MAX_REQUEST_BODY_SIZE = -1;
       };
       service = {
         DISABLE_REGISTRATION = true;
@@ -50,7 +49,7 @@ in {
       url = "http://10.0.0.1:${toString forgejoPort}";
       tokenFile = "/run/secrets/forgejo-runner-token";
       labels = [
-        "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
+        "ubuntu-latest:docker://node:20-bookworm-slim"
       ];
     };
   };
