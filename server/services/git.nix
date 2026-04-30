@@ -46,7 +46,7 @@ in {
     instances.default = {
       enable = true;
       name = "hexolexo-runner";
-      url = "http://127.0.0.1:${toString forgejoPort}";
+      url = "http://10.0.0.1:${toString forgejoPort}";
       tokenFile = "/run/secrets/forgejo-runner-token";
       labels = [
         "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
