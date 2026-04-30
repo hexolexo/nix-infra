@@ -16,8 +16,8 @@ in {
     settings = {
       F3.ENABLED = false;
       server = {
-        DOMAIN = "forgejo.internal";
-        ROOT_URL = "http://forgejo.internal/";
+        DOMAIN = "10.0.0.1";
+        ROOT_URL = "http://10.0.0.1/";
         LOCAL_ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
         HTTP_ADDR = "10.0.0.1";
         HTTP_PORT = forgejoPort;
@@ -69,25 +69,6 @@ in {
       MemoryMax = "16G";
     };
   };
-
-  services.caddy.virtualHosts."forgejo.internal" = {
-    extraConfig = ''
-      request_body {
-          max_size 512MB
-      }
-
-      reverse_proxy 10.0.0.1:3000 {
-          # Disables response buffering to help with large artifact streams
-          flush_interval -1
-      }
-
-      tls internal
-    '';
-  };
-
-  services.unbound.settings.server.local-data = [
-    ''"forgejo.internal. A 10.0.0.1"''
-  ];
 
   networking.firewall.allowedTCPPorts = [
     forgejoPort
