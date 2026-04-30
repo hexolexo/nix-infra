@@ -24,6 +24,7 @@ in {
         START_SSH_SERVER = true;
         SSH_LISTEN_HOST = "10.0.0.1";
         SSH_PORT = forgejoSSHPort;
+        MAX_REQUEST_BODY_SIZE = -1;
       };
       service = {
         DISABLE_REGISTRATION = true;
@@ -51,11 +52,6 @@ in {
       labels = [
         "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
       ];
-      settings = {
-        container = {
-          dns_server = ["10.0.0.1"];
-        };
-      };
     };
   };
 
