@@ -47,9 +47,15 @@ in {
       enable = true;
       name = "hexolexo-runner";
       url = "http://10.0.0.1:${toString forgejoPort}";
+      settings = {
+        container = {
+          dns_server = ["10.0.0.1"];
+          network = "host"; # HACK: child action containers need to reach forgejo directly
+        };
+      };
       tokenFile = "/run/secrets/forgejo-runner-token";
       labels = [
-        "ubuntu-latest:docker://node:20-bookworm-slim"
+        "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
       ];
     };
   };
