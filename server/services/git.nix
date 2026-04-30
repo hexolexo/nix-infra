@@ -17,8 +17,7 @@ in {
       F3.ENABLED = false;
       server = {
         DOMAIN = "10.0.0.1";
-        ROOT_URL = "http://10.0.0.1/";
-        LOCAL_ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
+        ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
         HTTP_ADDR = "10.0.0.1";
         HTTP_PORT = forgejoPort;
         START_SSH_SERVER = true;
@@ -44,31 +43,18 @@ in {
   services.gitea-actions-runner = {
     package = pkgs.forgejo-runner;
     instances.default = {
-      enable = true;
+      enable = false;
       name = "hexolexo-runner";
       url = "http://10.0.0.1:${toString forgejoPort}";
-      settings = {
-        container = {
-          dns_server = ["10.0.0.1"];
-          network = "host"; # HACK: child action containers need to reach forgejo directly
-        };
-      };
       tokenFile = "/run/secrets/forgejo-runner-token";
       labels = [
         "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
       ];
     };
   };
-
-  systemd.services.gitea-runner-default = {
-    after = ["forgejo.service"];
-    requires = ["forgejo.service"];
-    unitConfig.StartLimitIntervalSec = 60;
-    unitConfig.StartLimitBurst = 10;
-    serviceConfig = {
-      CPUQuota = "2000%";
-      MemoryMax = "16G";
-    };
+  systemd.services.gitea-runner-default.serviceConfig = {
+    CPUQuota = "2000%";
+    MemoryMax = "16G";
   };
 
   networking.firewall.allowedTCPPorts = [

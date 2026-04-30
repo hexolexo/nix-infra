@@ -37,6 +37,11 @@
     win-spice
     bridge-utils
     nftables
+    # Ansible
+    ansible
+    python3Packages.pywinrm # Required for Windows management
+    python3Packages.requests-ntlm # For NTLM authentication
+    python3Packages.requests-credssp # For CredSSP authentication
   ];
 
   # Ensure proper service ordering
