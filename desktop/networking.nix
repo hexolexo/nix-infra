@@ -9,8 +9,7 @@
   };
 
   networking.hostName = "hexolexo";
-  networking.networkmanager.dns = "none";
-  networking.nameservers = ["10.0.0.1"];
+  # note to self don't fuck with DNS
 
   networking.networkmanager.enable = true;
 
