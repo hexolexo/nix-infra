@@ -23,7 +23,7 @@
           spawn-chunk-radius = 0;
           difficulty = 2;
           white-list = true;
-          level-seed = "Funny haha seed132";
+          level-seed = "hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm";
           max-players = 10;
           spawn-protection = 0;
           view-distance = 10;
@@ -39,6 +39,7 @@
           Goodgamer1900 = "7236b3a1-8994-4908-a4f9-c75a5fb2fcf2";
           TemprMC = "8bc13718-746b-4bb3-b27e-2105ca34d8db";
         };
+        /*
 
         symlinks = {
           "mods" = pkgs.linkFarmFromDrvs "mods" (builtins.attrValues {
@@ -256,6 +257,7 @@
             }
           ]);
         };
+        */
       };
     };
   };
