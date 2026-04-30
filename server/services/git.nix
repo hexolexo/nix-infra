@@ -66,7 +66,15 @@ in {
 
   services.caddy.virtualHosts."forgejo.internal" = {
     extraConfig = ''
-      reverse_proxy 10.0.0.1:3000
+      request_body {
+          max_size 512MB
+      }
+
+      reverse_proxy 10.0.0.1:3000 {
+          # Disables response buffering to help with large artifact streams
+          flush_interval -1
+      }
+
       tls internal
     '';
   };
