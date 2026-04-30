@@ -18,7 +18,7 @@ in {
       server = {
         DOMAIN = "forgejo.internal";
         ROOT_URL = "http://forgejo.internal/";
-        LOCAL_ROOT_URL = "http://127.0.0.1:${toString forgejoPort}/";
+        LOCAL_ROOT_URL = "http://10.0.0.1:${toString forgejoPort}/";
         HTTP_ADDR = "10.0.0.1";
         HTTP_PORT = forgejoPort;
         START_SSH_SERVER = true;
