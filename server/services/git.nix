@@ -50,6 +50,11 @@ in {
       labels = [
         "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04"
       ];
+      settings = {
+        container = {
+          dns_server = ["10.0.0.1"];
+        };
+      };
     };
   };
 
