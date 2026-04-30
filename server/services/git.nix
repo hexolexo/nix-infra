@@ -54,6 +54,9 @@ in {
         container = {
           dns_server = ["10.0.0.1"];
         };
+        runner = {
+          insecure = true;
+        };
       };
     };
   };
