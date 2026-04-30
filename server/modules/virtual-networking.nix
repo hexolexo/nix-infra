@@ -4,7 +4,8 @@
   ...
 }: {
   networking = {
-    # Primary NAT: VMs to internet
+    nameservers = ["127.0.0.1"];
+
     nat = {
       enable = true;
       internalInterfaces = ["virbr0" "virbr1"];
