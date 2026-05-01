@@ -165,15 +165,6 @@
     win-spice
   ];
 
-  environment.variables = {
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-  };
-  qt = {
-    enable = true;
-    platformTheme = "qt5ct";
-    style = "kvantum";
-  };
-
   services = {
     udisks2.enable = true;
     dbus.enable = true;
@@ -210,6 +201,7 @@
       };
     };
     displayManager.cosmic-greeter.enable = true;
+    #desktopManager.plasma6.enable = true;
     #desktopManager.cosmic.enable = true;
     displayManager.ly = {
       enable = false;
@@ -264,11 +256,6 @@
       suspend.enable = false;
       hibernate.enable = false;
       hybrid-sleep.enable = false;
-    };
-    services.ly = {
-      serviceConfig = {
-        StateDirectory = "ly";
-      };
     };
   };
 
