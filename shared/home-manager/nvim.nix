@@ -141,52 +141,58 @@
       }
     ];
     extraConfigLua = ''
-            vim.opt.termguicolors = true
-            vim.o.timeoutlen = 500
-            local builtin = require('telescope.builtin')
+                vim.opt.termguicolors = true
+                vim.o.timeoutlen = 500
+                local builtin = require('telescope.builtin')
 
-            vim.keymap.set('n', '<leader>ps', function()
-             builtin.live_grep({ additional_args = { '--hidden' } })
-              end, { desc = '[P]roject [S]earch' })
-            local keymap = vim.keymap.set
-            keymap('n', 'n', 'h', { noremap = true })
-            keymap('n', 'e', 'k', { noremap = true })
-            keymap('n', 'i', 'j', { noremap = true })
-            keymap('n', 'o', 'l', { noremap = true })
-            keymap('n', 'h', 'b', { noremap = true })
-            keymap('n', "'", 'e', { noremap = true })
-            keymap('n', ',', 'o', { noremap = true })
+                vim.keymap.set('n', '<leader>ps', function()
+                 builtin.live_grep({ additional_args = { '--hidden' } })
+                  end, { desc = '[P]roject [S]earch' })
+                local keymap = vim.keymap.set
+                keymap('n', 'n', 'h', { noremap = true })
+                keymap('n', 'e', 'k', { noremap = true })
+                keymap('n', 'i', 'j', { noremap = true })
+                keymap('n', 'o', 'l', { noremap = true })
+                keymap('n', 'h', 'b', { noremap = true })
+                keymap('n', "'", 'e', { noremap = true })
+                keymap('n', ',', 'o', { noremap = true })
 
-            keymap('v', 'n', 'h', { noremap = true })
-            keymap('v', 'e', 'k', { noremap = true })
-            keymap('v', 'i', 'j', { noremap = true })
-            keymap('v', 'o', 'l', { noremap = true })
-            keymap('v', 'h', 'b', { noremap = true })
-            keymap('v', "'", 'e', { noremap = true })
-            keymap('v', ',', 'o', { noremap = true })
+                keymap('v', 'n', 'h', { noremap = true })
+                keymap('v', 'e', 'k', { noremap = true })
+                keymap('v', 'i', 'j', { noremap = true })
+                keymap('v', 'o', 'l', { noremap = true })
+                keymap('v', 'h', 'b', { noremap = true })
+                keymap('v', "'", 'e', { noremap = true })
+                keymap('v', ',', 'o', { noremap = true })
 
-            keymap('n', ';', 'p', { noremap = true })
-            keymap('n', 'u', 'i', { noremap = true })
-            keymap('n', 'l', 'u', { noremap = true })
+                keymap('n', ';', 'p', { noremap = true })
+                keymap('n', 'u', 'i', { noremap = true })
+                keymap('n', 'l', 'u', { noremap = true })
 
-            -- Include uppercase
-            keymap('n', 'U', 'I', { noremap = true })
-            if os.getenv("SSH_TTY") then
-        vim.g.clipboard = {
-          name = 'OSC 52',
-          copy = {
-            ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-            ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-          },
-          paste = {
-            ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-            ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-          },
-        }
-        vim.opt.clipboard = 'unnamedplus'
-      else
-        vim.opt.clipboard = 'unnamedplus'  -- Local system clipboard
-      end
+                -- Include uppercase
+                keymap('n', 'U', 'I', { noremap = true })
+                if os.getenv("SSH_TTY") then
+            vim.g.clipboard = {
+              name = 'OSC 52',
+              copy = {
+                ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+                ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+              },
+              paste = {
+                ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+                ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+              },
+            }
+            vim.opt.clipboard = 'unnamedplus'
+          else
+            vim.opt.clipboard = 'unnamedplus'  -- Local system clipboard
+          end
+        vim.api.nvim_create_autocmd("FileType", {
+        pattern = "gdscript",
+        callback = function()
+          vim.opt_local.expandtab = false
+        end
+      })
     '';
   };
 }
