@@ -1,15 +1,17 @@
 {
   pkgs,
-  nix-minecraft,
+  inputs,
   ...
 }: {
+  imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
+  nixpkgs.overlays = [inputs.nix-minecraft.overlay];
   services.minecraft-servers = {
     enable = true;
     eula = true;
     openFirewall = true;
     servers.skyblock = {
       enable = true;
-      package = nix-minecraft.legacyPackages.${pkgs.system}.paperServers.paper-1_21_11;
+      package = inputs.nix-minecraft.legacyPackages.${pkgs.system}.paperServers.paper-1_21_11;
 
       jvmOpts = ["-Xmx4G" "-Xms4G" "-XX:+UseG1GC"];
 

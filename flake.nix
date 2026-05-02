@@ -20,6 +20,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

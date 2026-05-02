@@ -15,7 +15,7 @@ in {
     #./containers/unbound.nix
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
-    #./services/minecraft.nix
+    ./services/minecraft.nix
     ./containers/copyparty.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
