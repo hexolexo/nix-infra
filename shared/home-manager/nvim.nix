@@ -72,7 +72,11 @@
           gopls.enable = true;
           bashls.enable = true;
           marksman.enable = true;
-          glas.enable = true;
+          gdscript = {
+            enable = true;
+            # Godot IS the LSP, just point at it
+            cmd = ["nc" "127.0.0.1" "6005"];
+          };
         };
       };
       render-markdown = {
