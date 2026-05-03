@@ -25,6 +25,7 @@ in {
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
     # Minecraft #
+    ./services/minecraft/modded.nix
     ./services/minecraft/vanilla.nix
   ];
 
