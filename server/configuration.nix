@@ -24,7 +24,8 @@ in {
     #./containers/fuzzing.nix       #  NOTE: I'll probably want to start using this at some point
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
-    ./services/minecraft/servers/vanilla.nix
+    # Minecraft #
+    ./services/minecraft/vanilla.nix
   ];
 
   # Bootloader.

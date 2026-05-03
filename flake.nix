@@ -49,6 +49,7 @@
     self,
     disko,
     nur,
+    nix-minecraft,
     copyparty,
     nixvim,
     deploy-rs,
@@ -79,7 +80,7 @@
       vault = nixpkgs-stable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-          inherit secrets inputs;
+          inherit secrets inputs nix-minecraft;
         };
         modules = [
           disko.nixosModules.disko
