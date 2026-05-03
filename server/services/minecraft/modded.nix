@@ -39,6 +39,14 @@ in {
         Goodgamer1900 = "7236b3a1-8994-4908-a4f9-c75a5fb2fcf2";
         TemprMC = "8bc13718-746b-4bb3-b27e-2105ca34d8db";
       };
+      symlinks."ops.json" = pkgs.writeText "ops.json" (builtins.toJSON [
+        {
+          uuid = "080aa9de-bcf6-4f3d-8e5d-a86f4977885a";
+          name = "hexolexo";
+          level = 4;
+          bypassesPlayerLimit = false;
+        }
+      ]);
     };
   };
 }
