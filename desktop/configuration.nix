@@ -131,6 +131,7 @@
     rustc
     neovim
     unzip
+    packwiz
 
     # Shell/Terminal
     btop
