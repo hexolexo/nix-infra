@@ -15,7 +15,6 @@ in {
     #./containers/unbound.nix
     #./containers/murmur.nix
     #./services/apt-cacher-ng.nix
-    ./services/minecraft.nix
     ./containers/copyparty.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
@@ -25,6 +24,7 @@ in {
     #./containers/fuzzing.nix       #  NOTE: I'll probably want to start using this at some point
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
+    ./services/minecraft/servers/vanilla.nix
   ];
 
   # Bootloader.
