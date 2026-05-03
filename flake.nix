@@ -88,8 +88,9 @@
           ./server/disko.nix
           copyparty.nixosModules.default
           agenix.nixosModules.default
+          nix-minecraft.nixosModules.minecraft-servers
           ({pkgs, ...}: {
-            nixpkgs.overlays = [copyparty.overlays.default];
+            nixpkgs.overlays = [copyparty.overlays.default nix-minecraft.overlays.default];
           })
           home-manager-stable.nixosModules.home-manager
           {

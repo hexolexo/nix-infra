@@ -1,17 +1,22 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   modpack = pkgs.fetchPackwizModpack {
     url = "http://10.0.0.1:3000/hexolexo/mc-pack/raw/branch/main/QoL/pack.toml";
     packHash = "sha256-eP8fx1ycvlVNI9PHSi62xn+e5C9SrZp94Un9zR619pg=";
   };
 in {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [inputs.nix-minecraft.overlays.default];
   services.minecraft-servers = {
     enable = true;
     eula = true;
     openFirewall = true;
-    servers.community = {
+    servers.modded = {
       enable = true;
-      package = pkgs.fabricServers.fabric-1_20_1;
+      package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.19.2";};
       symlinks."mods" = "${modpack}/mods";
 
       jvmOpts = ["-Xmx12G" "-Xms12G"];
