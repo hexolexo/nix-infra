@@ -20,6 +20,8 @@
         server-port = 25565;
         gamemode = 0;
         white-list = true;
+        "enable-rcon" = true;
+        "rcon.port" = 16260;
         "rcon.password" = "testingPassword";
         difficulty = 2;
         spawn-protection = 0;
