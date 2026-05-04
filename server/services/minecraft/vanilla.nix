@@ -19,6 +19,8 @@
       serverProperties = {
         server-port = 25565;
         gamemode = 0;
+        white-list = true;
+        "rcon.password" = "testingPassword";
         difficulty = 2;
         spawn-protection = 0;
         online-mode = true;

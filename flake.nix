@@ -22,6 +22,8 @@
 
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
+    clankhare.url = "github:hexolexo/clankhare";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -89,6 +91,12 @@
           copyparty.nixosModules.default
           agenix.nixosModules.default
           nix-minecraft.nixosModules.minecraft-servers
+          {
+            environment.systemPackages = [
+              inputs.clankhare.packages.x86_64-linux.default
+            ];
+          }
+
           ({pkgs, ...}: {
             nixpkgs.overlays = [copyparty.overlays.default nix-minecraft.overlays.default];
           })
