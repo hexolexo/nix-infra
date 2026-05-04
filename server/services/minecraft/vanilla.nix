@@ -28,5 +28,8 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [25565];
+  networking.firewall = {
+    allowedTCPPorts = [25565];
+    interfaces."wg0".allowedTCPPorts = [16260];
+  };
 }
