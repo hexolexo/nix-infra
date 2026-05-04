@@ -26,7 +26,7 @@ in {
     #./containers/tarpit.nix
     # Minecraft #
     ./services/minecraft/modded.nix
-    #./services/minecraft/vanilla.nix
+    ./services/minecraft/vanilla.nix
   ];
 
   # Bootloader.
