@@ -5,7 +5,7 @@
 }: {
   imports = [
     ../shared/home-manager/fastfetch.nix
-    ../shared/home-manager/nvim.nix
+    #../shared/home-manager/nvim.nix
     ../shared/home-manager/terminal.nix
   ];
   home.stateVersion = "25.11";

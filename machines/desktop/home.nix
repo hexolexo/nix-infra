@@ -19,11 +19,10 @@
     enable = true;
   };
   home.packages = with pkgs; [
-    (pkgs.writeShellScriptBin "rebuild" (builtins.readFile ./../scripts/rebuild.sh))
-    (pkgs.writeShellScriptBin "msh" (builtins.readFile ./../scripts/msh.sh))
-    (pkgs.writeShellScriptBin "dl" (builtins.readFile ./../scripts/dl.sh))
-
-    (pkgs.writeShellScriptBin "update-playlist" (builtins.readFile ./../scripts/playlist_selector.sh))
+    (pkgs.writeShellScriptBin "rebuild" (builtins.readFile ../../scripts/rebuild.sh))
+    (pkgs.writeShellScriptBin "msh" (builtins.readFile ../../scripts/msh.sh))
+    (pkgs.writeShellScriptBin "dl" (builtins.readFile ../../scripts/dl.sh))
+    (pkgs.writeShellScriptBin "update-playlist" (builtins.readFile ../../scripts/playlist_selector.sh))
 
     fzf
     highlight

@@ -1,6 +1,6 @@
 {...}: {
   age.secrets.wireguard-private = {
-    file = ../../secrets/wireguard-hub-key.age;
+    file = ../secrets/wireguard-hub-key.age;
     owner = "root";
     mode = "0400";
   };

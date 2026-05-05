@@ -8,7 +8,7 @@
 
   # Decrypt the secret
   age.secrets.clankhare-env = {
-    file = ../../secrets/clankhare-env.age;
+    file = ../secrets/clankhare-env.age;
     mode = "0444";
   };
 
