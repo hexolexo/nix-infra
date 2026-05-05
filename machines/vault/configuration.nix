@@ -9,7 +9,7 @@ in {
     ./services/git.nix
     ./services/virtualisation.nix
     # Optional Services: #
-    ./services/clankhare.nix # I still can't believe they convinced me to name it this
+    #./services/clankhare.nix # I still can't believe they convinced me to name it this
     #./services/sunshine.nix
     #./services/paperless-ngx.nix
     #./containers/unbound.nix
@@ -26,7 +26,7 @@ in {
     #./containers/tarpit.nix
     # Minecraft #
     ./services/minecraft/modded.nix
-    ./services/minecraft/vanilla.nix
+    #./services/minecraft/vanilla.nix
   ];
 
   # Bootloader.
