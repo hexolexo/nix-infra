@@ -1,27 +1,27 @@
 # nix-infra
-## Warning
-This whole README is outdated read the code itself for changse (An update will come soon to the README)
-NixOS configuration managing my desktop (hexolexo) and homelab server (vault) with deploy-rs deployments
+Time of writing:
+Extensible NixOS configuration management for my my desktop (hexolexo) and homelab server (vault) with deploy-rs deployments and single input installation via `reinstall.sh`
 
 **hexolexo** (desktop)
 - Hyprland + Wayland
 - Colemak layout with custom keyd bindings
-- Development environment (Go, Rust, Nix, OpenTofu)
+- Development environment (Alacritty, Nvim, Go, Rust, Nix, OpenTofu, virt-manager)
 - Gaming (Steam, Prism Launcher)
-- AMD GPU with ROCm
 
 **vault** (server)
-- Minecraft server
-- Git server (soft-serve)
-- Wireguard mesh node
-- Auto-updates at 16:00 daily with reboot (I recommend disabling auto reboots if you run this yourself)
-- And a handful of other services I've disabled for (mainly) security reasons
+- SSH + fail2ban for minimal vulnrable footprint
+- ZFS file system setup via disko
+- Foregjo git server + Forgejo action runner with github action compatibility through [catthehacker's full-22.04 docker container](https://github.com/catthehacker/docker_images)
+- Wireguard hub and spoke architecture
+- Copyparty over Wireguard
+- Auto-updates at 16:00 daily with reboot
+- Aprox 13 of other services disabled for security reasons
 
 ## Requirements
-
+I will advise against using this setup wholesale but taking parts you find worthwhile such as the flake setup or specific modules such as `keyd.nix`, `copyparty.nix` or `minecraft/modded.nix`
 - NixOS 25.05+
 - SSH access to server (for deploy-rs)
-- Personal repo at `path:/home/hexolexo/Programming/sysadmin/secrets` of which you may need to change the path to match your user (So ideally you don't dox your IP on git)
+- Personal repo at `path:/home/hexolexo/Programming/sysadmin/secrets` (You may wish to modify this path at the root flake and each machines flake)
 ```nix
 {
     description = "IP addresses";
@@ -33,10 +33,6 @@ NixOS configuration managing my desktop (hexolexo) and homelab server (vault) wi
 }
 ```
 
-## ./rebuild.sh
-
-Smart rebuild script that diffs changed paths to determine whether to rebuild the desktop, the server or both
-then commits with the resulting generation number and stating which system changed.
 
 ## Screenshots
 

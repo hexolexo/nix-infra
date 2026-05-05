@@ -10,11 +10,9 @@ in {
     ./services/virtualisation.nix
     # Optional Services: #
     #./services/clankhare.nix # I still can't believe they convinced me to name it this
-    #./services/sunshine.nix
     #./services/paperless-ngx.nix
     #./containers/unbound.nix
     #./containers/murmur.nix
-    #./services/apt-cacher-ng.nix
     ./containers/copyparty.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
