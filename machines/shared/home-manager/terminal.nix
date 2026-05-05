@@ -28,6 +28,7 @@
       neovim = "nvim";
       cd = "z";
       ls = "eza";
+      nrs = "sudo -v && sudo nixos-rebuild switch --flake '/home/hexolexo/Programming/sysadmin/nix-infra#hexolexo' |& nom";
     };
     interactiveShellInit = ''
       set -gx EDITOR nvim
