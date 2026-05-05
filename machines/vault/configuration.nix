@@ -14,6 +14,7 @@ in {
     #./containers/unbound.nix
     #./containers/murmur.nix
     ./containers/copyparty.nix
+    ./services/nats.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
@@ -24,7 +25,8 @@ in {
     #./containers/tarpit.nix
     # Minecraft #
     ./services/minecraft/modded.nix
-    #./services/minecraft/vanilla.nix
+    #./services/minecraft/create-war.nix
+    ./services/minecraft/vanilla.nix
   ];
 
   # Bootloader.
@@ -32,6 +34,7 @@ in {
     initrd.supportedFilesystems = ["zfs"];
 
     supportedFilesystems = ["zfs"];
+    zfs.forceImportRoot = false;
     enableContainers = true;
     loader = {
       grub = {

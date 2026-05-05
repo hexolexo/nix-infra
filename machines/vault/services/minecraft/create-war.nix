@@ -4,8 +4,8 @@
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack {
-    url = "http://10.0.0.1:3000/hexolexo/mc-pack/raw/branch/main/QoL/pack.toml";
-    packHash = "sha256-emvxLQg+5MN4PA3a43srwrbQZbyyIobVRKOWnPRPEjc=";
+    url = "http://10.0.0.1:3000/hexolexo/mc-pack/raw/branch/main/create/pack.toml";
+    packHash = "sha256-eP8fx1ycvlVNI9PHSi62xn+e5C9SrZp94Un9zR619pg=";
   };
 in {
   nixpkgs.config.allowUnfree = true;
@@ -14,15 +14,15 @@ in {
     enable = true;
     eula = true;
     openFirewall = true;
-    servers.modded = {
+    servers.create = {
       enable = true;
-      package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.19.2";};
+      package = pkgs.neoforgeServers.neoforge-1_21_1;
       symlinks."mods" = "${modpack}/mods";
 
       jvmOpts = ["-Xmx12G" "-Xms12G"];
 
       serverProperties = {
-        server-port = 25566;
+        server-port = 25567;
         gamemode = 0;
         difficulty = 2;
         white-list = true;

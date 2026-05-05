@@ -15,6 +15,14 @@
       package = inputs.nix-minecraft.legacyPackages.${pkgs.system}.paperServers.paper-1_21_11;
 
       jvmOpts = ["-Xmx4G" "-Xms4G" "-XX:+UseG1GC"];
+      files = {
+        "plugins/NatsChatBridge.jar" = pkgs.stdenv.mkDerivation {
+          name = "NatsChatBridge";
+          src = ../../minecraftNATSChatMirroring-all.jar;
+          phases = ["installPhase"];
+          installPhase = "cp $src $out";
+        };
+      };
 
       serverProperties = {
         server-port = 25565;
