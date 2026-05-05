@@ -29,11 +29,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1777974981,
-        "narHash": "sha256-dfwGFyU2it2yWQ4b+US5X01nXAgLLptYfZVdwo4z07g=",
+        "lastModified": 1777975370,
+        "narHash": "sha256-OiZPZIhGX+M0sSZvX3FUx+HVpsXd8hJngGZo8tL8VkQ=",
         "owner": "hexolexo",
         "repo": "clankhare",
-        "rev": "e38ad38ee78e7503912e1f000677c719f6754342",
+        "rev": "71c1e42dc1fb00a377be50bade6ed1ea9d78027f",
         "type": "github"
       },
       "original": {
