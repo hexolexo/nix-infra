@@ -1,5 +1,4 @@
 {inputs, ...}: {
-  networking.firewall.allowedTCPPorts = [3210 3211];
   systemd.tmpfiles.rules = [
     "d /data/copyparty 0777 root root -"
   ];
@@ -61,4 +60,5 @@
       system.stateVersion = "25.11";
     };
   };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [3210 3211];
 }

@@ -56,8 +56,7 @@ in {
     CPUQuota = "2000%";
     MemoryMax = "16G";
   };
-
-  networking.firewall.allowedTCPPorts = [
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [
     forgejoPort
     forgejoSSHPort
   ];
