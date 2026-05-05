@@ -1,5 +1,6 @@
 # nix-infra
-
+## Warning
+This whole README is outdated read the code itself for changse (An update will come soon to the README)
 NixOS configuration managing my desktop (hexolexo) and homelab server (vault) with deploy-rs deployments
 
 **hexolexo** (desktop)
