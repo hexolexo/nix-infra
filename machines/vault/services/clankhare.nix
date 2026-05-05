@@ -12,23 +12,8 @@
     mode = "0444";
   };
 
-  systemd.services.clankhare = {
-    description = "Clankhare Discord Bot";
-    after = ["network-online.target"];
-    wantedBy = ["multi-user.target"];
-
-    serviceConfig = {
-      ExecStart = "${inputs.clankhare.packages.${pkgs.system}.default}/bin/Clankhare";
-
-      EnvironmentFile = config.age.secrets.clankhare-env.path;
-
-      Restart = "always";
-      RestartSec = "5s";
-      DynamicUser = true;
-
-      ProtectSystem = "strict";
-      ProtectHome = true;
-      PrivateTmp = true;
-    };
+  services.clankhare = {
+    enable = true;
+    configFile = "/run/secrets/clankhare-env.age"; # agenix/sops path works here
   };
 }
