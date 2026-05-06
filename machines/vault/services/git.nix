@@ -43,7 +43,7 @@ in {
   services.gitea-actions-runner = {
     package = pkgs.forgejo-runner;
     instances.default = {
-      enable = false;
+      enable = true;
       name = "hexolexo-runner";
       url = "http://10.0.0.1:${toString forgejoPort}";
       tokenFile = "/run/secrets/forgejo-runner-token";
@@ -56,15 +56,11 @@ in {
     after = ["forgejo.service"];
     requires = ["forgejo.service"];
     serviceConfig = {
-      ExecStartPre = [
-        # HACK: forgejo lies about being ready, poll until it actually accepts connections
-        "${pkgs.bash}/bin/bash -c 'until ${pkgs.curl}/bin/curl -sf http://10.0.0.1:3000 > /dev/null; do sleep 1; done'"
-      ];
       CPUQuota = "2000%";
       MemoryMax = "16G";
     };
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [
+  networking.firewall.allowedTCPPorts = [
     forgejoPort
     forgejoSSHPort
   ];

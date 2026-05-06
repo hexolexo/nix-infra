@@ -9,12 +9,12 @@ in {
     ./services/git.nix
     ./services/virtualisation.nix
     # Optional Services: #
-    ./services/clankhare.nix # I still can't believe they convinced me to name it this
+    #./services/clankhare.nix # I still can't believe they convinced me to name it this
     #./services/paperless-ngx.nix
     #./containers/unbound.nix
     #./containers/murmur.nix
     ./containers/copyparty.nix
-    ./services/nats.nix
+    #./services/nats.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
