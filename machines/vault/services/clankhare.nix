@@ -1,5 +1,4 @@
 {
-  pkgs,
   inputs,
   config,
   ...
@@ -14,6 +13,6 @@
 
   services.clankhare = {
     enable = true;
-    configFile = "/run/secrets/clankhare-env.age"; # agenix/sops path works here
+    configFile = config.age.secrets.clankhare-env.path;
   };
 }

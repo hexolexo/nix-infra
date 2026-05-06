@@ -53,6 +53,7 @@
         ./configuration.nix
         ./disko.nix
         copyparty.nixosModules.default
+        clankhare.nixosModules.default
         agenix.nixosModules.default
         nix-minecraft.nixosModules.minecraft-servers
         ({...}: {

@@ -25,5 +25,3 @@ nix flake update
 
 git diff '*/flake.lock' flake.lock
 git add '*/flake.lock' flake.lock
-git commit -m "flake: update inputs"
-git push
