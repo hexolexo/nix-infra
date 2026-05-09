@@ -112,7 +112,6 @@
     clang
     gnumake
     gcc
-    elmPackages.elm-language-server
     git
     go
     gopls
@@ -124,7 +123,6 @@
     nil
     alejandra
     nix-output-monitor
-    #nodePackages.bash-language-server
     shfmt
     opentofu
     pkg-config
