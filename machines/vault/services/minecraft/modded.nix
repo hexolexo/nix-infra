@@ -5,7 +5,7 @@
 }: let
   modpack = pkgs.fetchPackwizModpack {
     url = "http://10.0.0.1:3000/hexolexo/mc-pack/raw/branch/main/QoL/pack.toml";
-    packHash = "sha256-emvxLQg+5MN4PA3a43srwrbQZbyyIobVRKOWnPRPEjc=";
+    packHash = "sha256-SghhJIGuDPfEokBOoBoZMTXX2xLeqyXuoGGTHiIXBGg=";
   };
 in {
   nixpkgs.config.allowUnfree = true;
@@ -19,7 +19,7 @@ in {
       package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.19.2";};
       symlinks."mods" = "${modpack}/mods";
 
-      jvmOpts = ["-Xmx12G" "-Xms12G"];
+      jvmOpts = ["-Xmx12G" "-Xms12G" "-XX:+UseZGC" "-XX:+ZGenerational"];
 
       serverProperties = {
         server-port = 25566;

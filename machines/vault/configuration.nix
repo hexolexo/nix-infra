@@ -25,8 +25,7 @@ in {
     #./containers/tarpit.nix
     # Minecraft #
     ./services/minecraft/modded.nix
-    #./services/minecraft/create-war.nix
-    ./services/minecraft/vanilla.nix
+    #./services/minecraft/vanilla.nix
   ];
 
   # Bootloader.
@@ -48,17 +47,6 @@ in {
 
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_AU.UTF-8";
-    LC_IDENTIFICATION = "en_AU.UTF-8";
-    LC_MEASUREMENT = "en_AU.UTF-8";
-    LC_MONETARY = "en_AU.UTF-8";
-    LC_NAME = "en_AU.UTF-8";
-    LC_NUMERIC = "en_AU.UTF-8";
-    LC_PAPER = "en_AU.UTF-8";
-    LC_TELEPHONE = "en_AU.UTF-8";
-    LC_TIME = "en_AU.UTF-8";
-  };
 
   programs.fish.enable = true;
   users.users = {
@@ -71,7 +59,6 @@ in {
         "networkmanager"
         "wheel"
       ];
-      packages = with pkgs; [go];
       openssh.authorizedKeys.keys = global.authorisedKeys;
     };
     nix-builder = {
@@ -92,10 +79,7 @@ in {
     alejandra
     micro
     nix-output-monitor
-    cargo
     pkg-config
-    alsa-lib.dev
-    clang
   ];
 
   networking = {
