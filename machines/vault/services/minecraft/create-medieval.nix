@@ -5,7 +5,7 @@
 }: let
   modpack = pkgs.fetchPackwizModpack {
     url = "http://10.0.0.1:3000/hexolexo/MMC5-mirror/raw/branch/main/pack.toml";
-    packHash = "sha256-7F/kwlFN9FbysIRCNrIQqTZ2keSkOnPJbj45MYMDaIA=";
+    packHash = "sha256-Gn/zTmT4d3JeC0j0l4TR0GYmxolIQIZieXA/RHDZB7Y=";
   };
 in {
   nixpkgs.config.allowUnfree = true;
