@@ -19,7 +19,12 @@ in {
       package = pkgs.neoforgeServers.neoforge-1_21_1;
       symlinks."mods" = "${modpack}/mods";
 
-      jvmOpts = ["-Xmx12G" "-Xms12G" "-XX:+UseZGC" "-XX:+ZGenerational"];
+      jvmOpts = [
+        "-Xms2G"
+        "-Xmx12G"
+        "-XX:+UseG1GC"
+      ];
+      #jvmOpts = ["-Xmx12G" "-Xms12G" "-XX:+UseZGC" "-XX:+ZGenerational"];
 
       serverProperties = {
         server-port = 25569;
