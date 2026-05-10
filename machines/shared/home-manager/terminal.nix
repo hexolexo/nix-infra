@@ -31,16 +31,26 @@
       nrs = "sudo -v && sudo nixos-rebuild switch --flake '/home/hexolexo/Programming/sysadmin/nix-infra#hexolexo' |& nom";
     };
     interactiveShellInit = ''
-      set -gx EDITOR nvim
+        set -gx EDITOR nvim
+        function man
+            nvim -c "Man $argv" -c "only"
+        end
+        function replay
+            set -l cmd (history | ${pkgs.highlight}/bin/highlight --syntax=bash --out-format=ansi | ${pkgs.fzf}/bin/fzf --ansi --header='Select command to replay')
+            if test -n "$cmd"
+                set cmd (string replace -ra '\e\[[0-9;]*m' ''' $cmd)
+                commandline $cmd
+            end
+        end
       function man
           nvim -c "Man $argv" -c "only"
       end
-      function replay
-          set -l cmd (history | ${pkgs.highlight}/bin/highlight --syntax=bash --out-format=ansi | ${pkgs.fzf}/bin/fzf --ansi --header='Select command to replay')
-          if test -n "$cmd"
-              set cmd (string replace -ra '\e\[[0-9;]*m' ''' $cmd)
-              commandline $cmd
-          end
+      function z
+          set results (zoxide query --list $argv 2>/dev/null)
+          if test (count $results) -eq 1
+              cd $results[1]
+          else
+              zi $argv
       end
     '';
   };
