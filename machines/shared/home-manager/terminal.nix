@@ -51,6 +51,7 @@
               cd $results[1]
           else
               zi $argv
+          end
       end
     '';
   };

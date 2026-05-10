@@ -21,7 +21,10 @@
         group = "copyparty";
         # see `copyparty --help` for available options
         settings = {
-          i = "10.0.0.1";
+          i = [
+            "127.0.0.1"
+            "10.0.0.1"
+          ];
           p = [3210 3211];
           no-reload = true;
           ignored-flag = false;
