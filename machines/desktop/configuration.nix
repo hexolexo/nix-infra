@@ -120,6 +120,8 @@
     lua-language-server
     marksman
     micro
+    natscli
+    nkeys
     nil
     alejandra
     nix-output-monitor
