@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   age.secrets.libvirtkey = {
     file = ../secrets/libvirtNATS.age;
-    owner = "root";
+    owner = "hexolexo";
     mode = "0400";
   };
 
