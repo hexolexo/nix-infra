@@ -36,7 +36,7 @@
             nkey = "UBF64LLZCAUMJ6ITZPJ4J4NW25NUXKTH6WDMCUCGD5F3FNKGEQUUVM7Q";
             permissions = {
               publish = ["wg.>" "_INBOX.>"];
-              subscribe = ["wg.>"];
+              subscribe = ["wg.>" "_INBOX.>"];
             };
           }
         ];
