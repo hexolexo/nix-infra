@@ -59,6 +59,24 @@
           mountpoint = "/nix";
           options.mountpoint = "/nix";
         };
+        vm-images = {
+          type = "zfs_fs";
+          options = {
+            mountpoint = "/vm-images";
+            compression = "zstd";
+            atime = "off";
+            "com.sun:auto-snapshot" = "false";
+          };
+        };
+        vm-instances = {
+          type = "zfs_fs";
+          options = {
+            mountpoint = "/vm-instances";
+            compression = "zstd";
+            atime = "off";
+            "com.sun:auto-snapshot" = "false";
+          };
+        };
       };
     };
 
@@ -71,7 +89,7 @@
       };
       datasets.data = {
         type = "zfs_fs";
-        mountpoint = "/data"; # radicle, VMs, etc go here
+        mountpoint = "/data";
         options.mountpoint = "/data";
       };
     };

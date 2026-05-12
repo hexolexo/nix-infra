@@ -28,7 +28,7 @@
             nkey = "UDOLBO4NERUUR2E7V7YBCG7K7UIXUKE2ITKKKRT7FGXE5RTU4PE5NQT5";
             permissions = {
               publish = ["libvirt.>" "wg.>" "_INBOX.>"];
-              subscribe = ["libvirt.>"];
+              subscribe = ["libvirt.>" "_INBOX.>"];
             };
           }
           {
