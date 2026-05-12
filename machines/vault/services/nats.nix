@@ -1,4 +1,10 @@
 {pkgs, ...}: {
+  age.secrets.libvirtkey = {
+    file = ../secrets/libvirtNATS.age;
+    owner = "root";
+    mode = "0400";
+  };
+
   services.nats = {
     enable = true;
     settings = {
