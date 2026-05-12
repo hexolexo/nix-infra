@@ -14,7 +14,7 @@ in {
     #./containers/unbound.nix
     #./containers/murmur.nix
     ./containers/copyparty.nix
-    #./services/nats.nix
+    ./services/nats.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
