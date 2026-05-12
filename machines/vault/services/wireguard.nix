@@ -6,7 +6,7 @@
   };
   networking.wireguard.interfaces = {
     wg0 = {
-      ips = ["10.0.0.1/24"];
+      ips = ["10.0.0.1/16"];
 
       listenPort = 51820;
 
@@ -56,5 +56,16 @@
       ];
     };
   };
-  networking.firewall.allowedUDPPorts = [51820];
+  networking.firewall = {
+    allowedUDPPorts = [51820];
+    extraCommands = ''
+      # allow hub and fw-laptop to reach VMs
+      iptables -A FORWARD -s 10.0.0.1 -d 10.0.1.0/24 -j ACCEPT
+      iptables -A FORWARD -s 10.0.0.2 -d 10.0.1.0/24 -j ACCEPT
+      # block everyone else on 10.0.0.x from reaching VMs
+      iptables -A FORWARD -s 10.0.0.0/24 -d 10.0.1.0/24 -j DROP
+      # VMs can't reach static peers either
+      iptables -A FORWARD -s 10.0.1.0/24 -d 10.0.0.0/24 -j DROP
+    '';
+  };
 }
