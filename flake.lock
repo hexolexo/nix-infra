@@ -110,11 +110,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1778659249,
-        "narHash": "sha256-7yoSiqpY0a8LH51jZnGIL5OxMOx5Cu+KYeACS/nBPNY=",
+        "lastModified": 1778661276,
+        "narHash": "sha256-vMuwvM1mbZwsz7u1Gx0yy8s123oJlph0S4YqKTaKoOU=",
         "ref": "refs/heads/main",
-        "rev": "69c7dbbe0f5fb525fdd9dd089f469c969f1c2bc8",
-        "revCount": 19,
+        "rev": "3d9ca9858c6e242ccac1bf010f4279a65f377eec",
+        "revCount": 20,
         "type": "git",
         "url": "http://10.0.0.1:3000/hexolexo/Conduit.git"
       },
