@@ -30,6 +30,7 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
     clankhare.url = "github:hexolexo/clankhare";
+    conduit.url = "git+http://10.0.0.1:3000/hexolexo/Conduit.git";
     secrets.url = "path:/home/hexolexo/Programming/sysadmin/secrets";
   };
 
@@ -42,6 +43,7 @@
     copyparty,
     nix-minecraft,
     clankhare,
+    conduit,
     secrets,
     ...
   } @ inputs: {
@@ -55,6 +57,9 @@
         copyparty.nixosModules.default
         clankhare.nixosModules.default
         agenix.nixosModules.default
+        conduit.nixosModules.nats
+        conduit.nixosModules.libvirt-agent
+        conduit.nixosModules.wireguard-agent
         nix-minecraft.nixosModules.minecraft-servers
         ({...}: {
           nixpkgs.overlays = [copyparty.overlays.default nix-minecraft.overlays.default];

@@ -80,6 +80,7 @@ read -r response
 [[ "$response" =~ ^[Yy]$|^$ ]] || exit 0
 
 commits=""
+git add .
 
 if [[ $desktop_changed -eq 1 ]]; then
     echo "Building desktop..."
