@@ -26,7 +26,7 @@ in {
     #./containers/tarpit.nix
     # Minecraft #
     ./services/minecraft/modded.nix
-    ./services/minecraft/create-medieval.nix
+    #./services/minecraft/create-medieval.nix
     #./services/minecraft/vanilla.nix
   ];
 
