@@ -49,7 +49,7 @@
     enable = true;
     natsURL = "nats://localhost:4222";
     nkeySeedFile = config.age.secrets.conduit-libvirt.path;
-    flakePath = "github:hexolexo/nix-vm";
+    flakePath = "ssh://forgejo@10.0.0.1:2222/hexolexo/Conduit.git";
     wireguard.hubPubKey = "p6qJwxfNS8cj+MNyBQSWCouPlwzz1MrwLOYObE48iBk=";
     wireguard.hubEndpoint = secrets.HomeIPv4;
   };
