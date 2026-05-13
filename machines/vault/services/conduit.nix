@@ -52,6 +52,7 @@
     flakePath = "git+http://10.0.0.1:3000/hexolexo/nix-vm.git";
     wireguard.hubPubKey = "p6qJwxfNS8cj+MNyBQSWCouPlwzz1MrwLOYObE48iBk=";
     wireguard.hubEndpoint = secrets.HomeIPv4;
+    zfs.instancesMount = "/vm-instances";
   };
 
   services.conduit.wireguard-agent = {
