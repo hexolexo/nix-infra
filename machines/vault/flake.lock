@@ -48,11 +48,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1778657573,
-        "narHash": "sha256-PXJ67940CqIrB4p8ByGsW8T4WlG6TP1v1Mw+Z3q18js=",
+        "lastModified": 1778658141,
+        "narHash": "sha256-P53I/oUkafJRGcXdqF4wy/tMVuAlI5OXXctGf2NvgSE=",
         "ref": "refs/heads/main",
-        "rev": "47bf6e5741585fc58196f5c273b19dba2fc28c93",
-        "revCount": 16,
+        "rev": "f2936b77ac255236054a49f0f0f25f0e27d97f3b",
+        "revCount": 17,
         "type": "git",
         "url": "http://10.0.0.1:3000/hexolexo/Conduit.git"
       },
