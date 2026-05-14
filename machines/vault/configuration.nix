@@ -16,6 +16,8 @@ in {
     ./containers/copyparty.nix
     #./services/nats.nix
     ./services/conduit.nix
+    ./services/ollama.nix
+    #./services/ntfy.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
