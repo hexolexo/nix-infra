@@ -5,7 +5,7 @@
     isNormalUser = true;
     home = "/var/lib/steam";
     group = "steam";
-    extraGroups = ["video" "render" "audio" "input"];
+    extraGroups = ["video" "render" "audio" "input" "sunshine"];
   };
   users.groups.steam = {};
 
@@ -38,6 +38,9 @@
       XDG_DATA_HOME = "/var/lib/steam/.local/share";
       # stop steam phoning home for shader caching to a path it can't write
       STEAM_RUNTIME_PREFER_HOST_LIBRARIES = "0";
+      GDK_BACKEND = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      CLUTTER_BACKEND = "wayland";
     };
   };
 }
