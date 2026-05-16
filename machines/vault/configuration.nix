@@ -18,6 +18,7 @@ in {
     ./services/conduit.nix
     ./services/ollama.nix
     #./services/ntfy.nix
+    ./services/sunshine.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
