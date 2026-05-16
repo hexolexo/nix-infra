@@ -68,6 +68,7 @@
     #libreoffice # fucking docx
     librewolf
     freetube
+    moonlight-qt
     obsidian
     moonlight-qt
     easyeffects
