@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  imports = [
+    ./steam.nix
+  ];
   users.users.sunshine = {
     isSystemUser = true;
     group = "sunshine";
