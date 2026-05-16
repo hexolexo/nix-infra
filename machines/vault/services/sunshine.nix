@@ -2,17 +2,15 @@
   users.users.sunshine = {
     isSystemUser = true;
     group = "sunshine";
-    extraGroups = ["video" "render" "input" "tty" "seat" "uinput"]; # uinput needed for virtual devices
+    extraGroups = ["video" "render" "input" "tty" "seat" "uinput"];
     home = "/var/lib/sunshine";
     createHome = true;
   };
   users.groups.sunshine = {};
-
-  # uinput group must exist for virtual input devices
   users.groups.uinput = {};
 
-  # Ensure uinput module is loaded and device is accessible
   boot.kernelModules = ["vkms" "uinput"];
+
   services.udev.extraRules = ''
     KERNEL=="uinput", GROUP="uinput", MODE="0660"
   '';
@@ -22,18 +20,32 @@
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       User = "sunshine";
-      # HACK: --width/height are arbitrary; just needs to be nonzero for sunshine to see a display
-      ExecStart = "${pkgs.weston}/bin/weston --backend=drm --drm-device=card1 --socket=wayland-1 --width=1920 --height=1080 --renderer=gl";
+      ExecStart = "${pkgs.weston}/bin/weston --backend=drm --drm-device=card1 --socket=wayland-1 --config=/etc/sunshine-weston.ini";
       Restart = "on-failure";
-      RuntimeDirectory = "sunshine-wayland"; # owns /run/sunshine-wayland
+      RestartSec = "5s";
+      RuntimeDirectory = "sunshine-wayland";
+      RuntimeDirectoryMode = "0755"; # sunshine needs to reach the socket; 0700 locks it out even as the same user
       StateDirectory = "sunshine";
+      StandardOutput = "journal";
+      StandardError = "journal";
     };
     environment = {
       XDG_RUNTIME_DIR = "/run/sunshine-wayland";
       HOME = "/var/lib/sunshine";
-      # WARN: Without this weston may try to connect to a seat and fail on a headless system
-      LIBSEAT_BACKEND = "noop";
+      LIBSEAT_BACKEND = "builtin"; # bypasses logind — system services don't have seats
+      SEATD_VTBOUND = "0"; # no VT in headless; without this libseat will try to bind one and fail
     };
+  };
+
+  environment.etc."sunshine-weston.ini" = {
+    text = ''
+      [core]
+      renderer=gl
+
+      [output]
+      name=Virtual-1
+      # WARN: no mode line — VKMS negotiates its own; set resolution on the sunshine side if needed
+    '';
   };
 
   systemd.services.sunshine = {
@@ -45,11 +57,11 @@
       User = "sunshine";
       ExecStart = "${pkgs.sunshine}/bin/sunshine";
       Restart = "on-failure";
-      # WARN: CAP_SYS_ADMIN is broad; sunshine needs it for KMS/DRM capture
-      # but won't help you here since nouveau lacks atomic modesetting anyway
+      # WARN: CAP_SYS_ADMIN is broad; needed for KMS/DRM capture
       AmbientCapabilities = "CAP_SYS_ADMIN";
       CapabilityBoundingSet = "CAP_SYS_ADMIN";
-      # No RuntimeDirectory here — weston owns it, sunshine is a guest
+      StandardOutput = "journal";
+      StandardError = "journal";
     };
     environment = {
       XDG_RUNTIME_DIR = "/run/sunshine-wayland";
