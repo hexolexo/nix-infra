@@ -1,13 +1,19 @@
 {...}: {
+  users.users.jellyfin = {
+    isSystemUser = true;
+    uid = 274;
+    group = "multimedia";
+  };
+  systemd.tmpfiles.rules = [
+    "d /data/jellyfin 0770 jellyfin multimedia - -"
+  ];
+  users.groups.multimedia = {};
   # Enable NVIDIA drivers
-  hardware.nvidia.open = false; # Fuck you nvidia
-  # For hardware acceleration support
-  hardware.graphics.enable = true;
   containers.jellyfin = {
     autoStart = true;
     bindMounts = {
       "/var/lib/jellyfin" = {
-        hostPath = "/var/lib/containers/jellyfin";
+        hostPath = "/data/jellyfin";
         isReadOnly = false;
       };
     };
@@ -16,11 +22,13 @@
       lib,
       ...
     }: {
-      users.groups.multimedia = {};
+      users.groups.multimedia = {
+        gid = 274;
+      };
       users.users.jellyfin = {
         isSystemUser = true;
+        uid = 274;
         group = "multimedia";
-        extraGroups = ["multimedia"];
       };
 
       systemd.tmpfiles.rules = [
