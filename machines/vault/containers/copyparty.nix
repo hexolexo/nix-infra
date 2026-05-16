@@ -35,7 +35,7 @@
           # create a volume at "/" (the webroot), which will
           "/" = {
             # share the contents of "/srv/copyparty"
-            path = "/srv/copyparty";
+            path = "/data/copyparty";
             access = {
               rw = ["*"];
               d = ["*"];

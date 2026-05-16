@@ -18,12 +18,13 @@ in {
     ./services/conduit.nix
     ./services/ollama.nix
     #./services/ntfy.nix
+    ./services/jellyfin.nix
     #./services/sunshine.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
     #./containers/terraria.nix      #  WARN: Untested
     #./containers/I2P.nix           # Closed due to I2Perception and probably won't come back ):
-    ./containers/jellyfin.nix
+    #./containers/jellyfin.nix
     #./containers/fuzzing.nix       #  NOTE: I'll probably want to start using this at some point
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
