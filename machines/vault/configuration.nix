@@ -63,6 +63,11 @@ in {
       extraGroups = [
         "networkmanager"
         "wheel"
+        "video"
+        "render"
+        "input"
+        "tty"
+        "seat"
       ];
       openssh.authorizedKeys.keys = global.authorisedKeys;
     };
