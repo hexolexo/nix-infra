@@ -13,4 +13,17 @@
       }
     ];
   };
+  services.xserver = {
+    enable = true;
+    videoDrivers = ["nouveau"];
+    resolutions = [
+      {
+        x = 1920;
+        y = 1080;
+      }
+    ];
+  };
+
+  # dummy display if no monitor attached
+  boot.kernelModules = ["dummy"];
 }
