@@ -3,6 +3,8 @@
     isSystemUser = true;
     group = "sunshine";
     extraGroups = ["video" "render" "input" "tty" "seat"];
+    home = "/var/lib/sunshine";
+    createHome = true;
   };
 
   users.groups.sunshine = {};
@@ -12,12 +14,17 @@
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       User = "sunshine";
-      ExecStart = "${pkgs.weston}/bin/weston --backend=headless --width=1920 --height=1080";
+      ExecStart = "${pkgs.sunshine}/bin/sunshine";
       Restart = "on-failure";
+      AmbientCapabilities = "CAP_SYS_ADMIN";
+      CapabilityBoundingSet = "CAP_SYS_ADMIN";
       RuntimeDirectory = "sunshine-wayland";
+      StateDirectory = "sunshine"; # creates /var/lib/sunshine
     };
     environment = {
       XDG_RUNTIME_DIR = "/run/sunshine-wayland";
+      WAYLAND_DISPLAY = "wayland-1";
+      HOME = "/var/lib/sunshine";
     };
   };
 
