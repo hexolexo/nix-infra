@@ -12,7 +12,7 @@
   users.groups.uinput = {};
 
   # Ensure uinput module is loaded and device is accessible
-  boot.kernelModules = ["uinput"];
+  boot.kernelModules = ["vkms" "uinput"];
   services.udev.extraRules = ''
     KERNEL=="uinput", GROUP="uinput", MODE="0660"
   '';
@@ -23,7 +23,7 @@
     serviceConfig = {
       User = "sunshine";
       # HACK: --width/height are arbitrary; just needs to be nonzero for sunshine to see a display
-      ExecStart = "${pkgs.weston}/bin/weston --backend=headless --socket=wayland-1 --width=1920 --height=1080";
+      ExecStart = "${pkgs.weston}/bin/weston --backend=drm --drm-device=card1 --socket=wayland-1 --width=1920 --height=1080 --renderer=gl";
       Restart = "on-failure";
       RuntimeDirectory = "sunshine-wayland"; # owns /run/sunshine-wayland
       StateDirectory = "sunshine";
