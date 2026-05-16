@@ -15,6 +15,7 @@
   boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "ums_realtek" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
   #boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "ums_realtek" "usbhid" "usb_storage" "sd_mod" "sr_mod" "virtio_blk" "virtio_pci"];
   boot.initrd.kernelModules = [];
+  boot.kernelParams = ["intel_iommu=on" "iommu=pt"];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
   networking.hostId = "d7630388";
