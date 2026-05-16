@@ -40,6 +40,7 @@
           d2t = true;
           # skips hashing file contents if path matches *.iso
           nohash = "\.iso$";
+          chmod_d = "0750";
         };
       };
     };
