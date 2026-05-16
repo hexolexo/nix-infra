@@ -21,6 +21,8 @@
     serviceConfig = {
       ExecStart = "${pkgs.sunshine}/bin/sunshine";
       Restart = "on-failure";
+      AmbientCapabilities = "CAP_SYS_ADMIN";
+      CapabilityBoundingSet = "CAP_SYS_ADMIN";
     };
     environment = {
       XDG_RUNTIME_DIR = "/run/user/1000";
