@@ -29,7 +29,7 @@ in {
     #./containers/monitoring.nix    #  NOTE: Functional but overkill for this project
     #./containers/tarpit.nix
     # Minecraft #
-    ./services/minecraft/modded.nix
+    #./services/minecraft/modded.nix
     #./services/minecraft/create-medieval.nix
     #./services/minecraft/vanilla.nix
   ];
