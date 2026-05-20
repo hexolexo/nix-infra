@@ -13,6 +13,7 @@
   services.nats = {
     enable = true;
     settings = {
+      host = "10.0.0.1";
       authorization = {
         users = [
           {
@@ -42,7 +43,6 @@
         ];
       };
       port = 4222;
-      openFirewall = false;
     };
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [4222];
