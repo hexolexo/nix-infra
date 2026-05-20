@@ -42,6 +42,7 @@
         ];
       };
       port = 4222;
+      openFirewall = false;
     };
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [4222];
