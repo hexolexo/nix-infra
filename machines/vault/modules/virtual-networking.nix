@@ -7,7 +7,7 @@
     # Primary NAT: VMs to internet
     nat = {
       enable = true;
-      internalInterfaces = ["virbr0" "virbr1"];
+      internalInterfaces = ["virbr0"];
       externalInterface = "enp0s25";
       forwardPorts = [
         {
@@ -27,7 +27,7 @@
 
     firewall = {
       checkReversePath = "loose";
-      trustedInterfaces = ["virbr0" "virbr1"];
+      trustedInterfaces = ["virbr0"];
       allowedTCPPorts = [26950];
       allowedUDPPorts = [26950];
       extraCommands = ''
