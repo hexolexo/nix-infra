@@ -13,12 +13,12 @@
     sha256 = "sha256-7rywjp7Z1weIxLgZLTtbdLK4lrk2FZhHp6fqFJHIDLs=";
   };
   ftblibrary = pkgs.fetchurl {
-    url = "https://10.0.0.1:3210/mods/ftb-library-fabric-2101.1.31.jar?k=pRp5";
-    sha256 = "sha256-NPEfShoJ3V9Y4Z6j2pLosX2PNtJ5DJcSBC8W0gH7Gz4=";
+    url = "https://10.0.0.1:3210/mods/ftb-library-fabric-2001.2.12.jar?k=wdf0";
+    sha256 = "sha256-0Phowdm79ai/aB/0EctxpAV+J8xw1x4PEV7vKiWVEdQ=";
   };
   ftbteams = pkgs.fetchurl {
-    url = "http://10.0.0.1:3210/mods/ftb-teams-fabric-2101.1.10.jar?k=Y3s_";
-    sha256 = "sha256-vDmLn3g3RHxwHtPK4t/62zUnA0DYKr23LpcmXDWDOG8=";
+    url = "https://10.0.0.1:3210/mods/ftb-teams-fabric-2001.3.2.jar?k=c9Lb";
+    sha256 = "sha256-HYWnsliZcITJgxIIMQ3jTSw/lRNtVBT3AiVFaJnAkTw=";
   };
 in {
   nixpkgs.config.allowUnfree = true;
