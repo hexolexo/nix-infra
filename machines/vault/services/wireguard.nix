@@ -39,6 +39,11 @@
           persistentKeepalive = 25;
         }
         {
+          publicKey = "Va81aIqHTLZrAAUPF4YmkQ1DgGWP5c4mPuPWZH0IViY=";
+          allowedIPs = ["10.0.0.7/32"]; # minecraft
+          persistentKeepalive = 25;
+        }
+        {
           publicKey = "L8SP4nzgB6ywOxEhp8n4O9/J70AGx4CFT3QLDF5NJXs=";
           allowedIPs = ["10.0.0.10/32"]; # CI builder
           persistentKeepalive = 25;
