@@ -31,6 +31,7 @@ in {
     # Minecraft #
     #./services/minecraft/modded.nix
     #./services/minecraft/create-medieval.nix
+    ./services/minecraft/prominenceII.nix
     #./services/minecraft/vanilla.nix
   ];
 

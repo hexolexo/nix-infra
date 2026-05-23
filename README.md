@@ -1,6 +1,6 @@
 # nix-infra
 Time of writing:
-Extensible NixOS configuration management for my my desktop (hexolexo) and homelab server (vault) with deploy-rs deployments and single input installation via `reinstall.sh`
+Extensible NixOS configuration management for my desktop (hexolexo) and homelab server (vault) with deploy-rs deployments and single input installation via `reinstall.sh`
 
 **hexolexo** (desktop)
 - Hyprland + Wayland
