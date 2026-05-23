@@ -44,6 +44,7 @@ in {
           "BetterTrims"
           "debugify"
           "Debugify"
+          "ftbxemicompat"
         ];
 
         # 3. Filter out any attribute names containing strings in our blacklist
