@@ -7,6 +7,7 @@
   modpack = pkgs.fetchModrinthModpack {
     url = "https://cdn.modrinth.com/data/EGs3lC8D/versions/9r2hKvJH/Prominence%20II%20Hasturian%20Era%203.9.27.mrpack";
     packHash = "sha256-33BPbJpidKgjqQUdzddH6WmfXoSgaR0LOVyNUgg26B0=";
+    environment = "server";
   };
   ftbquests = pkgs.fetchurl {
     url = "https://10.0.0.1:3210/mods/ftb-quests-fabric-2001.4.22.jar?k=Y3s_";
@@ -29,7 +30,7 @@ in {
     openFirewall = true;
     servers.prominence = {
       enable = true;
-      package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.19.2";};
+      package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.15.0";};
       symlinks =
         (collectFilesAt modpack "mods")
         // {
