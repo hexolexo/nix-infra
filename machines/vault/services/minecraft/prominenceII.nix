@@ -14,7 +14,7 @@ in {
     enable = true;
     eula = true;
     openFirewall = true;
-    servers.modded = {
+    servers.prominence = {
       enable = true;
       package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.19.2";};
       symlinks."mods" = "${modpack}/mods";
