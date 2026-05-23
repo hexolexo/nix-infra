@@ -32,7 +32,7 @@ in {
     openFirewall = true;
     servers.prominence = {
       enable = true;
-      package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.15.0";};
+      package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.16.10";};
 
       symlinks = let
         # 1. Grab all files extracted from the Modrinth pack
