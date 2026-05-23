@@ -3,9 +3,14 @@
   inputs,
   ...
 }: let
+  inherit (inputs.nix-minecraft.lib) collectFilesAt;
   modpack = pkgs.fetchModrinthModpack {
     url = "https://cdn.modrinth.com/data/EGs3lC8D/versions/9r2hKvJH/Prominence%20II%20Hasturian%20Era%203.9.27.mrpack";
     packHash = "sha256-33BPbJpidKgjqQUdzddH6WmfXoSgaR0LOVyNUgg26B0=";
+  };
+  ftbquests = pkgs.fetchurl {
+    url = "http://10.0.0.1:3210/mods/ftb-quests-fabric-2001.4.22.jar?k=Y3s_";
+    sha256 = "sha256-7rywjp7Z1weIxLgZLTtbdLK4lrk2FZhHp6fqFJHIDLs=";
   };
 in {
   nixpkgs.config.allowUnfree = true;
@@ -17,7 +22,19 @@ in {
     servers.prominence = {
       enable = true;
       package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.19.2";};
-      symlinks."mods" = "${modpack}/mods";
+      symlinks =
+        (collectFilesAt modpack "mods")
+        // {
+          "mods/ftb-quests-fabric.jar" = ftbquests;
+          "ops.json" = pkgs.writeText "ops.json" (builtins.toJSON [
+            {
+              uuid = "080aa9de-bcf6-4f3d-8e5d-a86f4977885a";
+              name = "hexolexo";
+              level = 4;
+              bypassesPlayerLimit = false;
+            }
+          ]);
+        };
 
       jvmOpts = ["-Xmx12G" "-Xms12G" "-XX:+UseZGC" "-XX:+ZGenerational"];
 
@@ -39,14 +56,6 @@ in {
         Goodgamer1900 = "7236b3a1-8994-4908-a4f9-c75a5fb2fcf2";
         TemprMC = "8bc13718-746b-4bb3-b27e-2105ca34d8db";
       };
-      symlinks."ops.json" = pkgs.writeText "ops.json" (builtins.toJSON [
-        {
-          uuid = "080aa9de-bcf6-4f3d-8e5d-a86f4977885a";
-          name = "hexolexo";
-          level = 4;
-          bypassesPlayerLimit = false;
-        }
-      ]);
     };
   };
 }
