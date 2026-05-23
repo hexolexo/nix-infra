@@ -9,8 +9,16 @@
     packHash = "sha256-33BPbJpidKgjqQUdzddH6WmfXoSgaR0LOVyNUgg26B0=";
   };
   ftbquests = pkgs.fetchurl {
-    url = "http://10.0.0.1:3210/mods/ftb-quests-fabric-2001.4.22.jar?k=Y3s_";
+    url = "https://10.0.0.1:3210/mods/ftb-quests-fabric-2001.4.22.jar?k=Y3s_";
     sha256 = "sha256-7rywjp7Z1weIxLgZLTtbdLK4lrk2FZhHp6fqFJHIDLs=";
+  };
+  ftblibrary = pkgs.fetchurl {
+    url = "https://10.0.0.1:3210/mods/ftb-library-fabric-2101.1.31.jar?k=pRp5";
+    sha256 = "sha256-NPEfShoJ3V9Y4Z6j2pLosX2PNtJ5DJcSBC8W0gH7Gz4=";
+  };
+  ftbteams = pkgs.fetchurl {
+    url = "http://10.0.0.1:3210/mods/ftb-teams-fabric-2101.1.10.jar?k=Y3s_";
+    sha256 = "sha256-vDmLn3g3RHxwHtPK4t/62zUnA0DYKr23LpcmXDWDOG8=";
   };
 in {
   nixpkgs.config.allowUnfree = true;
@@ -26,6 +34,8 @@ in {
         (collectFilesAt modpack "mods")
         // {
           "mods/ftb-quests-fabric.jar" = ftbquests;
+          "mods/ftb-library-fabric.jar" = ftblibrary;
+          "mods/ftb-teams-fabric.jar" = ftbteams;
           "ops.json" = pkgs.writeText "ops.json" (builtins.toJSON [
             {
               uuid = "080aa9de-bcf6-4f3d-8e5d-a86f4977885a";
