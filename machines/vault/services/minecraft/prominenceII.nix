@@ -4,11 +4,12 @@
   ...
 }: let
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
+
   modpack = pkgs.fetchModrinthModpack {
     url = "https://cdn.modrinth.com/data/EGs3lC8D/versions/9r2hKvJH/Prominence%20II%20Hasturian%20Era%203.9.27.mrpack";
     packHash = "sha256-33BPbJpidKgjqQUdzddH6WmfXoSgaR0LOVyNUgg26B0=";
-    environment = "server";
   };
+
   ftbquests = pkgs.fetchurl {
     url = "https://10.0.0.1:3210/mods/ftb-quests-fabric-2001.4.22.jar?k=Y3s_";
     sha256 = "sha256-7rywjp7Z1weIxLgZLTtbdLK4lrk2FZhHp6fqFJHIDLs=";
@@ -24,6 +25,7 @@
 in {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [inputs.nix-minecraft.overlays.default];
+
   services.minecraft-servers = {
     enable = true;
     eula = true;
@@ -31,8 +33,29 @@ in {
     servers.prominence = {
       enable = true;
       package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.15.0";};
-      symlinks =
-        (collectFilesAt modpack "mods")
+
+      symlinks = let
+        # 1. Grab all files extracted from the Modrinth pack
+        allPackFiles = collectFilesAt modpack "mods";
+
+        # 2. Add names of client-only mods here if the server crashes on others later
+        clientSideBlacklist = [
+          "bettertrims"
+          "BetterTrims"
+          "debugify"
+          "Debugify"
+        ];
+
+        # 3. Filter out any attribute names containing strings in our blacklist
+        serverOnlyMods =
+          pkgs.lib.attrsets.filterAttrs (
+            fileName: _:
+              !(builtins.any (blacklistedName: pkgs.lib.strings.hasInfix blacklistedName fileName) clientSideBlacklist)
+          )
+          allPackFiles;
+      in
+        # 4. Merge the filtered server mods with your custom adjustments
+        serverOnlyMods
         // {
           "mods/ftb-quests-fabric.jar" = ftbquests;
           "mods/ftb-library-fabric.jar" = ftblibrary;
