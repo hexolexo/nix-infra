@@ -3,84 +3,53 @@
   inputs,
   ...
 }: let
-  inherit (inputs.nix-minecraft.lib) collectFilesAt;
-
-  modpack = pkgs.fetchModrinthModpack {
-    url = "https://cdn.modrinth.com/data/EGs3lC8D/versions/9r2hKvJH/Prominence%20II%20Hasturian%20Era%203.9.27.mrpack";
-    packHash = "sha256-33BPbJpidKgjqQUdzddH6WmfXoSgaR0LOVyNUgg26B0=";
-  };
-
-  ftbquests = pkgs.fetchurl {
-    url = "https://10.0.0.1:3210/mods/ftb-quests-fabric-2001.4.22.jar?k=Y3s_";
-    sha256 = "sha256-7rywjp7Z1weIxLgZLTtbdLK4lrk2FZhHp6fqFJHIDLs=";
-  };
-  ftblibrary = pkgs.fetchurl {
-    url = "https://10.0.0.1:3210/mods/ftb-library-fabric-2001.2.12.jar?k=wdf0";
-    sha256 = "sha256-0Phowdm79ai/aB/0EctxpAV+J8xw1x4PEV7vKiWVEdQ=";
-  };
-  ftbteams = pkgs.fetchurl {
-    url = "https://10.0.0.1:3210/mods/ftb-teams-fabric-2001.3.2.jar?k=c9Lb";
-    sha256 = "sha256-HYWnsliZcITJgxIIMQ3jTSw/lRNtVBT3AiVFaJnAkTw=";
+  # 1. Fetch the Modrinth pack as a standalone derivation
+  # It strips client mods and prepares server-side configurations natively
+  prominenceModpack = pkgs.fetchModrinthModpack {
+    id = "prominence-2-rpg";
+    url = "https://cdn.modrinth.com/data/EGs3lC8D/versions/9r2hKvJH/Prominence%20II%20Hasturian%20Era%203.9.27.mrpack?mr_download_reason=standalone&mr_game_version=1.20.1&mr_loader=fabric";
+    version = "3.0.7";
+    packHash = "sha256-33BPbJpidKgjqQUdzddH6WmfXoSgaR0LOVyNUgg26B0="; # Will error out with the true hash on first run
   };
 in {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [inputs.nix-minecraft.overlays.default];
+
+  imports = [
+    inputs.nix-minecraft.nixosModules.minecraft-servers
+  ];
+
+  nixpkgs.overlays = [
+    inputs.nix-minecraft.overlay
+  ];
 
   services.minecraft-servers = {
     enable = true;
     eula = true;
-    openFirewall = true;
+    dataDir = "/var/lib/minecraft";
+
     servers.prominence = {
       enable = true;
-      package = pkgs.fabricServers.fabric-1_20_1.override {loaderVersion = "0.18.4";};
 
-      symlinks = let
-        # 1. Grab all files extracted from the Modrinth pack
-        allPackFiles = collectFilesAt modpack "mods";
+      # 2. Assign the actual Fabric Loader engine to run the pack
+      package = pkgs.fabricServers.fabric-1_20_1.override {
+        loaderVersion = "0.18.4";
+      };
 
-        # 2. Add names of client-only mods here if the server crashes on others later
-        clientSideBlacklist = [
-          "bettertrims"
-          "BetterTrims"
-          "debugify"
-          "Debugify"
-          "ftbxemicompat"
-        ];
+      # 3. Mount the filtered modpack contents dynamically into the runtime directory
+      # This strips client-side configs/mods and preserves server-side writability
+      symlinks = {
+        "mods" = "${prominenceModpack}/mods";
+        "config" = "${prominenceModpack}/config";
+      };
 
-        # 3. Filter out any attribute names containing strings in our blacklist
-        serverOnlyMods =
-          pkgs.lib.attrsets.filterAttrs (
-            fileName: _:
-              !(builtins.any (blacklistedName: pkgs.lib.strings.hasInfix blacklistedName fileName) clientSideBlacklist)
-          )
-          allPackFiles;
-      in
-        # 4. Merge the filtered server mods with your custom adjustments
-        serverOnlyMods
-        // {
-          "mods/ftb-quests-fabric.jar" = ftbquests;
-          "mods/ftb-library-fabric.jar" = ftblibrary;
-          "mods/ftb-teams-fabric.jar" = ftbteams;
-          "ops.json" = pkgs.writeText "ops.json" (builtins.toJSON [
-            {
-              uuid = "080aa9de-bcf6-4f3d-8e5d-a86f4977885a";
-              name = "hexolexo";
-              level = 4;
-              bypassesPlayerLimit = false;
-            }
-          ]);
-        };
-
-      jvmOpts = ["-Xmx12G" "-Xms12G" "-XX:+UseZGC" "-XX:+ZGenerational"];
+      openFirewall = true;
 
       serverProperties = {
         server-port = 25565;
-        gamemode = 0;
-        difficulty = 2;
-        white-list = true;
-        max-players = 10;
+        motd = "Prominence II RPG - Managed Declaratively by NixOS";
+        difficulty = "hard";
+        "query.port" = 25565;
       };
-
       whitelist = {
         hexolexo = "080aa9de-bcf6-4f3d-8e5d-a86f4977885a";
         ToshiiChu = "fd2b9565-56a6-45f4-a062-408633d9efc5";
@@ -91,7 +60,14 @@ in {
         Goodgamer1900 = "7236b3a1-8994-4908-a4f9-c75a5fb2fcf2";
         TemprMC = "8bc13718-746b-4bb3-b27e-2105ca34d8db";
       };
+      symlinks."ops.json" = pkgs.writeText "ops.json" (builtins.toJSON [
+        {
+          uuid = "080aa9de-bcf6-4f3d-8e5d-a86f4977885a";
+          name = "hexolexo";
+          level = 4;
+          bypassesPlayerLimit = false;
+        }
+      ]);
     };
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [25565];
 }
