@@ -13,7 +13,7 @@
   services.nats = {
     enable = true;
     settings = {
-      host = "10.0.0.1";
+      listen = "10.0.0.1:4222";
       authorization = {
         users = [
           {
