@@ -38,6 +38,7 @@ in {
   # Bootloader.
   boot = {
     initrd.supportedFilesystems = ["zfs"];
+    kernelParams = ["zfs.zfs_arc_max=17179869184"];
 
     supportedFilesystems = ["zfs"];
     zfs.forceImportRoot = false;
