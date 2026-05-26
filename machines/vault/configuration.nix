@@ -19,6 +19,7 @@ in {
     ./services/ollama.nix
     #./services/ntfy.nix
     ./services/jellyfin.nix
+    ./services/searx.nix
     #./services/sunshine.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
