@@ -6,6 +6,7 @@
   services.open-webui = {
     enable = true;
     port = 8080;
+    host = "10.0.0.1";
     environment = {
       OLLAMA_BASE_URL = "http://10.0.0.8:11434";
       ENABLE_WEB_SEARCH = "True";
