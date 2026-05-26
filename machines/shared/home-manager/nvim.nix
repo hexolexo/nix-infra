@@ -23,6 +23,36 @@
     };
 
     plugins = {
+      codecompanion = {
+        enable = true;
+        settings = {
+          adapters = {
+            # HACK: ollama adapter needs the url overridden, doesn't pick up OLLAMA_HOST
+            ollama.__raw = ''
+              function()
+                return require("codecompanion.adapters").extend("ollama", {
+                  env = {
+                    url = "http://10.0.0.8:11434",
+                  },
+                  schema = {
+                    model = {
+                      default = "codestral",
+                    },
+                  },
+                })
+              end
+            '';
+          };
+          strategies = {
+            chat = {
+              adapter = "ollama";
+            };
+            inline = {
+              adapter = "ollama";
+            };
+          };
+        };
+      };
       oil = {
         enable = true;
         settings = {
