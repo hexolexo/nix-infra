@@ -26,4 +26,5 @@
       search.formats = ["html" "json"];
     };
   };
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [8080 8088];
 }
