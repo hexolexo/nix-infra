@@ -11,7 +11,7 @@
       OLLAMA_BASE_URL = "http://10.0.0.8:11434";
       ENABLE_WEB_SEARCH = "True";
       WEB_SEARCH_ENGINE = "searxng";
-      SEARXNG_QUERY_URL = "http://127.0.0.1:8088/search?q=<query>";
+      SEARXNG_QUERY_URL = "http://10.0.0.1:8088/search?q=<query>";
     };
   };
   services.searx = {
