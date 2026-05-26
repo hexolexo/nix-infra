@@ -68,11 +68,14 @@
           keymap = {
             preset = "super-tab";
           };
-          sources.default = [
-            "lsp"
-            "path"
-            "buffer"
-          ];
+
+          sources = {
+            default = [
+              "lsp"
+              "path"
+              "buffer"
+            ];
+          };
         };
       };
       gitsigns.enable = true;
