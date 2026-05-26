@@ -31,9 +31,7 @@
             ollama.__raw = ''
               function()
                 return require("codecompanion.adapters").extend("ollama", {
-                  env = {
-                    url = "http://10.0.0.8:11434",
-                  },
+                  url = "http://10.0.0.8:11434/api/chat",
                   schema = {
                     model = {
                       default = "codestral",
