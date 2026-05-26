@@ -169,6 +169,24 @@
         key = "<leader>xx";
         action = "<cmd>Trouble diagnostics toggle<cr>";
       }
+      {
+        mode = ["n" "v"];
+        key = "<leader>cc";
+        action = "<cmd>CodeCompanionChat Toggle<cr>";
+        options.desc = "Toggle CodeCompanion chat";
+      }
+      {
+        mode = ["n" "v"];
+        key = "<leader>ca";
+        action = "<cmd>CodeCompanionActions<cr>";
+        options.desc = "CodeCompanion action menu";
+      }
+      {
+        mode = "v";
+        key = "<leader>cs";
+        action = "<cmd>CodeCompanionChat Add<cr>";
+        options.desc = "Add selection to chat";
+      }
     ];
     extraConfigLua = ''
                 vim.opt.termguicolors = true
