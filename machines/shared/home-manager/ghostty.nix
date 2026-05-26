@@ -11,6 +11,7 @@
       background = "#1E1E2E";
       foreground = "#CDD6F4";
       mouse-scroll-multiplier = 0.25;
+      confirm-close-surface = false;
     };
   };
 }
