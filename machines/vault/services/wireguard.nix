@@ -44,6 +44,12 @@
           persistentKeepalive = 25;
         }
         {
+          publicKey = "UrxF15Z2N6OCOM11pLCLpPdczamf/Ghn/0Kz54ZCGGw=";
+          allowedIPs = ["10.0.0.8/32"]; # pc
+          persistentKeepalive = 25;
+        }
+
+        {
           publicKey = "L8SP4nzgB6ywOxEhp8n4O9/J70AGx4CFT3QLDF5NJXs=";
           allowedIPs = ["10.0.0.10/32"]; # CI builder
           persistentKeepalive = 25;
