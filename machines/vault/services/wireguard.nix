@@ -44,7 +44,7 @@
           persistentKeepalive = 25;
         }
         {
-          publicKey = "UrxF15Z2N6OCOM11pLCLpPdczamf/Ghn/0Kz54ZCGGw=";
+          publicKey = "hSBcqerSkDed7EC0Q3+fBudgKImhYiEuS/Y5JYZhFm8=";
           allowedIPs = ["10.0.0.8/32"]; # pc
           persistentKeepalive = 25;
         }
