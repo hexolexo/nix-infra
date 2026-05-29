@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ../shared/common.nix
+    ./networking.nix
     # No fanCtrl, no lid switch, no AMD pstate (check if your desktop is also AMD)
   ];
 
