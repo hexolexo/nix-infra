@@ -150,20 +150,7 @@
         "agenix": "agenix",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim",
-        "secrets": "secrets"
-      }
-    },
-    "secrets": {
-      "locked": {
-        "lastModified": 1776859482,
-        "narHash": "sha256-g5ZRxSY8E9N9SB9nXzY1LB6b3UDpDIUtLvAfyybYVd0=",
-        "path": "/home/hexolexo/Programming/sysadmin/secrets",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/hexolexo/Programming/sysadmin/secrets",
-        "type": "path"
+        "nixvim": "nixvim"
       }
     },
     "systems": {
