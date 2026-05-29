@@ -17,16 +17,12 @@
   services.openssh.enable = true;
 
   nix.settings = {
-    substituters = [
-      "https://nix-cachyos-kernel.cachix.org"
-      # WARN: Second cache is the author's personal Hydra — may go down
-      "https://xddxdd.cachix.org"
-    ];
-    trusted-public-keys = [
-      "nix-cachyos-kernel.cachix.org-1:cFPpFAX4GFpRDnGkQXCTbLvJyAZBCQeKzqWBBqWwROY="
-      "xddxdd.cachix.org-1:MzATbxHP1k0/hFBDrqGfpXW98Ls22MzMjkFcUzT8HqE="
-    ];
+    substituters = ["https://attic.xuyh0120.win/lantian"];
+    trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
   };
+
+  #boot.kernelPackages = pkgs.cachyosKernels."linuxPackages-cachyos-latest-lto";
+  #boot.kernelPackages = pkgs.cachyosKernels."linuxPackages-cachyos-latest";
 
   # ALVR
   programs.alvr.enable = true;
