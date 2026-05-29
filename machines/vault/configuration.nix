@@ -74,15 +74,15 @@ in {
         "tty"
         "seat"
       ];
-      openssh.authorizedKeys.keys = global.authorisedKeys;
+      openssh.authorizedKeys.keys = global.laptopKey ++ global.desktopKey;
     };
     nix-builder = {
       isNormalUser = true;
       description = "NixOS remote builder";
-      openssh.authorizedKeys.keys = global.authorisedKeys;
+      openssh.authorizedKeys.keys = global.laptopKey ++ global.desktopKey;
     };
     root = {
-      openssh.authorizedKeys.keys = global.authorisedKeys;
+      openssh.authorizedKeys.keys = global.laptopKey ++ global.desktopKey;
       initialPassword = "changeme";
     };
   };
