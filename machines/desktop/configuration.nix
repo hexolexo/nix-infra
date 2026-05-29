@@ -35,6 +35,7 @@
   boot.initrd.kernelModules = ["amdgpu"];
 
   programs.steam.enable = true;
+  programs.droidcam.enable = true;
 
   environment.systemPackages = with pkgs; [
     zenity # runtime dep for ALVR dialogs; not declared in the package
