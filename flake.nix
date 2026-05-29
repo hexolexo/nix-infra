@@ -17,7 +17,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    secrets.url = "path:/home/hexolexo/Programming/sysadmin/secrets";
   };
 
   outputs = {

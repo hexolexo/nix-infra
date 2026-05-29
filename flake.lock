@@ -973,7 +973,6 @@
         "hexolexo-pc": "hexolexo-pc",
         "home-manager-unstable": "home-manager-unstable",
         "nixpkgs": "nixpkgs_5",
-        "secrets": "secrets_3",
         "vault": "vault"
       }
     },
@@ -1002,18 +1001,6 @@
       }
     },
     "secrets_3": {
-      "locked": {
-        "lastModified": 1776859482,
-        "narHash": "sha256-g5ZRxSY8E9N9SB9nXzY1LB6b3UDpDIUtLvAfyybYVd0=",
-        "path": "/home/hexolexo/Programming/sysadmin/secrets",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/hexolexo/Programming/sysadmin/secrets",
-        "type": "path"
-      }
-    },
-    "secrets_4": {
       "locked": {
         "lastModified": 1776859482,
         "narHash": "sha256-g5ZRxSY8E9N9SB9nXzY1LB6b3UDpDIUtLvAfyybYVd0=",
@@ -1234,7 +1221,7 @@
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs_9",
         "nixvim": "nixvim_3",
-        "secrets": "secrets_4"
+        "secrets": "secrets_3"
       },
       "locked": {
         "path": "./machines/vault",
