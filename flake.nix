@@ -1,7 +1,7 @@
 {
   inputs = {
     vault.url = "path:./machines/vault";
-    hexolexo.url = "path:./machines/desktop";
+    hexolexo.url = "path:./machines/laptop";
     bootstrap.url = "path:./machines/bootstrap";
 
     deploy-rs.url = "github:serokell/deploy-rs";

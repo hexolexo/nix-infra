@@ -28,11 +28,12 @@
     secrets,
     ...
   }: {
-    nixosConfigurations.hexolexo-pc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.hexolexo = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit secrets;};
       modules = [
         ./configuration.nix
+        ./networking.nix
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
