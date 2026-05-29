@@ -16,8 +16,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    secrets.url = "path:/home/hexolexo/Programming/sysadmin/secrets";
   };
 
   outputs = {
@@ -25,12 +23,10 @@
     home-manager,
     agenix,
     nixvim,
-    secrets,
     ...
   }: {
     nixosConfigurations.hexolexo-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit secrets;};
       modules = [
         ./configuration.nix
         agenix.nixosModules.default
