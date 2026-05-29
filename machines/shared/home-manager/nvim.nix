@@ -29,8 +29,8 @@
           provider = "openai_compatible";
           provider_options = {
             openai_compatible = {
-              # codestral is solid for completion, matches your codecompanion default
-              model = "codestral";
+              # qwen2.5-coder:14b is solid for completion, matches your codecompanion default
+              model = "qwen2.5-coder:14b";
               end_point = "http://10.0.0.8:11434/v1/completions";
               name = "ollama";
               optional = {
@@ -84,7 +84,7 @@
                     },
                     schema = {
                       model = {
-                        default = "codestral",
+                        default = "qwen2.5-coder:14b",
                       },
                     },
                   })
