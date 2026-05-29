@@ -17,12 +17,11 @@
   services.openssh.enable = true;
 
   nix.settings = {
-    substituters = ["https://attic.xuyh0120.win/lantian"];
-    trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
+    substituters = ["https://drakon64-nixos-cachyos-kernel.cachix.org"];
+    trusted-public-keys = ["drakon64-nixos-cachyos-kernel.cachix.org-1:J3gjZ9N6S05pyLA/P0M5y7jXpSxO/i0rshrieQJi5D0="];
   };
 
-  #boot.kernelPackages = pkgs.cachyosKernels."linuxPackages-cachyos-latest-lto";
-  #boot.kernelPackages = pkgs.cachyosKernels."linuxPackages-cachyos-latest";
+  #boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linuxPackages_cachyos;
 
   # ALVR
   programs.alvr.enable = true;
