@@ -9,6 +9,7 @@
     ./networking.nix
     ./ollama.nix
     ./audio.nix
+    ./virtualisation.nix
   ];
 
   networking = {
