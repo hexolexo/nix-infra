@@ -33,6 +33,7 @@
               model = "qwen2.5-coder:14b";
               end_point = "http://10.0.0.8:11434/v1/completions";
               name = "ollama";
+              api_key = "TERM";
               optional = {
                 max_tokens = 56;
                 # WARN: top_p + temperature both set can cause unpredictable sampling
