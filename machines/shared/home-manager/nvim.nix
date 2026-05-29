@@ -23,6 +23,54 @@
     };
 
     plugins = {
+      minuet = {
+        enable = true;
+        settings = {
+          provider = "openai_compatible";
+          provider_options = {
+            openai_compatible = {
+              # codestral is solid for completion, matches your codecompanion default
+              model = "codestral";
+              end_point = "http://10.0.0.8:11434/v1/completions";
+              name = "ollama";
+              optional = {
+                max_tokens = 56;
+                # WARN: top_p + temperature both set can cause unpredictable sampling
+                top_p = 0.9;
+              };
+            };
+          };
+          # Tune down if completions are slow over WireGuard
+          request_timeout = 3;
+          throttle_ms = 1000;
+        };
+      };
+
+      blink-cmp = {
+        enable = true;
+        settings = {
+          keymap = {
+            preset = "super-tab";
+          };
+          sources = {
+            default = [
+              "lsp"
+              "path"
+              "buffer"
+              "minuet" # add this
+            ];
+            providers = {
+              minuet = {
+                name = "minuet";
+                module = "minuet.blink";
+                # WARN: score_offset pushes it above LSP — drop to 1 or 2 if it
+                #       crowds out gopls/nixd suggestions
+                score_offset = 8;
+              };
+            };
+          };
+        };
+      };
       codecompanion = {
         enable = true;
         settings = {
@@ -59,22 +107,6 @@
           skip_confirm_for_simple_edits = true;
           view_options = {
             show_hidden = true;
-          };
-        };
-      };
-      blink-cmp = {
-        enable = true;
-        settings = {
-          keymap = {
-            preset = "super-tab";
-          };
-
-          sources = {
-            default = [
-              "lsp"
-              "path"
-              "buffer"
-            ];
           };
         };
       };

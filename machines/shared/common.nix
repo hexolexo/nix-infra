@@ -55,6 +55,7 @@
     freetube
     moonlight-qt
     obsidian
+    mumble
     easyeffects
     calf
     lsp-plugins
