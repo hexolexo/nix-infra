@@ -3,6 +3,7 @@
 
   networking.hosts = {
     "192.168.1.153" = ["home"];
+    "10.0.0.1" = ["server"];
   };
   networking.wireguard.interfaces = {
     wg0 = {
