@@ -2,6 +2,7 @@
   inputs = {
     vault.url = "path:./machines/vault";
     hexolexo.url = "path:./machines/laptop";
+    hexolexo-pc.url = "path:./machines/desktop";
     bootstrap.url = "path:./machines/bootstrap";
 
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -23,6 +24,7 @@
     self,
     vault,
     hexolexo,
+    hexolexo-pc,
     bootstrap,
     deploy-rs,
     nixpkgs,
@@ -32,6 +34,7 @@
     nixosConfigurations = {
       vault = vault.nixosConfigurations.vault;
       hexolexo = hexolexo.nixosConfigurations.hexolexo;
+      hexolexo-pc = hexolexo-pc.nixosConfigurations.hexolexo-pc;
       bootstrap = bootstrap.nixosConfigurations.bootstrap;
     };
 

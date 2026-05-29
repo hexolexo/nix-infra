@@ -2,7 +2,7 @@
 set -euo pipefail
 
 FLAKE_DIR=~/Programming/sysadmin/nix-infra
-MACHINES=("desktop" "vault") # bootstrap excluded, ISO-only
+MACHINES=("desktop" "laptop" "vault") # bootstrap excluded, ISO-only
 
 cd "$FLAKE_DIR"
 ${EDITOR:-nvim} .
