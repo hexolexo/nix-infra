@@ -42,7 +42,7 @@
             };
           };
           # Tune down if completions are slow over WireGuard
-          request_timeout = 3;
+          request_timeout = 10;
           throttle_ms = 1000;
         };
       };
