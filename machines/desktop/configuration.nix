@@ -8,6 +8,7 @@
     ../shared/common.nix
     ./networking.nix
     ./ollama.nix
+    ./audio.nix
   ];
 
   networking = {
