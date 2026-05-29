@@ -1,0 +1,261 @@
+{pkgs, ...}: {
+  imports = [./keyd.nix];
+
+  nixpkgs.config.allowUnfree = true;
+
+  security = {
+    pam.u2f = {
+      enable = true;
+      control = "sufficient";
+    };
+    pam.services = {
+      sudo.u2fAuth = true;
+      login.u2fAuth = true;
+    };
+    polkit.enable = true;
+    # Desktop needs this too
+    rtkit.enable = true;
+  };
+
+  documentation.man.enable = true;
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
+
+  time.timeZone = "Australia/Sydney";
+
+  i18n = {
+    defaultLocale = "en_AU.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_AU.UTF-8";
+      LC_IDENTIFICATION = "en_AU.UTF-8";
+      LC_MEASUREMENT = "en_AU.UTF-8";
+      LC_MONETARY = "en_AU.UTF-8";
+      LC_NAME = "en_AU.UTF-8";
+      LC_NUMERIC = "en_AU.UTF-8";
+      LC_PAPER = "en_AU.UTF-8";
+      LC_TELEPHONE = "en_AU.UTF-8";
+      LC_TIME = "en_AU.UTF-8";
+    };
+  };
+
+  users.users.hexolexo = {
+    isNormalUser = true;
+    description = "hexolexo";
+    initialPassword = "changeme";
+    shell = pkgs.fish;
+    extraGroups = ["input" "networkmanager" "wheel"];
+  };
+
+  environment.systemPackages = with pkgs; [
+    # Applications
+    librewolf
+    freetube
+    moonlight-qt
+    obsidian
+    easyeffects
+    calf
+    lsp-plugins
+
+    # Theming
+    (catppuccin-gtk.override {
+      accents = ["lavender"];
+      variant = "mocha";
+    })
+    libsForQt5.qtstyleplugin-kvantum
+    (catppuccin-kvantum.override {
+      accent = "lavender";
+      variant = "mocha";
+    })
+    libsForQt5.qt5ct
+
+    # Wayland/Desktop
+    alacritty
+    cool-retro-term
+    gamescope
+    clipse
+    eww
+    feh
+    glib
+    grimblast
+    mpc
+    mpv
+    ncmpcpp
+    pamixer
+    pinentry-tty
+    prismlauncher
+    swaybg
+    swaylock-effects
+    waybar
+    fuzzel
+    evsieve
+
+    # Development
+    android-tools
+    clang
+    gnumake
+    gcc
+    git
+    go
+    gopls
+    go-tools
+    jq
+    lua-language-server
+    marksman
+    micro
+    natscli
+    nkeys
+    nil
+    alejandra
+    nix-output-monitor
+    shfmt
+    opentofu
+    pkg-config
+    rustc
+    neovim
+    unzip
+    packwiz
+
+    # Shell/Terminal
+    btop
+    fzf
+    ripgrep
+    fd
+    highlight
+    pass
+    mutagen
+    vhs
+    gum
+    caligula
+
+    # System Tools
+    borgbackup
+    kdePackages.polkit-kde-agent-1
+    brightnessctl
+    ffmpeg-full
+    libxkbcommon
+    socat
+    wireguard-tools
+    wl-clipboard
+    yt-dlp
+
+    # Virtualisation
+    spice
+    spice-gtk
+    spice-protocol
+    virt-manager
+    virt-viewer
+    virtio-win
+    win-spice
+  ];
+
+  services = {
+    udisks2.enable = true;
+    dbus.enable = true;
+    flatpak.enable = true;
+    fwupd.enable = true;
+    blueman.enable = true;
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    mpd = {
+      enable = true;
+      user = "hexolexo";
+      group = "users";
+      settings = {
+        music_directory = "/home/hexolexo/Music";
+        audio_output = [
+          {
+            type = "pulse";
+            name = "PulseAudio/PipeWire";
+            # WARN: hardcoded UID 1000 — breaks if hexolexo isn't the first user
+            server = "/run/user/1000/pulse/native";
+          }
+        ];
+      };
+    };
+  };
+
+  programs = {
+    firefox.enable = true;
+    steam.enable = true;
+    kdeconnect.enable = true;
+    hyprland.enable = true;
+    fish.enable = true;
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-tty;
+    };
+    dconf.enable = true;
+    neovim.defaultEditor = true;
+  };
+
+  fonts.packages = [pkgs.nerd-fonts.fira-code];
+
+  hardware = {
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [rocmPackages.clr.icd];
+    };
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
+  };
+
+  # Disable all sleep — both machines are always-on
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
+  };
+
+  nix = {
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "server";
+        system = "x86_64-linux";
+        sshUser = "nix-builder";
+        sshKey = "/home/hexolexo/.ssh/id_ed25519";
+        maxJobs = 20;
+        speedFactor = 2;
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        mandatoryFeatures = [];
+      }
+    ];
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    settings = {
+      builders-use-substitutes = true;
+      experimental-features = ["nix-command" "flakes"];
+    };
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [];
+    allowedUDPPorts = [];
+  };
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+}
