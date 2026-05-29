@@ -4,10 +4,30 @@ set -euo pipefail
 FLAKE_DIR=~/Programming/sysadmin/nix-infra
 MACHINES=("desktop" "laptop" "vault") # bootstrap excluded, ISO-only
 
+# Map hostname -> flake target and machine dir
+# HACK: update this if hostnames change
+declare -A HOST_FLAKE=(
+    ["hexolexo"]="hexolexo"
+    ["hexolexo-pc"]="hexolexo-pc"
+)
+declare -A HOST_MACHINE=(
+    ["hexolexo"]="laptop"
+    ["hexolexo-pc"]="desktop"
+)
+
+HOSTNAME=$(hostname)
+LOCAL_FLAKE="${HOST_FLAKE[$HOSTNAME]:-}"
+LOCAL_MACHINE="${HOST_MACHINE[$HOSTNAME]:-}"
+
+if [[ -z "$LOCAL_FLAKE" ]]; then
+    echo "Unknown hostname: $HOSTNAME — add it to HOST_FLAKE/HOST_MACHINE"
+    exit 1
+fi
+
 cd "$FLAKE_DIR"
 ${EDITOR:-nvim} .
 
-desktop_changed=0
+local_changed=0
 vault_changed=0
 
 update_flake() {
@@ -15,6 +35,7 @@ update_flake() {
     echo "Updating flake.lock for $machine..."
     nix flake update --flake "$FLAKE_DIR/machines/$machine"
 }
+
 has_changes() {
     ! git diff --quiet ||
         ! git diff --cached --quiet ||
@@ -29,7 +50,7 @@ if ! has_changes; then
         for machine in "${MACHINES[@]}"; do
             update_flake "$machine"
         done
-        desktop_changed=1
+        local_changed=1
         vault_changed=1
     else
         for machine in "${MACHINES[@]}"; do
@@ -37,13 +58,12 @@ if ! has_changes; then
             read -r response
             if [[ "$response" =~ ^[Yy]$ ]]; then
                 update_flake "$machine"
-                [[ "$machine" == "desktop" ]] && desktop_changed=1
+                [[ "$machine" == "$LOCAL_MACHINE" ]] && local_changed=1
                 [[ "$machine" == "vault" ]] && vault_changed=1
             fi
         done
     fi
 
-    # Bail if nothing actually changed after updates
     if git diff --quiet; then
         echo "Flakes already up to date, exiting"
         exit 0
@@ -58,19 +78,20 @@ else
         git diff --cached --name-only
     )
 
-    # Root flake.nix or shared affects everyone
+    # shared/ changes affect local machine too
     if echo "$changed_files" | grep -qE '^(flake\.nix|machines/shared/)'; then
-        desktop_changed=1
+        local_changed=1
         vault_changed=1
     fi
-    echo "$changed_files" | grep -q 'machines/desktop/' && desktop_changed=1
+
+    echo "$changed_files" | grep -q "machines/$LOCAL_MACHINE/" && local_changed=1
     echo "$changed_files" | grep -q 'machines/vault/' && vault_changed=1
 fi
 
 echo ""
-case "${desktop_changed}${vault_changed}" in
-11) echo "Changes affect both desktop and vault" ;;
-10) echo "Changes affect desktop only" ;;
+case "${local_changed}${vault_changed}" in
+11) echo "Changes affect $HOSTNAME and vault" ;;
+10) echo "Changes affect $HOSTNAME only" ;;
 01) echo "Changes affect vault only" ;;
 00) echo "Nothing changed, exiting" && exit 0 ;;
 esac
@@ -82,11 +103,11 @@ read -r response
 commits=""
 git add .
 
-if [[ $desktop_changed -eq 1 ]]; then
-    echo "Building desktop..."
-    sudo -v && sudo nixos-rebuild switch --flake '/home/hexolexo/Programming/sysadmin/nix-infra#hexolexo' |& nom
+if [[ $local_changed -eq 1 ]]; then
+    echo "Building $HOSTNAME..."
+    sudo -v && sudo nixos-rebuild switch --flake "$FLAKE_DIR#$LOCAL_FLAKE" |& nom
     gen=$(nixos-rebuild list-generations | awk 'NR==2 {print $1}')
-    commits="desktop: gen $gen"
+    commits="$LOCAL_MACHINE: gen $gen"
 fi
 
 if [[ $vault_changed -eq 1 ]]; then
