@@ -16,11 +16,13 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
+    nix-cachyos-kernel,
     agenix,
     nixvim,
     ...
@@ -28,6 +30,7 @@
     nixosConfigurations.hexolexo-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        {nixpkgs.overlays = [nix-cachyos-kernel.overlays.default];}
         ./configuration.nix
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
