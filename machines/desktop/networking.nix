@@ -1,10 +1,8 @@
-{secrets, ...}: {
+{...}: {
   networking.networkmanager.enable = true;
 
   networking.hosts = {
-    "${secrets.HomeIPv4}" = ["home"];
-    "${secrets.HomeIP}" = ["home"]; # man why is IPv6 such a pain
-    "${secrets.ServerIP}" = ["server"];
+    "192.168.1.153" = ["home"];
   };
   networking.wireguard.interfaces = {
     wg0 = {
@@ -15,7 +13,7 @@
       peers = [
         {
           publicKey = "p6qJwxfNS8cj+MNyBQSWCouPlwzz1MrwLOYObE48iBk=";
-          endpoint = "${secrets.HomeIPv4}:51820";
+          endpoint = "192.168.1.153:51820";
 
           allowedIPs = ["10.0.0.0/24"];
           persistentKeepalive = 25;
