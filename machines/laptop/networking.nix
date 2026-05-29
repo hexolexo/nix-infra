@@ -8,9 +8,6 @@
     };
   };
 
-  networking.hostName = "hexolexo";
-  # note to self don't fuck with DNS
-
   networking.networkmanager.enable = true;
 
   networking.hosts = {
