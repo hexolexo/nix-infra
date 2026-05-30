@@ -30,21 +30,15 @@
     fzf
     highlight
   ];
-
-  # home.nix
-  xdg.configFile."openxr/1/active_runtime.json".source = "${osConfig.services.wivrn.package}/share/openxr/1/openxr_wivrn.json";
-
-  xdg.configFile."openvr/openvrpaths.vrpath".text = let
-    steam = "${config.xdg.dataHome}/Steam";
-  in
-    builtins.toJSON {
+  xdg.configFile."openvr/openvrpaths.vrpath" = {
+    force = true; # clobber whatever Steam wrote here
+    text = builtins.toJSON {
       version = 1;
       jsonid = "vrpathreg";
-      config = ["${steam}/config"];
-      log = ["${steam}/logs"];
-      # WARN: opencomposite bridges OpenVR → OpenXR; without this,
-      # most Steam VR games won't see WiVRn at all
+      config = ["${config.xdg.dataHome}/Steam/config"];
+      log = ["${config.xdg.dataHome}/Steam/logs"];
       runtime = ["${pkgs.opencomposite}/lib/opencomposite"];
       external_drivers = null;
     };
+  };
 }
