@@ -126,7 +126,6 @@ fi
 
 validate_target() {
     local target=$1
-    # Check syntax and system derivation validity without compiling binaries
     nix eval ".#nixosConfigurations.${target}.config.system.build.toplevel.drvPath" --show-trace >/dev/null
 }
 
@@ -135,7 +134,10 @@ gum format "### Validating Nix configurations..."
 
 VALIDATION_FAILED=0
 for target in "${targets_to_rebuild[@]}"; do
-    if ! gum spin --spinner dot --title "Checking output for $target..." -- bash -c 'validate_target "$1"' -- "$target"; then
+    gum format "### Checking output for **$target**..."
+
+    # Run Nix directly so it retains access to your terminal's TTY
+    if ! validate_target "$target"; then
         gum format "## ❌ Validation failed for target: **$target**"
         VALIDATION_FAILED=1
     fi
