@@ -185,11 +185,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1780103057,
-        "narHash": "sha256-c5uy+fJQqufveCC2qYM1qaZ3co1Tfbdxdomr6FA3lXE=",
+        "lastModified": 1780133022,
+        "narHash": "sha256-F8Bb0sJsC2jCy9/w69VUF4HvaLzWfY8qWgo7ru5o8F0=",
         "ref": "refs/heads/main",
-        "rev": "f720372272bb1e6a79b190feb67d6ad17241f655",
-        "revCount": 26,
+        "rev": "128ae684b3b5ac80f75947096df7bcf9753083ec",
+        "revCount": 27,
         "type": "git",
         "url": "http://10.0.0.1:3000/hexolexo/Conduit.git"
       },
@@ -839,11 +839,11 @@
         "systems": "systems_11"
       },
       "locked": {
-        "lastModified": 1780028654,
-        "narHash": "sha256-rpHYDTAjj+DFy4sm48ewEsFof73sivpdkobM2Hv26d0=",
+        "lastModified": 1780113881,
+        "narHash": "sha256-AMOOt682Odr4GZwCwZ08/Q/21/Sh3DxfmOAoiQbTKhk=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "06475c68a76a6120c7ee3d4356b243965f28e323",
+        "rev": "d9bd57f218cda7d6aac4b52546240da0df76a1f9",
         "type": "github"
       },
       "original": {
