@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Ensure gum is installed
 if ! command -v gum &>/dev/null; then
-    echo "Error: 'gum' is not installed. Install it via 'nix-shell -p gum' or add it to your environment."
+    echo "Error: 'gum' is not installed."
     exit 1
 fi
 
@@ -34,7 +34,7 @@ LOCAL_FLAKE="${HOST_FLAKE[$HOSTNAME]:-}"
 LOCAL_MACHINE="${HOST_MACHINE[$HOSTNAME]:-}"
 
 if [[ -z "$LOCAL_FLAKE" ]]; then
-    gum format "## :x: Unknown hostname: $HOSTNAME — add it to HOST_FLAKE/HOST_MACHINE"
+    gum format "## Unknown hostname: $HOSTNAME — add it to HOST_FLAKE/HOST_MACHINE"
     exit 1
 fi
 
@@ -58,7 +58,7 @@ has_changes() {
 }
 
 if ! has_changes; then
-    gum format "### :sparkles: No local changes detected."
+    gum format "### No local changes detected."
 
     # Use gum choose --no-limit for a multi-select checkbox menu
     echo "Select machines to update (Space to select, Enter to confirm):"
@@ -109,12 +109,12 @@ for machine in "${MACHINES[@]}"; do
 done
 
 if [[ ${#targets_to_rebuild[@]} -eq 0 ]]; then
-    gum format "### :ghost: Nothing changed, exiting."
+    gum format "### Nothing changed, exiting."
     exit 0
 fi
 
 echo ""
-gum format "### :rocket: Pending NATS Rebuilds:"
+gum format "### Pending NATS Rebuilds:"
 for target in "${targets_to_rebuild[@]}"; do
     echo "  • $target"
 done
@@ -143,7 +143,7 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
             done
         ' -- "$NATS_KEY" "$NATS_SERVER" "${targets_to_rebuild[@]}"
 
-    gum format "## :white_check_mark: Done!"
+    gum format "## Done!"
 else
     gum format "*Aborted by user.*"
     exit 0

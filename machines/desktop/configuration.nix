@@ -4,6 +4,9 @@
   ...
 }: {
   imports = [
+    testing
+    invalid
+    nix
     ./hardware-configuration.nix
     ../shared/common.nix
     ./networking.nix
