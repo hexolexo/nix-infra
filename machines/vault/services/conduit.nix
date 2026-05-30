@@ -84,6 +84,6 @@
     enable = true;
     natsURL = "nats://localhost:4222";
     nkeySeedFile = config.age.secrets.conduit-nixos.path;
-    flakePath = "/etc/nixos";
+    flakePath = "git+http://10.0.0.1/hexolexo/nix-infra#vault";
   };
 }
