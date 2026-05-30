@@ -57,6 +57,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    openrgb
     monado-vulkan-layers
     vulkan-tools
     wayvr
