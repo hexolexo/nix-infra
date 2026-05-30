@@ -33,7 +33,7 @@
     nixosConfigurations.hexolexo-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        {nixpkgs.overlays = [nix-cachyos-kernel.overlays.default];}
+        {nixpkgs.overlays = [nix-cachyos-kernel.overlays.pinned];}
         ./configuration.nix
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
