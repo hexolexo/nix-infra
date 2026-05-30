@@ -119,7 +119,40 @@ for target in "${targets_to_rebuild[@]}"; do
     echo "  • $target"
 done
 echo ""
+HAS_UNTRACKED=$(git ls-files --others --exclude-standard)
+if [[ -n "$HAS_UNTRACKED" ]]; then
+    git add -N .
+fi
 
+validate_target() {
+    local target=$1
+    # Check syntax and system derivation validity without compiling binaries
+    nix eval ".#nixosConfigurations.${target}.config.system.build.toplevel.drvPath" --show-trace >/dev/null
+}
+
+export -f validate_target
+gum format "### Validating Nix configurations..."
+
+VALIDATION_FAILED=0
+for target in "${targets_to_rebuild[@]}"; do
+    if ! gum spin --spinner dot --title "Checking output for $target..." -- bash -c 'validate_target "$1"' -- "$target"; then
+        gum format "## ❌ Validation failed for target: **$target**"
+        VALIDATION_FAILED=1
+    fi
+done
+
+# Undo the temporary git add -N if validation fails or succeeds
+if [[ -n "$HAS_UNTRACKED" ]]; then
+    git restore --staged . &>/dev/null || true
+fi
+
+if [[ "$VALIDATION_FAILED" -eq 1 ]]; then
+    gum format "### Fix errors before committing."
+    exit 1
+fi
+
+gum format "## \e[32m✔ All targets validated successfully!\e[0m"
+echo ""
 # Use gum confirm for the final verification step
 if gum confirm "Commit, push, and trigger via NATS?"; then
     # Git Operations
