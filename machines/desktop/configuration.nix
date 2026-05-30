@@ -33,7 +33,7 @@
 
   programs.steam.enable = true;
 
-  services.xserver.videoDrivers = ["amdgpu"]; # AMD: use "amdgpu"
+  services.xserver.videoDrivers = ["amdgpu"];
 
   services.wivrn = {
     enable = true;

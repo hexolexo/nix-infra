@@ -1,18 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
-# Ensure gum is installed
 if ! command -v gum &>/dev/null; then
     echo "Error: 'gum' is not installed."
     exit 1
 fi
 
 FLAKE_DIR=~/Programming/sysadmin/nix-infra
-MACHINES=("desktop" "laptop" "vault") # bootstrap excluded, ISO-only
+MACHINES=("desktop" "laptop" "vault")
 NATS_SERVER="nats://10.0.0.1:4222"
 NATS_KEY="$HOME/.secrets/testkey"
 
-# Map hostname -> flake target and machine dir
 declare -A HOST_FLAKE=(
     ["hexolexo"]="hexolexo"
     ["hexolexo-pc"]="hexolexo-pc"
@@ -21,8 +19,6 @@ declare -A HOST_MACHINE=(
     ["hexolexo"]="laptop"
     ["hexolexo-pc"]="desktop"
 )
-
-# Reverse mapping to get flake target names from machine directories
 declare -A MACHINE_TO_FLAKE=(
     ["laptop"]="hexolexo"
     ["desktop"]="hexolexo-pc"
@@ -41,7 +37,6 @@ fi
 cd "$FLAKE_DIR"
 ${EDITOR:-nvim} .
 
-# Track which machines need a rebuild trigger
 declare -A CHANGED_MACHINES=()
 for m in "${MACHINES[@]}"; do CHANGED_MACHINES[$m]=0; done
 
@@ -60,12 +55,10 @@ has_changes() {
 if ! has_changes; then
     gum format "### No local changes detected."
 
-    # Use gum choose --no-limit for a multi-select checkbox menu
     echo "Select machines to update (Space to select, Enter to confirm):"
     SELECTED_MACHINES=$(gum choose --no-limit "${MACHINES[@]}")
 
     if [[ -n "$SELECTED_MACHINES" ]]; then
-        # Convert newline-separated string from gum into an array
         mapfile -t targets <<<"$SELECTED_MACHINES"
         for machine in "${targets[@]}"; do
             update_flake "$machine"
@@ -85,13 +78,11 @@ else
         git diff --cached --name-only
     )
 
-    # shared/ or root flake changes affect everything
     if echo "$changed_files" | grep -qE '^(flake\.nix|machines/shared/)'; then
         for machine in "${MACHINES[@]}"; do
             CHANGED_MACHINES[$machine]=1
         done
     else
-        # Check specific machine folders
         for machine in "${MACHINES[@]}"; do
             if echo "$changed_files" | grep -q "machines/$machine/"; then
                 CHANGED_MACHINES[$machine]=1
@@ -100,7 +91,6 @@ else
     fi
 fi
 
-# Determine which systems actually need publishing
 targets_to_rebuild=()
 for machine in "${MACHINES[@]}"; do
     if [[ ${CHANGED_MACHINES[$machine]} -eq 1 ]]; then
@@ -119,6 +109,7 @@ for target in "${targets_to_rebuild[@]}"; do
     echo "  • $target"
 done
 echo ""
+
 HAS_UNTRACKED=$(git ls-files --others --exclude-standard)
 if [[ -n "$HAS_UNTRACKED" ]]; then
     git add -N .
@@ -135,15 +126,12 @@ gum format "### Validating Nix configurations..."
 VALIDATION_FAILED=0
 for target in "${targets_to_rebuild[@]}"; do
     gum format "### Checking output for **$target**..."
-
-    # Run Nix directly so it retains access to your terminal's TTY
     if ! validate_target "$target"; then
         gum format "## ❌ Validation failed for target: **$target**"
         VALIDATION_FAILED=1
     fi
 done
 
-# Undo the temporary git add -N if validation fails or succeeds
 if [[ -n "$HAS_UNTRACKED" ]]; then
     git restore --staged . &>/dev/null || true
 fi
@@ -153,11 +141,10 @@ if [[ "$VALIDATION_FAILED" -eq 1 ]]; then
     exit 1
 fi
 
-gum format "## \e[32m✔ All targets validated successfully!\e[0m"
+gum format "## ✔ All targets validated successfully!"
 echo ""
-# Use gum confirm for the final verification step
+
 if gum confirm "Commit, push, and trigger via NATS?"; then
-    # Git Operations
     git add -A
     commits="rebuild triggered for: $(
         IFS=,
@@ -166,8 +153,6 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
     git commit -m "$commits"
     git push
 
-    # Trigger NATS publications wrapped in a clean gum spin animation
-    # We pass the array elements as arguments to the bash -c subshell safely
     gum spin --spinner dot --title "Publishing NATS rebuild events..." -- \
         bash -c '
             NATS_KEY="$1"
@@ -177,6 +162,63 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
                 nats pub --nkey="$NATS_KEY" "nix.rebuild.$target" "" --server "$NATS_SERVER" > /dev/null
             done
         ' -- "$NATS_KEY" "$NATS_SERVER" "${targets_to_rebuild[@]}"
+
+    gum format "## Waiting for rebuild status..."
+    echo ""
+
+    # Track which targets we're still waiting on
+    # WARN: associative arrays need declare -A, not assignment during declare
+    declare -A pending=()
+    for target in "${targets_to_rebuild[@]}"; do
+        pending[$target]=1
+    done
+    total=${#targets_to_rebuild[@]}
+    done_count=0
+
+    # WARN: nats sub exits after --count messages; if an agent is offline we'll
+    # hang until the timeout. Adjust --timeout to taste.
+    # WARN: nats CLI flag names vary by version — check `nats sub --help` if this breaks
+    while IFS= read -r line; do
+        # Each line from `nats sub` is raw JSON from nix.listen
+        host=$(echo "$line" | grep -o '"host":"[^"]*"' | cut -d'"' -f4)
+        status=$(echo "$line" | grep -o '"status":"[^"]*"' | cut -d'"' -f4)
+        message=$(echo "$line" | grep -o '"message":"[^"]*"' | cut -d'"' -f4)
+
+        # Skip lines that don't look like status payloads (headers, blank lines)
+        [[ -z "$host" ]] && continue
+
+        if [[ "$status" == "ok" ]]; then
+            gum format "### ✅ $host — $message"
+        else
+            gum format "### ❌ $host — $message"
+        fi
+
+        # Mark done if this host maps to one of our targets
+        for target in "${!pending[@]}"; do
+            if [[ "$target" == "$host" ]]; then
+                unset "pending[$target]"
+                ((done_count++)) || true
+                break
+            fi
+        done
+
+        # Exit once all triggered targets have reported back
+        if [[ $done_count -ge $total ]]; then
+            break
+        fi
+    done < <(
+        nats sub "nix.listen" \
+            --nkey="$NATS_KEY" \
+            --server="$NATS_SERVER" \
+            --count="$total" \
+            --timeout=300s \
+            2>/dev/null
+    )
+
+    # Report anything that never responded
+    for target in "${!pending[@]}"; do
+        gum format "### ⚠️  $target — no response within timeout"
+    done
 
     gum format "## Done!"
 else
