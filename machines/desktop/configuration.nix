@@ -33,12 +33,7 @@
 
   programs.steam.enable = true;
 
-  # AMD: nothing extra. Nvidia: add this block
-  hardware.nvidia = {
-    modesetting.enable = true;
-    open = true; # open kernel module, required for VR reprojection
-  };
-  services.xserver.videoDrivers = ["nvidia"]; # AMD: use "amdgpu"
+  services.xserver.videoDrivers = ["amdgpu"]; # AMD: use "amdgpu"
 
   services.wivrn = {
     enable = true;
