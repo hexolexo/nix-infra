@@ -55,9 +55,9 @@
     enable = true;
     openFirewall = true; # pokes UDP hole for streaming
   };
+  services.hardware.openrgb.enable = true;
 
   environment.systemPackages = with pkgs; [
-    openrgb
     monado-vulkan-layers
     vulkan-tools
     wayvr
