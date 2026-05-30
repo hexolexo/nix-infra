@@ -33,8 +33,20 @@
 
   programs.steam.enable = true;
 
+  # AMD: nothing extra. Nvidia: add this block
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = true; # open kernel module, required for VR reprojection
+  };
+  services.xserver.videoDrivers = ["nvidia"]; # AMD: use "amdgpu"
+
+  services.wivrn = {
+    enable = true;
+    openFirewall = true; # pokes UDP hole for streaming
+  };
+
   environment.systemPackages = with pkgs; [
-    zenity # runtime dep for ALVR dialogs; not declared in the package
+    wayvr
   ];
 
   nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];
