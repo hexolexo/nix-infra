@@ -59,6 +59,7 @@
 
   environment.systemPackages = with pkgs; [
     monado-vulkan-layers
+    mangohud
     vulkan-tools
     wayvr
   ];
