@@ -55,6 +55,13 @@
           subscribe = ["nix.rebuild.>"];
         };
       }
+      {
+        nkey = "UCRX62IKQWXZXMQW4JRNAIBPOJCQHU6ENGAOXSOR3PDDDSEDYIUOSUUT";
+        permissions = {
+          publish = ["nix.rebuild.>"];
+          subscribe = ["nix.listen"];
+        };
+      }
     ];
   };
 
