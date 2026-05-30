@@ -14,6 +14,12 @@
     mode = "0400";
   };
 
+  age.secrets.conduit-nixos = {
+    file = ../secrets/nixosNATS.age;
+    owner = "root";
+    mode = "0400";
+  };
+
   networking.firewall.allowedTCPPorts = [4222];
   services.conduit.nats = {
     enable = true;
@@ -42,6 +48,13 @@
           subscribe = ["wg.>" "_INBOX.>"];
         };
       }
+      {
+        nkey = "UCSZMASGZSCMML4T7YAI4J5ODIMHNYCRXNLLAG7O3L2H6KMNYNDPY6WR";
+        permissions = {
+          publish = ["nix.listen"];
+          subscribe = ["nix.rebuild.>"];
+        };
+      }
     ];
   };
 
@@ -58,5 +71,12 @@
     enable = true;
     natsURL = "nats://localhost:4222";
     nkeySeedFile = config.age.secrets.conduit-wireguard.path;
+  };
+
+  services.conduit.nixos-agent = {
+    enable = true;
+    natsURL = "nats://localhost:4222";
+    nkeySeedFile = config.age.secrets.conduit-nixos.path;
+    flakePath = "/etc/nixos";
   };
 }

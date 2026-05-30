@@ -60,6 +60,7 @@
         conduit.nixosModules.nats
         conduit.nixosModules.libvirt-agent
         conduit.nixosModules.wireguard-agent
+        conduit.nixosModules.nixos-agent
         nix-minecraft.nixosModules.minecraft-servers
         ({...}: {
           nixpkgs.overlays = [copyparty.overlays.default nix-minecraft.overlays.default];
