@@ -56,10 +56,11 @@
         };
       }
       {
+        # Desktop
         nkey = "UCRX62IKQWXZXMQW4JRNAIBPOJCQHU6ENGAOXSOR3PDDDSEDYIUOSUUT";
         permissions = {
-          publish = ["nix.rebuild.>"];
-          subscribe = ["nix.listen"];
+          publish = ["nix.rebuild.>" "nix.listen"];
+          subscribe = ["nix.listen" "nix.rebuild.>"];
         };
       }
     ];

@@ -17,6 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    conduit.url = "git+http://10.0.0.1:3000/hexolexo/Conduit.git";
   };
 
   outputs = {
@@ -26,6 +27,7 @@
     nix-cachyos-kernel,
     agenix,
     nixvim,
+    conduit,
     ...
   }: {
     nixosConfigurations.hexolexo-pc = nixpkgs.lib.nixosSystem {
@@ -35,6 +37,7 @@
         ./configuration.nix
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
+        conduit.nixosModules.nixos-agent
         {
           home-manager.sharedModules = [nixvim.homeModules.nixvim];
           home-manager.useGlobalPkgs = true;
