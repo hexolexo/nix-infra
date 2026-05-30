@@ -23,6 +23,13 @@
     enable = true;
     enable32Bit = true;
   };
+  systemd.user.services.wivrn.environment = {
+    XRT_COMPOSITOR_COMPUTE = "1"; # force GPU-side async reprojection
+  };
+  systemd.user.services.wivrn.serviceConfig = {
+    AmbientCapabilities = "CAP_SYS_NICE";
+    CapabilityBoundingSet = "CAP_SYS_NICE";
+  };
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -41,6 +48,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    monado-vulkan-layers
+    vulkan-tools
     wayvr
   ];
 
