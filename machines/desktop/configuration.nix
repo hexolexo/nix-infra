@@ -38,7 +38,16 @@
 
   boot.initrd.kernelModules = ["amdgpu"];
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override {
+      extraProfile = ''
+        # punch WiVRn socket through pressure-vessel sandbox for all VR games
+        export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1
+        unset TZ  # fixes VRChat timezone issues, harmless otherwise
+      '';
+    };
+  };
 
   services.xserver.videoDrivers = ["amdgpu"];
 
