@@ -447,14 +447,17 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1780048735,
-        "narHash": "sha256-g5ZRxSY8E9N9SB9nXzY1LB6b3UDpDIUtLvAfyybYVd0=",
-        "path": "/home/hexolexo/Programming/sysadmin/secrets",
-        "type": "path"
+        "lastModified": 1780101572,
+        "narHash": "sha256-RfX7BedtO8g9Khr7Hj8+gudKnBJlL10w+w3s+/wF1gk=",
+        "ref": "refs/heads/main",
+        "rev": "58ad1ba9b1cd0a8306131e1b0da06b9bce1d19b8",
+        "revCount": 12,
+        "type": "git",
+        "url": "http://10.0.0.1:3000/hexolexo/secrets.git"
       },
       "original": {
-        "path": "/home/hexolexo/Programming/sysadmin/secrets",
-        "type": "path"
+        "type": "git",
+        "url": "http://10.0.0.1:3000/hexolexo/secrets.git"
       }
     },
     "systems": {
