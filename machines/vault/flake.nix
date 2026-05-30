@@ -31,7 +31,7 @@
 
     clankhare.url = "github:hexolexo/clankhare";
     conduit.url = "git+http://10.0.0.1:3000/hexolexo/Conduit.git";
-    secrets.url = "path:/home/hexolexo/Programming/sysadmin/secrets";
+    secrets.url = "git+http://10.0.0.1:3000/hexolexo/secrets.git";
   };
 
   outputs = {
