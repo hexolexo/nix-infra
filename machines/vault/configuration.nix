@@ -106,7 +106,8 @@ in {
     hostName = "vault";
     networkmanager.enable = true;
     firewall.enable = true;
-    firewall.allowedTCPPorts = []; # NOTE: Firewall is configured per service bundle
+    firewall.allowedTCPPorts = []; #  NOTE: Firewall is configured per service bundle
+    firewall.interfaces."wg0".allowedTCPPorts = [25565];
   };
 
   fileSystems."/data" = {
