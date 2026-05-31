@@ -40,12 +40,14 @@
 
   programs.steam = {
     enable = true;
+    extraCompatPackages = [pkgs.proton-ge-bin]; # if you use this, keep it
+
+    # HACK: extraProfile doesn't reliably propagate through bwrap into
+    # pressure-vessel; setting it here does
     package = pkgs.steam.override {
-      extraProfile = ''
-        # punch WiVRn socket through pressure-vessel sandbox for all VR games
-        export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1
-        unset TZ  # fixes VRChat timezone issues, harmless otherwise
-      '';
+      extraEnv = {
+        PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES = "1";
+      };
     };
   };
 
