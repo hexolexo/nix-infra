@@ -40,6 +40,11 @@
 
   boot.initrd.kernelModules = ["amdgpu"];
 
+  boot.kernelParams = [
+    "amd_iommu=on"
+    "iommu=pt"
+  ];
+
   programs.steam = {
     enable = true;
     extraCompatPackages = [pkgs.proton-ge-bin]; # if you use this, keep it
