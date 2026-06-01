@@ -36,7 +36,7 @@
         {
           #publicKey = "v/mq4oPyl/yPn3TLdT46Fw39H/ThFOM79KfMd1BXumQ=";
           publicKey = "SSXDHlSHH63rYa3KC4JskkO2sesb/dxO0hFUq54GTFU=";
-          allowedIPs = ["10.0.0.6/32"]; # phone
+          allowedIPs = ["10.0.0.6/32"]; # toshi
           persistentKeepalive = 25;
         }
         {
@@ -49,7 +49,11 @@
           allowedIPs = ["10.0.0.8/32"]; # pc
           persistentKeepalive = 25;
         }
-
+        {
+          publicKey = "v/mq4oPyl/yPn3TLdT46Fw39H/ThFOM79KfMd1BXumQ=";
+          allowedIPs = ["10.0.0.9/32"]; # phone
+          persistentKeepalive = 25;
+        }
         {
           publicKey = "L8SP4nzgB6ywOxEhp8n4O9/J70AGx4CFT3QLDF5NJXs=";
           allowedIPs = ["10.0.0.10/32"]; # CI builder
