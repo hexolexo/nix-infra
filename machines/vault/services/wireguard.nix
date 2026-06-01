@@ -34,7 +34,8 @@
           persistentKeepalive = 25;
         }
         {
-          publicKey = "v/mq4oPyl/yPn3TLdT46Fw39H/ThFOM79KfMd1BXumQ=";
+          #publicKey = "v/mq4oPyl/yPn3TLdT46Fw39H/ThFOM79KfMd1BXumQ=";
+          publicKey = "SSXDHlSHH63rYa3KC4JskkO2sesb/dxO0hFUq54GTFU=";
           allowedIPs = ["10.0.0.6/32"]; # phone
           persistentKeepalive = 25;
         }
