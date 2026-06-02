@@ -15,7 +15,7 @@ in {
     #./containers/murmur.nix
     ./containers/copyparty.nix
     #./services/nats.nix
-    ./services/conduit.nix
+    ./services/conduit.nix # Not currently public
     ./services/ollama.nix
     #./services/ntfy.nix
     ./services/jellyfin.nix
