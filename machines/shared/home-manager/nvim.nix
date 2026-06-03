@@ -45,6 +45,8 @@
             auto_trigger_ft = ["go" "nix" "bash" "python"];
             keymap = {
               accept = "<A-a>";
+              next = "<A-]>";
+              prev = "<A-[>";
               accept_line = "<A-q>";
               dismiss = "<A-x>";
             };
