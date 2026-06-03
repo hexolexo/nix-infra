@@ -26,22 +26,30 @@
       minuet = {
         enable = true;
         settings = {
-          provider = "openai_compatible";
+          # HACK: was openai_compatible — wrong provider, caused chat-style completions
+          provider = "openai_fim_compatible";
           provider_options = {
-            openai_compatible = {
-              # qwen2.5-coder:14b is solid for completion, matches your codecompanion default
+            openai_fim_compatible = {
               model = "qwen2.5-coder:14b";
               end_point = "http://10.0.0.8:11434/v1/completions";
               name = "ollama";
               api_key = "TERM";
               optional = {
                 max_tokens = 56;
-                # WARN: top_p + temperature both set can cause unpredictable sampling
                 top_p = 0.9;
+                # Stop at double newlines — avoids runaway completions
+                stop = ["\n\n"];
               };
             };
           };
-          # Tune down if completions are slow over WireGuard
+          virtualtext = {
+            auto_trigger_ft = ["go" "nix" "bash" "python"];
+            keymap = {
+              accept = "<A-a>";
+              accept_line = "<A-q>";
+              dismiss = "<A-x>";
+            };
+          };
           request_timeout = 10;
           throttle_ms = 1000;
         };
@@ -64,8 +72,6 @@
               minuet = {
                 name = "minuet";
                 module = "minuet.blink";
-                # WARN: score_offset pushes it above LSP — drop to 1 or 2 if it
-                #       crowds out gopls/nixd suggestions
                 score_offset = 8;
               };
             };
