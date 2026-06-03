@@ -30,7 +30,7 @@
           provider = "openai_fim_compatible";
           provider_options = {
             openai_fim_compatible = {
-              model = "codestral:22b";
+              model = "codestral-16k";
               end_point = "http://10.0.0.8:11434/v1/completions";
               name = "ollama";
               api_key = "TERM";
