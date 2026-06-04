@@ -2,7 +2,9 @@
   pkgs,
   nixos-cachyos-kernel,
   ...
-}: {
+}: let
+  global = import ../vault/global.nix;
+in {
   imports = [
     ./hardware-configuration.nix
     ../shared/common.nix
@@ -37,6 +39,7 @@
   services.desktopManager.plasma6.enable = true;
 
   services.openssh.enable = true;
+  users.users.hexolexo.openssh.authorizedKeys.keys = global.laptopKey;
 
   boot.initrd.kernelModules = ["amdgpu"];
 
