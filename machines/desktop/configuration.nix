@@ -39,7 +39,10 @@ in {
   services.desktopManager.plasma6.enable = true;
 
   services.openssh.enable = true;
-  users.users.hexolexo.openssh.authorizedKeys.keys = global.laptopKey;
+  users.users = {
+    hexolexo.openssh.authorizedKeys.keys = global.laptopKey;
+    root.openssh.authorizedKeys.keys = global.laptopKey;
+  };
 
   boot.initrd.kernelModules = ["amdgpu"];
 
