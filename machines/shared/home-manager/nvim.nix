@@ -171,6 +171,7 @@
             nix = ["alejandra"];
             bash = ["shfmt"];
             gleam = ["gleam"];
+            lua = ["lua-language-server"];
           };
           format_on_save = {
             lsp_format = "fallback";

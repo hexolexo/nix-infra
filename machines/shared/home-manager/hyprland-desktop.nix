@@ -7,10 +7,9 @@
     enable = true;
 
     extraConfig = builtins.concatStringsSep "\n" [
-      (builtins.readFile ./hyprland/sys.conf)
-
-      (builtins.readFile ./hyprland/bindings.conf)
-      (builtins.readFile ./hyprland/ux.conf)
+      (builtins.readFile ./hyprland/sys.lua)
+      (builtins.readFile ./hyprland/bindings.lua)
+      (builtins.readFile ./hyprland/ux.lua)
     ];
   };
   home.file.".config/hypr/scripts" = {
