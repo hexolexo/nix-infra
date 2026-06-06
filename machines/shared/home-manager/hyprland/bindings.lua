@@ -69,8 +69,8 @@ hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(terminal .. " -e bash " .. sc
 
 hl.bind(mainMod .. " + y",         hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + l",         hl.dsp.focus({ workspace = "e-1" }))
---hl.bind(mainMod .. " + SHIFT + y", hl.dsp.window.move_to_workspace({ workspace = "+1" }))
---hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move_to_workspace({ workspace = "-1" }))
+hl.bind(mainMod .. " + SHIFT + y", hl.dsp.window.move({ workspace = "+1" }))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind(mainMod .. " + Q",         hl.dsp.window.kill())
 hl.bind(mainMod .. " + F",         hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("uwsm stop"))
