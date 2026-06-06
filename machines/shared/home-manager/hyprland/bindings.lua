@@ -1,6 +1,6 @@
 local mainMod  = "SUPER"
 local terminal = "alacritty"
-local menu     = "wofi --show drun"
+local menu     = "pkill fuzzel || fuzzel --show drun"
 local scripts  = os.getenv("HOME") .. "/.config/hypr/scripts"
 
 -- ── TERMINAL ────────────────────────────────────────────────────────────
