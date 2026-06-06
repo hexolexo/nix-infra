@@ -80,10 +80,10 @@ hl.bind(mainMod .. " + Space",     hl.dsp.window.float({ action = "toggle" }))
 
 -- ── FOCUS (colemak hjkl = n/e/i/o) ──────────────────────────────────────
 
-hl.bind(mainMod .. " + n", hl.dsp.window.focus({ dir = "l" }))
-hl.bind(mainMod .. " + o", hl.dsp.window.focus({ dir = "r" }))
-hl.bind(mainMod .. " + e", hl.dsp.window.focus({ dir = "u" }))
-hl.bind(mainMod .. " + i", hl.dsp.window.focus({ dir = "d" }))
+hl.bind(mainMod .. " + n",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + o", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + e",    hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + i",  hl.dsp.focus({ direction = "down" }))
 
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.window.move({ dir = "l" }))
 hl.bind(mainMod .. " + SHIFT + o", hl.dsp.window.move({ dir = "r" }))
