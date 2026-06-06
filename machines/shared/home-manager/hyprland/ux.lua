@@ -7,7 +7,7 @@ hl.config({
         border_size         = 2,
         col = {
             -- gradient: colour stops then angle
-            active_border   = "rgba(B0A4FFFF) rgba(B0A4FF00) 45deg",
+            active_border   = { colors = {"rgba(B0A4FFFF)", "rgba(B0A4FF00)"}, angle = 45 },
             inactive_border = "rgba(00000000)",
         },
         layout              = "dwindle",

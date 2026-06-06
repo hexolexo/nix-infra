@@ -101,4 +101,4 @@ hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special({ name = "mag
 
 -- ── MOUSE ────────────────────────────────────────────────────────────────
 
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.move(), { mouse = true })
+-- hl.bind(mainMod .. " + mouse:272", hl.dsp.window.move(), { mouse = true })
