@@ -67,8 +67,8 @@ hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(terminal .. " -e bash " .. sc
 
 -- ── HYPRLAND ─────────────────────────────────────────────────────────────
 
-hl.bind(mainMod .. " + y",         hl.dsp.workspace.relative(1))
-hl.bind(mainMod .. " + l",         hl.dsp.workspace.relative(-1))
+hl.bind(mainMod .. " + y",         hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + l",         hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + SHIFT + y", hl.dsp.window.move_to_workspace({ workspace = "+1" }))
 hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move_to_workspace({ workspace = "-1" }))
 hl.bind(mainMod .. " + Q",         hl.dsp.window.kill())
