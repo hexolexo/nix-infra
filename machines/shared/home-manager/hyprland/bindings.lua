@@ -85,11 +85,6 @@ hl.bind(mainMod .. " + o", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + e",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + i",  hl.dsp.focus({ direction = "down" }))
 
-hl.bind(mainMod .. " + SHIFT + n", hl.dsp.window.move({ dir = "l" }))
-hl.bind(mainMod .. " + SHIFT + o", hl.dsp.window.move({ dir = "r" }))
-hl.bind(mainMod .. " + SHIFT + e", hl.dsp.window.move({ dir = "u" }))
-hl.bind(mainMod .. " + SHIFT + i", hl.dsp.window.move({ dir = "d" }))
-
 -- HACK: resize via resizeactive dispatcher — no native hl.dsp.window.resize direction API yet
 hl.bind(mainMod .. " + ALT + n", hl.dsp.exec_cmd("hyprctl dispatch resizeactive -30 0"))
 hl.bind(mainMod .. " + ALT + e", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 -30"))
