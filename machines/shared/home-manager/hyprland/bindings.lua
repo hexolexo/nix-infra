@@ -96,7 +96,7 @@ hl.bind(mainMod .. " + ALT + o", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 
 -- ── SPECIAL WORKSPACE ────────────────────────────────────────────────────
 
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special({ name = "magic" }))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move_to_workspace({ workspace = "special:magic" }))
+--hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move_to_workspace({ workspace = "special:magic" }))
 
 
 -- ── MOUSE ────────────────────────────────────────────────────────────────
