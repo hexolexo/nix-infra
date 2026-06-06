@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ../shared/home-manager/hyprland-laptop.nix
+    ../shared/home-manager/hyprland.nix
     ../shared/home-manager/anki.nix
     ../shared/home-manager/alacritty.nix
     ../shared/home-manager/ghostty.nix
@@ -19,6 +19,7 @@
   services.easyeffects = {
     enable = true;
   };
+  wayland.windowManager.hyprland.configType = "lua";
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "rebuild" (builtins.readFile ../../scripts/rebuild.sh))
 
