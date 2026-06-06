@@ -67,8 +67,8 @@ hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(terminal .. " -e bash " .. sc
 
 -- ── HYPRLAND ─────────────────────────────────────────────────────────────
 
-hl.bind(mainMod .. " + y",         hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + l",         hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + y",         hl.dsp.focus({ workspace = "+1" }))
+hl.bind(mainMod .. " + l",         hl.dsp.focus({ workspace = "-1" }))
 hl.bind(mainMod .. " + SHIFT + y", hl.dsp.window.move({ workspace = "+1" }))
 hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind(mainMod .. " + Q",         hl.dsp.window.kill())
@@ -95,7 +95,7 @@ hl.bind(mainMod .. " + ALT + o", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 
 
 -- ── SPECIAL WORKSPACE ────────────────────────────────────────────────────
 
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special({ name = "magic" }))
+hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special({ name = "special:magic" }))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 
