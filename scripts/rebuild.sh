@@ -153,6 +153,17 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
     git commit -m "$commits"
     git push
 
+    # Subscribe BEFORE publishing — agent can finish before we'd otherwise open the sub
+    fifo=$(mktemp -u)
+    mkfifo "$fifo"
+    nats sub "nix.listen" \
+        --nkey="$NATS_KEY" \
+        --server="$NATS_SERVER" \
+        --count="${#targets_to_rebuild[@]}" \
+        --timeout=300s \
+        2>/dev/null >"$fifo" &
+    sub_pid=$!
+
     gum spin --spinner dot --title "Publishing NATS rebuild events..." -- \
         bash -c '
             NATS_KEY="$1"
@@ -166,8 +177,6 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
     gum format "## Waiting for rebuild status..."
     echo ""
 
-    # Track which targets we're still waiting on
-    # WARN: associative arrays need declare -A, not assignment during declare
     declare -A pending=()
     for target in "${targets_to_rebuild[@]}"; do
         pending[$target]=1
@@ -185,7 +194,6 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
         if [[ "$status" == "ok" ]]; then
             gum format "### ✅ $host"
         else
-            # err — print the full message so they know what exploded
             gum format "### ❌ $host — $message"
         fi
 
@@ -198,16 +206,11 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
         done
 
         [[ $done_count -ge $total ]] && break
-    done < <(
-        nats sub "nix.listen" \
-            --nkey="$NATS_KEY" \
-            --server="$NATS_SERVER" \
-            --count="$total" \
-            --timeout=300s \
-            2>/dev/null
-    )
+    done <"$fifo"
 
-    # Report anything that never responded
+    wait "$sub_pid" 2>/dev/null || true
+    rm -f "$fifo"
+
     for target in "${!pending[@]}"; do
         gum format "### ⚠️  $target — no response within timeout"
     done
