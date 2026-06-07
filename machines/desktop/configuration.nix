@@ -51,8 +51,6 @@ in {
     enable = true;
     extraCompatPackages = [pkgs.proton-ge-bin]; # if you use this, keep it
 
-    # HACK: extraProfile doesn't reliably propagate through bwrap into
-    # pressure-vessel; setting it here does
     package = pkgs.steam.override {
       extraEnv = {
         PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES = "1";
