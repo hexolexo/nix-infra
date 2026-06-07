@@ -1,8 +1,4 @@
-{
-  pkgs,
-  nixos-cachyos-kernel,
-  ...
-}: let
+{pkgs, ...}: let
   global = import ../vault/global.nix;
 in {
   imports = [
