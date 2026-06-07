@@ -12,7 +12,6 @@ in {
     #./services/clankhare.nix # I still can't believe they convinced me to name it this
     #./services/paperless-ngx.nix
     #./containers/unbound.nix
-    #./containers/murmur.nix
     ./containers/copyparty.nix
     #./services/nats.nix
     ./services/conduit.nix # Not currently public
