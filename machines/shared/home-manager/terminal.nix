@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   home.packages = with pkgs; [
@@ -78,7 +79,7 @@
     enable = true;
     enableDefaultConfig = false;
     matchBlocks = {
-      "*" = {
+      "*" = lib.hm.dag.entryAfter ["server" "localgit"] {
         controlMaster = "auto";
         controlPath = "~/.ssh/control-%r@%h:%p";
         controlPersist = "600";

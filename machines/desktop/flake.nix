@@ -14,7 +14,6 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     conduit.url = "git+http://10.0.0.1:3000/hexolexo/Conduit.git";
