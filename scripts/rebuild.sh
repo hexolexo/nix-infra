@@ -175,25 +175,20 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
     total=${#targets_to_rebuild[@]}
     done_count=0
 
-    # WARN: nats sub exits after --count messages; if an agent is offline we'll
-    # hang until the timeout. Adjust --timeout to taste.
-    # WARN: nats CLI flag names vary by version — check `nats sub --help` if this breaks
     while IFS= read -r line; do
-        # Each line from `nats sub` is raw JSON from nix.listen
         host=$(echo "$line" | grep -o '"host":"[^"]*"' | cut -d'"' -f4)
         status=$(echo "$line" | grep -o '"status":"[^"]*"' | cut -d'"' -f4)
         message=$(echo "$line" | grep -o '"message":"[^"]*"' | cut -d'"' -f4)
 
-        # Skip lines that don't look like status payloads (headers, blank lines)
         [[ -z "$host" ]] && continue
 
         if [[ "$status" == "ok" ]]; then
-            gum format "### ✅ $host — $message"
+            gum format "### ✅ $host"
         else
+            # err — print the full message so they know what exploded
             gum format "### ❌ $host — $message"
         fi
 
-        # Mark done if this host maps to one of our targets
         for target in "${!pending[@]}"; do
             if [[ "$target" == "$host" ]]; then
                 unset "pending[$target]"
@@ -202,10 +197,7 @@ if gum confirm "Commit, push, and trigger via NATS?"; then
             fi
         done
 
-        # Exit once all triggered targets have reported back
-        if [[ $done_count -ge $total ]]; then
-            break
-        fi
+        [[ $done_count -ge $total ]] && break
     done < <(
         nats sub "nix.listen" \
             --nkey="$NATS_KEY" \
