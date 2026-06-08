@@ -69,6 +69,11 @@
           allowedIPs = ["10.0.0.12/32"]; # quest
           persistentKeepalive = 25;
         }
+        {
+          publicKey = "bQG4arZQK2Zi5zxDbjfrc5pAZMTmLruR5KavC+tiJCw=";
+          allowedIPs = ["10.0.0.13/32"]; # beco
+          persistentKeepalive = 25;
+        }
       ];
     };
   };
