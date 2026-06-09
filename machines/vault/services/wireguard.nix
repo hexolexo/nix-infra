@@ -74,6 +74,11 @@
           allowedIPs = ["10.0.0.13/32"]; # beco
           persistentKeepalive = 25;
         }
+        {
+          publicKey = "xlQOAL9lzrNGQ/WyfVrRBI4JYN+Eb1O9i6524qH4PU8=";
+          allowedIPs = ["10.0.0.14/32"]; # jam
+          persistentKeepalive = 25;
+        }
       ];
     };
   };
