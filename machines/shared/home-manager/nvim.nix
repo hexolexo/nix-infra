@@ -168,6 +168,7 @@
               "gofmt"
               "goimports"
             ];
+            java = ["google-java-format"]; # God help me
             nix = ["alejandra"];
             bash = ["shfmt"];
             gleam = ["gleam"];

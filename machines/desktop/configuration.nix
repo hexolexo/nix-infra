@@ -72,6 +72,8 @@ in {
     mangohud
     vulkan-tools
     wayvr
+    jdk21
+    gradle
   ];
 
   nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];
