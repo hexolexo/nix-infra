@@ -72,7 +72,7 @@ in {
     mangohud
     vulkan-tools
     wayvr
-    jdk21
+    jdk25
     gradle
   ];
 
