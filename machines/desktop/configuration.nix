@@ -85,7 +85,8 @@ in {
 
   nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];
   nix.settings.trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.cachyosKernels.linux-cachyos-latest-zen4;
+  #boot.kernelPackages = pkgs.linuxPackagesFor pkgs.cachyosKernels.linux-cachyos-latest-zen4;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   programs.alvr = {
     enable = true;
