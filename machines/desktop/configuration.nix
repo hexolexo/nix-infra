@@ -42,6 +42,13 @@ in {
 
   boot.initrd.kernelModules = ["amdgpu"];
 
+  boot.supportedFilesystems = ["zfs"];
+  boot.zfs.forceImportRoot = false; # don't force-import on boot; safer for non-root pools
+
+  networking.hostId = "471d3a3f"; # REQUIRED or zfs won't import pools
+
+  services.zfs.autoScrub.enable = true; # run monthly scrubs; highly recommended
+
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
