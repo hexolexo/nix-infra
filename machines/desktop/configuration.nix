@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}: let
   global = import ../vault/global.nix;
 in {
   imports = [
@@ -85,8 +90,8 @@ in {
 
   nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];
   nix.settings.trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
-  #boot.kernelPackages = pkgs.linuxPackagesFor pkgs.cachyosKernels.linux-cachyos-latest-zen4;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-zen4;
+  boot.zfs.package = config.boot.kernelPackages.zfs_cachyos;
 
   programs.alvr = {
     enable = true;
