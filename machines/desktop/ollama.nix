@@ -10,5 +10,5 @@
       OLLAMA_FLASH_ATTENTION = "0";
     };
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [11434];
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [11434 8082];
 }

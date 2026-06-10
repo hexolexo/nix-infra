@@ -35,6 +35,7 @@ in {
     AmbientCapabilities = "CAP_SYS_NICE";
     CapabilityBoundingSet = "CAP_SYS_NICE";
   };
+  systemd.timers.fwupd-refresh.enable = false;
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
