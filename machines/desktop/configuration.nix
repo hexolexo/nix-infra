@@ -99,5 +99,7 @@ in {
     openFirewall = true;
   };
 
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [8082];
+
   system.stateVersion = "25.11";
 }
