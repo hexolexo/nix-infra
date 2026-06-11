@@ -86,6 +86,7 @@ in {
     vulkan-tools
     wayvr
     jdk21
+    crush
     gradle
   ];
 
