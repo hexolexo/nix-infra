@@ -23,39 +23,6 @@
     };
 
     plugins = {
-      minuet = {
-        enable = true;
-        settings = {
-          # HACK: was openai_compatible — wrong provider, caused chat-style completions
-          provider = "openai_fim_compatible";
-          provider_options = {
-            openai_fim_compatible = {
-              model = "codestral-16k";
-              end_point = "http://10.0.0.8:11434/v1/completions";
-              name = "ollama";
-              api_key = "TERM";
-              optional = {
-                max_tokens = 128;
-                top_p = 0.9;
-                stop = ["\n\n"];
-              };
-            };
-          };
-          virtualtext = {
-            auto_trigger_ft = ["go" "nix" "bash" "python"];
-            keymap = {
-              accept = "<A-a>";
-              next = "<A-]>";
-              prev = "<A-[>";
-              accept_line = "<A-q>";
-              dismiss = "<A-x>";
-            };
-          };
-          request_timeout = 10;
-          throttle_ms = 1000;
-        };
-      };
-
       blink-cmp = {
         enable = true;
         settings = {
@@ -67,43 +34,7 @@
               "lsp"
               "path"
               "buffer"
-              "minuet" # add this
             ];
-            providers = {
-              minuet = {
-                name = "minuet";
-                module = "minuet.blink";
-                score_offset = 8;
-              };
-            };
-          };
-        };
-      };
-      codecompanion = {
-        enable = true;
-        settings = {
-          adapters = {
-            http = {
-              ollama.__raw = ''
-                function()
-                  return require('codecompanion.adapters').extend('ollama', {
-                    env = {
-                      url = "http://10.0.0.8:11434",
-                    },
-                    schema = {
-                      model = {
-                        default = "qwen2.5-coder:14b",
-                      },
-                    },
-                  })
-                end
-              '';
-            };
-          };
-          strategies = {
-            chat = {adapter = "ollama";};
-            inline = {adapter = "ollama";};
-            agent = {adapter = "ollama";};
           };
         };
       };
@@ -211,24 +142,6 @@
         mode = "n";
         key = "<leader>xx";
         action = "<cmd>Trouble diagnostics toggle<cr>";
-      }
-      {
-        mode = ["n" "v"];
-        key = "<leader>cc";
-        action = "<cmd>CodeCompanionChat Toggle<cr>";
-        options.desc = "Toggle CodeCompanion chat";
-      }
-      {
-        mode = ["n" "v"];
-        key = "<leader>ca";
-        action = "<cmd>CodeCompanionActions<cr>";
-        options.desc = "CodeCompanion action menu";
-      }
-      {
-        mode = "v";
-        key = "<leader>cs";
-        action = "<cmd>CodeCompanionChat Add<cr>";
-        options.desc = "Add selection to chat";
       }
     ];
     extraConfigLua = ''

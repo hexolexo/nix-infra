@@ -10,7 +10,7 @@ in {
     ./hardware-configuration.nix
     ../shared/common.nix
     ./networking.nix
-    ./ollama.nix
+    #./ollama.nix
     ./audio.nix
     ./virtualisation.nix
     ./conduit.nix
