@@ -59,6 +59,7 @@ in {
     "amd_iommu=on"
     "iommu=pt"
   ];
+  programs.coolercontrol.enable = true;
 
   programs.steam = {
     enable = true;
