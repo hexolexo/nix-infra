@@ -51,7 +51,6 @@
 
   environment.systemPackages = with pkgs; [
     # Applications
-    librewolf
     freetube
     moonlight-qt
     obsidian
@@ -155,7 +154,7 @@
   services = {
     udisks2.enable = true;
     dbus.enable = true;
-    flatpak.enable = true;
+    #flatpak.enable = true;
     fwupd.enable = true;
     blueman.enable = true;
     pulseaudio.enable = false;

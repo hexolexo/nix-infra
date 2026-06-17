@@ -12,8 +12,7 @@ in {
     ./networking.nix
     #./ollama.nix
     ./audio.nix
-    ./virtualisation.nix
-    ./conduit.nix
+    #./virtualisation.nix
   ];
 
   networking = {
@@ -82,14 +81,8 @@ in {
 
   environment.systemPackages = with pkgs; [
     monado-vulkan-layers
-    godot
-    mangohud
     vulkan-tools
     wayvr
-    jdk21
-    geckodriver
-    crush
-    gradle
   ];
 
   nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];

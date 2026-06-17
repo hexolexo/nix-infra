@@ -7,10 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +30,7 @@
         ./configuration.nix
         ./disko.nix
         agenix.nixosModules.default
+        disko.nixosModules.disko
       ];
     };
   };
