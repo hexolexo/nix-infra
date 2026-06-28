@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
 }: let
   global = import ../vault/global.nix;
@@ -53,7 +54,25 @@ in {
     };
   };
 
-  services.openssh.enable = true;
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r rpool/local/root@blank
+  '';
+
+  services.openssh = {
+    enable = true;
+    hostKeys = [
+      {
+        path = "/persist/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+    ];
+  };
+
+  systemd.tmpfiles.rules = [
+    "L /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
+    "L /var/lib/bluetooth - - - - /persist/var/lib/bluetooth"
+    "L /var/lib/mpd - - - - /persist/var/lib/mpd"
+  ];
   users.users = {
     hexolexo.openssh.authorizedKeys.keys = global.laptopKey;
     root.openssh.authorizedKeys.keys = global.laptopKey;
@@ -146,7 +165,7 @@ in {
     isNormalUser = true;
     description = "hexolexo";
     initialPassword = "changeme";
-    extraGroups = ["input" "networkmanager" "wheel"];
+    extraGroups = ["input" "networkmanager" "wheel" "video" "render"];
     packages = with pkgs; [
       # GUI
       obsidian
@@ -265,8 +284,6 @@ in {
   };
 
   programs = {
-    coolercontrol.enable = true;
-
     firefox.enable = true;
     hyprland = {
       enable = true;
@@ -294,19 +311,6 @@ in {
   };
 
   nix = {
-    distributedBuilds = true;
-    buildMachines = [
-      {
-        hostName = "server";
-        system = "x86_64-linux";
-        sshUser = "nix-builder";
-        sshKey = "/home/hexolexo/.ssh/id_ed25519";
-        maxJobs = 20;
-        speedFactor = 2;
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-        mandatoryFeatures = [];
-      }
-    ];
     gc = {
       automatic = true;
       dates = "weekly";

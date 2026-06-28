@@ -1,7 +1,7 @@
 {lib, ...}: {
   disko.devices = {
     disk.main = {
-      # WARN: set this to your actual disk — check with lsblk
+      #  WARN: set this to your actual disk — check with lsblk
       device = "/dev/disk/by-id/nvme-T-FORCE_TM8FFE002T_TPBF2503250100400331";
       type = "disk";
       content = {
@@ -17,7 +17,6 @@
             };
           };
           zfs = {
-            # takes remaining space
             size = "100%";
             content = {
               type = "zfs";
@@ -27,11 +26,10 @@
         };
       };
     };
-
     zpool.rpool = {
       type = "zpool";
       options = {
-        ashift = "12"; # WARN: assumes 4K sector disk — verify with `smartctl -i /dev/nvme0n1`
+        ashift = "12"; #  WARN: assumes 4K sector disk — verify with `smartctl -i /dev/nvme0n1`
         autotrim = "on";
       };
       rootFsOptions = {
@@ -44,8 +42,8 @@
         compression = "zstd";
         "com.sun:auto-snapshot" = "false";
       };
-
       datasets = {
+        # never backed up — reconstructible
         "local" = {
           type = "zfs_fs";
           options = {
@@ -58,29 +56,31 @@
           options.mountpoint = "legacy";
           mountpoint = "/nix";
         };
-        "system" = {
-          type = "zfs_fs";
-          options = {
-            mountpoint = "none";
-            canmount = "off";
-          };
-        };
-        "system/root" = {
+        "local/root" = {
           type = "zfs_fs";
           options.mountpoint = "legacy";
           mountpoint = "/";
+          # blank snapshot for rollback on every boot — created once by Disko at install time
+          postCreateHook = "zfs snapshot rpool/local/root@blank";
         };
-        "user" = {
+
+        # backed up by borg
+        "safe" = {
           type = "zfs_fs";
           options = {
             mountpoint = "none";
             canmount = "off";
           };
         };
-        "user/home" = {
+        "safe/home" = {
           type = "zfs_fs";
           options.mountpoint = "legacy";
           mountpoint = "/home";
+        };
+        "safe/persist" = {
+          type = "zfs_fs";
+          options.mountpoint = "legacy";
+          mountpoint = "/persist";
         };
       };
     };
