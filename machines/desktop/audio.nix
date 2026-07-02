@@ -54,4 +54,20 @@
       }
     ];
   };
+  services.mpd = {
+    enable = true;
+    user = "hexolexo";
+    group = "users";
+    settings = {
+      music_directory = "/home/hexolexo/Music";
+      audio_output = [
+        {
+          type = "pulse";
+          name = "PulseAudio/PipeWire";
+          # WARN: hardcoded UID 1000 — breaks if hexolexo isn't the first user
+          server = "/run/user/1000/pulse/native";
+        }
+      ];
+    };
+  };
 }

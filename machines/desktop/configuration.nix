@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   config,
-  lib,
   ...
 }: let
   global = import ../vault/global.nix;
@@ -12,11 +11,13 @@ in {
     ../shared/keyd.nix
     ./networking.nix
     ./audio.nix
+    ./vr.nix
+    ./desktop.nix
+    ./eraseyourdarlings.nix
     #./virtualisation.nix
   ];
 
-  boot.initrd.systemd.emergencyAccess = true;
-  systemd.services.zfs-mount.enable = false;
+  nixpkgs.config.allowUnfree = true;
 
   networking = {
     hostName = "hexolexo-pc";
@@ -31,32 +32,7 @@ in {
     };
   };
 
-  systemd.user.services.wivrn.environment = {
-    XRT_COMPOSITOR_COMPUTE = "1";
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-    XRT_COMPOSITOR_FORCE_WAIT_FOR_PRESENT = "0";
-  };
-  systemd.user.services.wivrn.serviceConfig = {
-    AmbientCapabilities = "CAP_SYS_NICE";
-    CapabilityBoundingSet = "CAP_SYS_NICE";
-  };
   systemd.timers.fwupd-refresh.enable = false;
-
-  services.greetd = {
-    enable = true;
-    settings.initial_session = {
-      command = "${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop";
-      user = "hexolexo";
-    };
-    settings.default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd '${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop'";
-      user = "greeter";
-    };
-  };
-
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r rpool/local/root@blank
-  '';
 
   services.openssh = {
     enable = true;
@@ -68,11 +44,6 @@ in {
     ];
   };
 
-  systemd.tmpfiles.rules = [
-    "L /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
-    "L /var/lib/bluetooth - - - - /persist/var/lib/bluetooth"
-    "L /var/lib/mpd - - - - /persist/var/lib/mpd"
-  ];
   users.users = {
     hexolexo.openssh.authorizedKeys.keys = global.laptopKey;
     root.openssh.authorizedKeys.keys = global.laptopKey;
@@ -92,36 +63,8 @@ in {
     "iommu=pt"
   ];
 
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [pkgs.proton-ge-bin]; # if you use this, keep it
-
-    package = pkgs.steam.override {
-      extraEnv = {
-        PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES = "1";
-        STEAM_BWRAP_ARGS = "--bind /home/hexolexo/.config/openxr /home/hexolexo/.config/openxr";
-      };
-    };
-  };
-
-  services.xserver.videoDrivers = ["amdgpu"];
-
-  services.wivrn = {
-    enable = true;
-    openFirewall = true; # pokes UDP hole for streaming
-  };
-  services.hardware.openrgb.enable = true;
-
-  nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];
-  nix.settings.trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
   boot.kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-zen4;
   boot.zfs.package = config.boot.kernelPackages.zfs_cachyos;
-
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [8082];
-
-  system.stateVersion = "25.11";
-
-  nixpkgs.config.allowUnfree = true;
 
   security = {
     pam.u2f = {
@@ -133,7 +76,6 @@ in {
       login.u2fAuth = true;
     };
     polkit.enable = true;
-    # Desktop needs this too
     rtkit.enable = true;
   };
 
@@ -161,48 +103,6 @@ in {
     };
   };
 
-  users.users.hexolexo = {
-    isNormalUser = true;
-    description = "hexolexo";
-    initialPassword = "changeme";
-    extraGroups = ["input" "networkmanager" "wheel" "video" "render"];
-    packages = with pkgs; [
-      # GUI
-      obsidian
-      freetube
-      mumble
-      # TUI
-      nethack
-      alacritty
-      mpc
-      mpv
-      ncmpcpp
-      btop
-      starship
-      fuzzel
-      clipse
-      feh
-      zoxide
-      eza
-      grimblast
-      jq
-      go
-      stylua
-      delve
-      mutagen
-      neovim
-      borgbackup
-      wireguard-tools
-      wl-clipboard
-      yt-dlp
-      hyprlock
-      hyprpaper
-      hyprpolkitagent
-      quickshell
-      qt6.qtwayland
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
     pinentry-tty
     #monado-vulkan-layers
@@ -211,12 +111,6 @@ in {
     # Wayland/Desktop
     pamixer
     prismlauncher
-
-    # VR
-    android-tools
-    protontricks
-    xrizer
-    wayvr
 
     # Development
     git
@@ -248,7 +142,6 @@ in {
   services = {
     udisks2.enable = true;
     dbus.enable = true;
-    #flatpak.enable = true;
     fwupd.enable = true;
     blueman.enable = true;
     pulseaudio.enable = false;
@@ -265,37 +158,6 @@ in {
         };
       };
     };
-    mpd = {
-      enable = true;
-      user = "hexolexo";
-      group = "users";
-      settings = {
-        music_directory = "/home/hexolexo/Music";
-        audio_output = [
-          {
-            type = "pulse";
-            name = "PulseAudio/PipeWire";
-            # WARN: hardcoded UID 1000 — breaks if hexolexo isn't the first user
-            server = "/run/user/1000/pulse/native";
-          }
-        ];
-      };
-    };
-  };
-
-  programs = {
-    firefox.enable = true;
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
-    fish.enable = true;
-    gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-tty;
-    };
-    dconf.enable = true;
-    neovim.defaultEditor = true;
   };
 
   fonts.packages = [pkgs.nerd-fonts.fira-code];
@@ -317,6 +179,9 @@ in {
       options = "--delete-older-than 30d";
     };
     settings = {
+      substituters = ["https://attic.xuyh0120.win/lantian"];
+      trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
+
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
     };
@@ -326,16 +191,6 @@ in {
     allowedTCPPorts = [];
     allowedUDPPorts = [];
   };
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    config.common.default = "*";
-  };
 
-  services.murmur = {
-    enable = true;
-    openFirewall = true;
-  };
+  system.stateVersion = "25.11";
 }
