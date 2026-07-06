@@ -14,12 +14,17 @@
   systemd.tmpfiles.rules = [
     "L /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
     "d /var/lib/bluetooth 0700 root root - -"
-    #"L /var/lib/bluetooth - - - - /persist/var/lib/bluetooth"
-    "L /var/lib/mpd - - - - /persist/var/lib/mpd"
+    "d /var/lib/mpd - - - - /persist/var/lib/mpd"
   ];
 
   fileSystems."/var/lib/bluetooth" = {
     device = "/persist/var/lib/bluetooth";
+    fsType = "none";
+    options = ["bind"];
+  };
+
+  fileSystems."/var/lib/mpd" = {
+    device = "/persist/var/lib/mpd";
     fsType = "none";
     options = ["bind"];
   };

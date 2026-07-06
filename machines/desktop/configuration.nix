@@ -14,7 +14,7 @@ in {
     ./vr.nix
     ./desktop.nix
     ./eraseyourdarlings.nix
-    #./virtualisation.nix
+    ./virtualisation.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -107,6 +107,9 @@ in {
     pinentry-tty
     #monado-vulkan-layers
     vulkan-tools
+    lutris-unwrapped
+    adwaita-icon-theme
+    _7zz
 
     # Wayland/Desktop
     pamixer

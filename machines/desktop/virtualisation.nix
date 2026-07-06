@@ -23,6 +23,7 @@
   environment.systemPackages = with pkgs; [
     virt-manager
     virt-viewer
+    distrobox
     spice
     spice-gtk
     spice-protocol

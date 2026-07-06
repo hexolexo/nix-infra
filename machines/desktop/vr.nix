@@ -20,6 +20,8 @@
   environment.systemPackages = with pkgs; [
     # VR
     android-tools
+    appimage-run
+    fuse
     protontricks
     xrizer
     wayvr
