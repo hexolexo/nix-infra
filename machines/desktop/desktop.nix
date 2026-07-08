@@ -4,11 +4,14 @@
     description = "hexolexo";
     initialPassword = "changeme";
     extraGroups = ["input" "networkmanager" "wheel" "video" "render"];
+    shell = pkgs.fish;
     packages = with pkgs; [
       # GUI
       obsidian
       freetube
       mumble
+      godot
+
       # TUI
       nethack
       alacritty
@@ -17,6 +20,7 @@
       ncmpcpp
       btop
       starship
+      jj-starship
       fuzzel
       clipse
       feh
@@ -39,11 +43,13 @@
       quickshell
       qt6.qtwayland
       zk
+      xwayland-satellite
     ];
   };
 
   programs = {
     firefox.enable = true;
+    niri.enable = true;
     hyprland = {
       enable = true;
       withUWSM = true;
@@ -57,17 +63,7 @@
     neovim.defaultEditor = true;
   };
 
-  services.greetd = {
-    enable = true;
-    settings.initial_session = {
-      command = "${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop";
-      user = "hexolexo";
-    };
-    settings.default_session = {
-      command = "${pkgs.tuigreet}/bin/tuigreet --cmd '${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop'";
-      user = "greeter";
-    };
-  };
+  services.displayManager.cosmic-greeter.enable = true;
 
   programs.steam = {
     enable = true;

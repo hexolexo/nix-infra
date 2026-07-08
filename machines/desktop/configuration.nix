@@ -117,6 +117,10 @@ in {
 
     # Development
     git
+    jujutsu
+    helix
+    gopls
+    nixd
     lua-language-server
     marksman
     micro
@@ -157,7 +161,7 @@ in {
 
       wireplumber.extraConfig."10-bluez" = {
         "monitor.bluez.properties" = {
-          "bluez5.roles" = ["a2dp_sink" "a2dp_source"];
+          "bluez5.roles" = ["a2dp_sink" "a2dp_source"]; # Prevents headset mode on bluetooth headphones
         };
       };
     };
