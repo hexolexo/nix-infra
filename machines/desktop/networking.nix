@@ -9,7 +9,7 @@
     wg0 = {
       ips = ["10.0.0.8/24"];
 
-      privateKeyFile = "/persist/etc/wireguard/privkey";
+      privateKeyFile = "/etc/wireguard/privkey";
 
       peers = [
         {

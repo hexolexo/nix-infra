@@ -56,15 +56,18 @@
           options.mountpoint = "legacy";
           mountpoint = "/nix";
         };
-        "local/root" = {
+        "local/games" = {
           type = "zfs_fs";
-          options.mountpoint = "legacy";
-          mountpoint = "/";
-          # blank snapshot for rollback on every boot — created once by Disko at install time
-          postCreateHook = "zfs snapshot rpool/local/root@blank";
+          options = {
+            mountpoint = "legacy";
+            atime = "off";
+            recordsize = "1M";
+            compression = "lz4"; # game assets already compressed, zstd wastes cycles
+          };
+          mountpoint = "/var/lib/games";
         };
 
-        # backed up by borg
+        # backed up via syncoid -> tank
         "safe" = {
           type = "zfs_fs";
           options = {
@@ -72,15 +75,15 @@
             canmount = "off";
           };
         };
+        "safe/root" = {
+          type = "zfs_fs";
+          options.mountpoint = "legacy";
+          mountpoint = "/";
+        };
         "safe/home" = {
           type = "zfs_fs";
           options.mountpoint = "legacy";
           mountpoint = "/home";
-        };
-        "safe/persist" = {
-          type = "zfs_fs";
-          options.mountpoint = "legacy";
-          mountpoint = "/persist";
         };
       };
     };

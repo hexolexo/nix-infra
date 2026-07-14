@@ -13,7 +13,7 @@ in {
     ./audio.nix
     ./vr.nix
     ./desktop.nix
-    ./eraseyourdarlings.nix
+    #./eraseyourdarlings.nix
     ./virtualisation.nix
   ];
 
@@ -38,7 +38,7 @@ in {
     enable = true;
     hostKeys = [
       {
-        path = "/persist/etc/ssh/ssh_host_ed25519_key";
+        path = "/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
       }
     ];
