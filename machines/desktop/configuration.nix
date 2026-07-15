@@ -52,7 +52,7 @@ in {
   boot.initrd.kernelModules = ["amdgpu"];
 
   boot.supportedFilesystems = ["zfs"];
-  boot.zfs.forceImportRoot = false; # don't force-import on boot; safer for non-root pools
+  boot.zfs.forceImportRoot = true;
 
   networking.hostId = "471d3a3f";
 
@@ -177,6 +177,40 @@ in {
     };
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
+  };
+
+  fileSystems."/var/lib/games" = {
+    device = "rpool/local/games";
+    fsType = "zfs";
+  };
+
+  services.sanoid.enable = true;
+
+  services.sanoid.datasets."tank/backups/home" = {
+    autosnap = false;
+    autoprune = true;
+    frequently = 0;
+    hourly = 24;
+    daily = 14;
+    monthly = 3;
+    # process_children_only removed — this dataset has no children, was silently disabling all pruning
+  };
+
+  systemd.services.syncoid-home = {
+    path = with pkgs; [zfs sanoid];
+    after = ["sanoid.service"]; # explicit: never race ahead of the source snapshot
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.sanoid}/bin/syncoid rpool/safe/home tank/backups/home";
+    };
+  };
+
+  systemd.timers.syncoid-home = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "hourly";
+      RandomizedDelaySec = "5m"; # gives sanoid's own hourly tick room to land first even if clocks drift
+    };
   };
 
   nix = {
