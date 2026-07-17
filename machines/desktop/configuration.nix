@@ -14,6 +14,7 @@ in {
     ./vr.nix
     ./desktop.nix
     #./eraseyourdarlings.nix
+    ./gpu_passthrough.nix
     ./virtualisation.nix
   ];
 
@@ -120,6 +121,8 @@ in {
     jujutsu
     helix
     gopls
+    gotools
+    golangci-lint-langserver
     nixd
     lua-language-server
     marksman
@@ -128,10 +131,13 @@ in {
     nil
     alejandra
     nix-output-monitor
+    shfmt
+    bash-language-server
     unzip
 
     # Shell/Terminal
     fzf
+    direnv
     ripgrep
     fd
     highlight
