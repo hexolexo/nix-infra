@@ -14,12 +14,12 @@ in {
     #./containers/unbound.nix
     ./containers/copyparty.nix
     #./services/nats.nix
-    ./services/conduit.nix # Not currently public
-    ./services/ollama.nix
+    #./services/conduit.nix # Not currently public
+    #./services/ollama.nix
     #./services/ntfy.nix
     ./services/jellyfin.nix
-    ./services/searx.nix
-    ./services/mumble.nix
+    #./services/searx.nix
+    #./services/mumble.nix
     #./services/sunshine.nix
     #./containers/radicle.nix
     #./containers/mindustry.nix
