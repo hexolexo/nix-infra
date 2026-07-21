@@ -3,7 +3,7 @@
     isNormalUser = true;
     description = "hexolexo";
     initialPassword = "changeme";
-    extraGroups = ["input" "networkmanager" "wheel" "video" "render"];
+    extraGroups = ["input" "networkmanager" "wheel" "video" "render" "ydotool"];
     shell = pkgs.fish;
     packages = with pkgs; [
       # GUI
@@ -13,10 +13,10 @@
       godot
 
       # TUI
-      nethack
       alacritty
       mpc
       mpv
+      playerctl
       ncmpcpp
       btop
       starship

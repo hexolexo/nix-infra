@@ -12,18 +12,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    #nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs = {
     self,
     nixpkgs,
-    nix-cachyos-kernel,
+    #nix-cachyos-kernel,
     agenix,
     disko,
     ...
   } @ inputs: {
-    nixosConfigurations.hexolexo-pc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [

@@ -17,7 +17,8 @@ in {
     #./services/conduit.nix # Not currently public
     #./services/ollama.nix
     #./services/ntfy.nix
-    ./services/jellyfin.nix
+    #./services/jellyfin.nix
+    ./services/immich.nix
     #./services/searx.nix
     #./services/mumble.nix
     #./services/sunshine.nix

@@ -13,7 +13,6 @@ in {
     ./audio.nix
     ./vr.nix
     ./desktop.nix
-    #./eraseyourdarlings.nix
     ./gpu_passthrough.nix
     ./virtualisation.nix
   ];
@@ -64,8 +63,8 @@ in {
     "iommu=pt"
   ];
 
-  boot.kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-zen4;
-  boot.zfs.package = config.boot.kernelPackages.zfs_cachyos;
+  #boot.kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-zen4;
+  #boot.zfs.package = config.boot.kernelPackages.zfs_cachyos;
 
   security = {
     pam.u2f = {
@@ -83,6 +82,7 @@ in {
   documentation.man.enable = true;
 
   boot.loader = {
+    grub.configurationLimit = 3;
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
@@ -115,6 +115,8 @@ in {
     # Wayland/Desktop
     pamixer
     prismlauncher
+    noctalia-shell
+    nh
 
     # Development
     git
@@ -218,6 +220,8 @@ in {
       RandomizedDelaySec = "5m"; # gives sanoid's own hourly tick room to land first even if clocks drift
     };
   };
+
+  programs.ydotool.enable = true;
 
   nix = {
     gc = {
