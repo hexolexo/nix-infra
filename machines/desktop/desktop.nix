@@ -11,6 +11,7 @@
       freetube
       mumble
       godot
+      flatpak
 
       # TUI
       alacritty
@@ -21,6 +22,7 @@
       btop
       starship
       jj-starship
+      just
       fuzzel
       clipse
       feh
@@ -42,7 +44,6 @@
       hyprpolkitagent
       quickshell
       qt6.qtwayland
-      zk
       xwayland-satellite
     ];
   };

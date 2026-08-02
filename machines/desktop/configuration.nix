@@ -82,8 +82,11 @@ in {
   documentation.man.enable = true;
 
   boot.loader = {
-    grub.configurationLimit = 3;
-    systemd-boot.enable = true;
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+    };
     efi.canTouchEfiVariables = true;
   };
 
@@ -230,6 +233,7 @@ in {
       options = "--delete-older-than 30d";
     };
     settings = {
+      trusted-users = ["root" "hexolexo"];
       substituters = ["https://attic.xuyh0120.win/lantian"];
       trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
 
