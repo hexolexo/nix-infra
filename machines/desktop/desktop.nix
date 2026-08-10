@@ -21,6 +21,7 @@
       ncmpcpp
       btop
       starship
+      rofi
       jj-starship
       just
       fuzzel
