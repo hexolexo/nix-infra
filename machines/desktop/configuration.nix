@@ -15,6 +15,7 @@ in {
     ./desktop.nix
     ./gpu_passthrough.nix
     ./virtualisation.nix
+    ./llama.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

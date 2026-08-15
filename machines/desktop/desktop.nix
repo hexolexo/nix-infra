@@ -15,6 +15,7 @@
 
       # TUI
       alacritty
+      crush
       mpc
       mpv
       playerctl
